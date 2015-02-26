@@ -1,0 +1,25 @@
+<ion-view view-title="同类推荐" cache-view="false" id="sameclass">
+    <ion-header-bar align-title="center" class="bar-stable">
+        <button ng-click="sameclass_back();" class="button back-button buttons  button-clear button-dark header-item">
+            <i class="icon ion-ios7-arrow-back"></i>
+            <span class="back-text">返回</span></button>
+        <a class="title">同类推荐</a>
+        <button class="button button-clear " ng-click="to_cart();">
+        <i class="icon ion-ios7-cart-outline" ></i></button>
+    </ion-header-bar>
+    <ion-content id="product-list">
+        <ion-list>
+            <ion-item ng-show="productList.length != 0" class="item-pic item-icon-right " ng-repeat="product in productList"
+                      type="item-text-wrap" ng-click="detail(product)">
+                <img class="img" ng-src="{{product.pic}}">
+                <h2>{{product.title}}</h2>
+                <p class="price"><b>￥22</b><span>$22</span></p>
+                <p>产地：扬州</p>
+                <i class="icon ion-ios7-cart-outline" ng-click='addToCart(product,$event)'></i>
+            </ion-item>
+            <ion-item ng-show="productList.length == 0" type="item-text-wrap">
+                <h2 class="text-center">暂无同类商品</h2>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

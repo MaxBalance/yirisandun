@@ -1,0 +1,77 @@
+<ion-tabs id="allOrder-tabs" class="tabs-positive tabs-top tabs-background-balanced">
+
+    <ion-tab title="未付款">
+        <ion-content class="has-top-bar" ng-style="listPanel">
+            <ion-list>
+                <ion-list>
+                    <ion-item class="item-icon-right " ng-repeat="order in orderList1"
+                              type="item-text-wrap" ng-click="detail_no()" ng-show="orderList1.length != 0">
+                        <p style="font-size: 12px;"><b>订单编号：</b>{{order.orderid}}</p>
+                        <p style="font-size: 12px;"><b>订单总额：</b>{{order.totalmoney}}</p>
+                        <p style="font-size: 12px;"><b>下单时间：</b>{{order.createdate}}</p>
+                        <p style="font-size: 12px;"><b>订单商品：</b>{{order.info}}</p>
+                        <i ng-show="order.ispay == 0" class="icon ion-ios7-checkmark-outline" style="height: 50%;width: 27%; "ng-click='pay_order(order)'>
+                            <p style="font-size: 13px;">支付订单</p></i>
+                        <i ng-show="order.ispay == 0" class="icon ion-ios7-minus-outline" style="height: 50px;width: 27%;margin:60px 0 0 0;" ng-click='cancel_order(order)'>
+                            <p style="font-size: 13px;">取消订单</p></i>
+                    </ion-item>
+                    <ion-item ng-show="orderList1.length == 0" type="item-text-wrap">
+                        <h2 class="text-center">暂无订单信息</h2>
+                    </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-tab>
+
+    <ion-tab title="未发货">
+        <ion-content class="has-top-bar" ng-style="listPanel">
+            <ion-list>
+                <ion-list>
+                    <ion-item class="item-icon-right " ng-repeat="order in orderList2"
+                              type="item-text-wrap" ng-click="detail_no()" ng-show="orderList2.length != 0">
+                        <p style="font-size: 12px;"><b>订单编号：</b>{{order.orderid}}</p>
+                        <p style="font-size: 12px;"><b>订单总额：</b>{{order.totalmoney}}</p>
+                        <p style="font-size: 12px;"><b>下单时间：</b>{{order.createdate}}</p>
+                        <p style="font-size: 12px;"><b>订单商品：</b>{{order.info}}</p>
+                        <i ng-show="order.ispay == 0" class="icon ion-ios7-checkmark-outline" style="height: 50%;width: 27%; "ng-click='pay_order(order)'>
+                            <p style="font-size: 13px;">支付订单</p></i>
+                        <i ng-show="order.ispay == 0" class="icon ion-ios7-minus-outline" style="height: 50px;width: 27%;margin:60px 0 0 0;" ng-click='cancel_order(order)'>
+                            <p style="font-size: 13px;">取消订单</p></i>
+                    </ion-item>
+                    <ion-item ng-show="orderList2.length == 0" type="item-text-wrap">
+                        <h2 class="text-center">暂无订单信息</h2>
+                    </ion-item>
+                </ion-list>
+        </ion-content>
+    </ion-tab>
+
+    <ion-tab title="已完成">
+        <ion-content class="has-top-bar" ng-style="listPanel">
+            <ion-list>
+                <ion-list>
+                    <ion-item class="item-icon-right " ng-repeat="order in orderList3"
+                              type="item-text-wrap" ng-click="detail_no()" ng-show="orderList3.length != 0">
+                        <p style="font-size: 12px;"><b>订单编号：</b>{{order.orderid}}</p>
+                        <p style="font-size: 12px;"><b>订单总额：</b>{{order.totalmoney}}</p>
+                        <p style="font-size: 12px;"><b>下单时间：</b>{{order.createdate}}</p>
+                        <p style="font-size: 12px;"><b>订单商品：</b>{{order.info}}</p>
+                        <i ng-show="order.ispay == 0" class="icon ion-ios7-checkmark-outline" style="height: 50%;width: 27%;" ng-click='pay_order(order)'>
+                            <p style="font-size: 13px;">支付订单</p></i>
+                        <i ng-show="order.ispay == 0" class="icon ion-ios7-minus-outline" style="height: 50px;width:27%;margin:60px 0 0 0;" ng-click='cancel_order(order)'>
+                            <p style="font-size: 13px;">取消订单</p></i>
+                    </ion-item>
+                    <ion-item ng-show="orderList3.length == 0" type="item-text-wrap">
+                        <h2 class="text-center">暂无订单信息</h2>
+                    </ion-item>
+                </ion-list>
+        </ion-content>
+    </ion-tab>
+</ion-tabs>
+
+<ion-view id="product-list">
+    <ion-header-bar class="bar-stable">
+        <button class="button button-clear" ng-click="orderList_back()"><i class="icon ion-ios7-arrow-left"></i> 返回</button>
+        <a class="title">我的订单</a>
+    </ion-header-bar>
+</ion-view>
+
+

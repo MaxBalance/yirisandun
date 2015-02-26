@@ -1,0 +1,51 @@
+<ion-view view-title="商品详情" id="product-detail">
+    <ion-header-bar align-title="center" class="bar-stable">
+        <button ng-click="productDetail_back();" class="button back-button buttons  button-clear button-dark header-item">
+            <i class="icon ion-ios7-arrow-left"></i>
+            <span class="back-text">返回</span></button>
+        <a class="title">商品详情</a>
+        <button class="button button-clear" ng-click="to_cart();">
+            <i class="icon ion-ios7-cart-outline" ></i></button>
+    </ion-header-bar>
+    <ion-content class="padding">
+        <div class="item item-image">
+            <img ng-src="{{product.pic}}">
+        </div>
+        <div class="card">
+            <div class="item item-text-wrap">
+                <div>品名：{{product.title}}</div>
+                <div>规格：{{product.classid}}</div>
+                <div style="display: inline-block;">价格:&nbsp;</div>
+                    <div style="display: inline-block;margin-left:0px;"><p class="price"><b>{{product.uprice}}</b><span>{{product.mprice}}</span></p></div></div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="item item-text-wrap">
+                <div class="counter">
+                    <a style="height: 31px;line-height: 31px;"> 数量：</a>
+                    <button class="button button-small" ng-click="sub(product)">-</button>
+                    <span class="count">{{product.cnt+1}}</span>
+                    <button class="button button-small" ng-click="plus(product)">+</button>
+                </div>
+                <div class="padding">
+                    <button class="button button-small button-calm" ng-click="buy_now(product);" style="width:110px;">立即购买</button>
+                    <button class="button  button-small button-balanced" ng-click="into_cart(product,$event);" style="width:110px;margin-left: 20px;">加入购物车</button>
+                </div>
+            </div>
+        </div>
+        <ul class="list">
+            <li class="item" style="height: 15px;line-height: 4px;font-size: 14px;">
+                指定商品已优惠{{product.oprice}}元
+            </li>
+            <li class="item" style="height: 15px;line-height: 4px;font-size: 14px;" ng-click="picDetail(product);">
+                图文详情(建议在wifi下查看)
+            </li>
+            <li class="item" style="height: 15px;line-height: 4px;font-size: 14px;" ng-click="comment(product);">
+                用户评价
+            </li>
+            <li class="item" style="height: 15px;line-height: 4px;font-size: 14px;" ng-click="same_class(product);">
+                同类推荐
+            </li>
+        </ul>
+    </ion-content>
+</ion-view>

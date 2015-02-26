@@ -1,0 +1,1106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="24c55a38-dda1-4626-ad04-86b41f02113c" name="Default" comment="" />
+    <list id="5cd19cb2-fc23-48ee-954c-4b6c1cd745a7" name="New changelist" comment="" />
+    <ignored path="www.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="www" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="servicesm.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/servicesm.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="5610" max-vertical-offset="8175">
+              <caret line="374" column="13" selection-start-line="374" selection-start-column="13" selection-end-line="374" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="allOrders.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/order/allOrders.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="1245">
+              <caret line="46" column="25" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1410" max-vertical-offset="2985">
+              <caret line="94" column="19" selection-start-line="94" selection-start-column="19" selection-end-line="94" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="product-list.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/product/product-list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1260" max-vertical-offset="1710">
+              <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/services.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="3030">
+              <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+              <folding>
+                <element signature="e#2876#3240#0" expanded="false" />
+                <element signature="e#3345#3649#0" expanded="false" />
+                <marker date="1422346499000" expanded="true" signature="0:91" placeholder="//..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.5775402" vertical-offset="0" max-vertical-offset="975">
+              <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="order.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/order/order.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1807" max-vertical-offset="2640">
+              <caret line="152" column="29" selection-start-line="152" selection-start-column="29" selection-end-line="152" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pic-detail.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/product/pic-detail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="270">
+              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <push-targets>
+      <push-target-info repo="$PROJECT_DIR$" source="master" target-remote="origin" target-branch="master" />
+    </push-targets>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/js/account/controller.js" />
+        <option value="$PROJECT_DIR$/templates/tab/account.html" />
+        <option value="$PROJECT_DIR$/templates/head/home.html" />
+        <option value="$PROJECT_DIR$/js/sub-pro-app.js" />
+        <option value="$PROJECT_DIR$/js/sub-pro-detail-app.js" />
+        <option value="$PROJECT_DIR$/product-detail.html" />
+        <option value="$PROJECT_DIR$/cordova_plugins.js" />
+        <option value="$PROJECT_DIR$/product.html" />
+        <option value="$PROJECT_DIR$/templates/product.html" />
+        <option value="$PROJECT_DIR$/lib/ionic/css/ionic.css" />
+        <option value="$PROJECT_DIR$/templates/product/product-detail.html" />
+        <option value="$PROJECT_DIR$/js/category/controller.js" />
+        <option value="$PROJECT_DIR$/templates/tab/person.html" />
+        <option value="$PROJECT_DIR$/templates/product/single-list.html" />
+        <option value="$PROJECT_DIR$/templates/tab/heart.html" />
+        <option value="$PROJECT_DIR$/templates/tab/category.html" />
+        <option value="$PROJECT_DIR$/lib/ionic/js/angular-ui/angular-ui-router.js" />
+        <option value="$PROJECT_DIR$/js/person/controller.js" />
+        <option value="$PROJECT_DIR$/js/filter.js" />
+        <option value="$PROJECT_DIR$/plugins/com.zt.pay/www/pay.js" />
+        <option value="$PROJECT_DIR$/js/product/controller.js" />
+        <option value="$PROJECT_DIR$/js/order/controller.js" />
+        <option value="$PROJECT_DIR$/templates/tab/home.html" />
+        <option value="$PROJECT_DIR$/js/home/controller.js" />
+        <option value="$PROJECT_DIR$/js/search/controller.js" />
+        <option value="$PROJECT_DIR$/templates/product/product-list.html" />
+        <option value="$PROJECT_DIR$/templates/tab/cart.html" />
+        <option value="$PROJECT_DIR$/js/cart/controller.js" />
+        <option value="$PROJECT_DIR$/templates/product/same-class.html" />
+        <option value="$PROJECT_DIR$/templates/product/comment.html" />
+        <option value="$PROJECT_DIR$/templates/product/pic-detail.html" />
+        <option value="$PROJECT_DIR$/css/style.css" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/templates/order/allOrders.html" />
+        <option value="$PROJECT_DIR$/js/app.js" />
+        <option value="$PROJECT_DIR$/js/servicesm.js" />
+        <option value="$PROJECT_DIR$/js/services.js" />
+        <option value="$PROJECT_DIR$/templates/order/order.html" />
+      </list>
+    </option>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1280" />
+    <option name="height" value="705" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="www" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="product" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="recentsLimit" value="5" />
+    <property name="ChangesBrowser.SHOW_FLATTEN" value="false" />
+    <property name="FullScreen" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/img" />
+      <recent name="$PROJECT_DIR$/templates/product" />
+      <recent name="$PROJECT_DIR$/js/search" />
+      <recent name="$PROJECT_DIR$/js" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Node.js.controller.js">
+    <configuration default="false" name="controller.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="/usr/local/bin/node" path-to-js-file="controller.js" working-dir="$PROJECT_DIR$/js/cart">
+      <RunnerSettings RunnerId="Basic" />
+      <ConfigurationWrapper RunnerId="Basic" />
+      <method />
+    </configuration>
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
+      <setting name="configLocationType" value="CONFIG_FILE" />
+      <setting name="settingsFile" value="" />
+      <setting name="serverType" value="INTERNAL" />
+      <setting name="preferredDebugBrowser" value="Chrome" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Node.js.controller.js" />
+    </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Node.js.controller.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="24c55a38-dda1-4626-ad04-86b41f02113c" name="Default" comment="" />
+      <changelist id="5cd19cb2-fc23-48ee-954c-4b6c1cd745a7" name="New changelist" comment="" />
+      <created>1418887052084</created>
+      <option name="number" value="Default" />
+      <updated>1418887052084</updated>
+    </task>
+    <task id="LOCAL-00004" summary="serivce ok&#10;1. index">
+      <created>1419056396186</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1419056396186</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fixed&#10;1. index&#10;bugs&#10;1.slider banner&#10;2.forward()">
+      <created>1419065546842</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1419065546842</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added&#10;1.product.html;用于显示商品列表&#10;2.home.html;显示首页的内容&#10;&#10;&#10;finished：&#10;1.cart&#10;2.slider">
+      <created>1419232894751</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1419232894751</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add :&#10;1.alipay plugin 在 xcode 的代码中，cordova中添加了相应的插件注册&#10;&#10;&#10;">
+      <created>1419323236496</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1419323236496</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add:&#10;1.首页的【客服】，【品牌中心】，【预定预售】&#10;fixed：">
+      <created>1419410866609</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1419410866609</updated>
+    </task>
+    <task id="LOCAL-00009" summary="add:&#10;1.首页的【客服】，【品牌中心】，【预定预售】&#10;fixed：">
+      <created>1419410927461</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1419410927461</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add:&#10;1.首页的【客服】，【品牌中心】，【预定预售】&#10;fixed：">
+      <created>1419412915609</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1419412915609</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fixed&#10;1.修改了首页的 modal 的 hide -&gt; remove">
+      <created>1419470356112</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1419470356112</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fixed:&#10;remove all ion-nav-bar&#10;">
+      <created>1419473887216</created>
+      <option name="number" value="00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1419473887216</updated>
+    </task>
+    <task id="LOCAL-00013" summary="fixed:&#10;add all header&#10;">
+      <created>1419477100665</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1419477100665</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fixed:&#10;add all header&#10;">
+      <created>1419477248268</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1419477248268</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Merge branch 'master' of https://gitcafe.com/yfsoftcom/ridunapp&#10;&#10;Conflicts:&#10;&#9;templates/tab/heart.html&#10;">
+      <created>1419477361935</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1419477361935</updated>
+    </task>
+    <task id="LOCAL-00016" summary="fixed:&#10;1.首页的搜索">
+      <created>1419498027704</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1419498027704</updated>
+    </task>
+    <task id="LOCAL-00017" summary="fixed:&#10;1.首页的搜索">
+      <created>1419498854210</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1419498854210</updated>
+    </task>
+    <task id="LOCAL-00018" summary="fixed:&#10;1.购物车关于 精确到2位小数点得问题">
+      <created>1419554885599</created>
+      <option name="number" value="00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1419554885599</updated>
+    </task>
+    <task id="LOCAL-00019" summary="fixed:&#10;1.购物车关于 精确到2位小数点得问题">
+      <created>1419554930173</created>
+      <option name="number" value="00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1419554930173</updated>
+    </task>
+    <task id="LOCAL-00020" summary="fixed:&#10;1.首页的内容基本实现&#10;2.商品列表（查询）已实现&#10;3.上推刷新&#10;TODO：&#10;1.banner无ID ，无法调转&#10;2.下拉刷新暂时不考虑&#10;3.品牌中心中的链接跳转&#10;4.限时抢购&#10;5.在商品列表中加入购物车&#10;6.价格的升降排序&#10;">
+      <created>1419581075368</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1419581075368</updated>
+    </task>
+    <task id="LOCAL-00021" summary="fixed:&#10;1.在购物车中能够点击图片查看商品信息&#10;2.商品详情的返回逻辑&#10;3.缓存商品列表&#10;TODO：&#10;1.购物车未加入缓存，可能会导致体验较差">
+      <created>1419584599169</created>
+      <option name="number" value="00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1419584599169</updated>
+    </task>
+    <task id="LOCAL-00022" summary="fixed:&#10;1.购物车的显示底部的内容在获取到数据之后&#10;2.返回箭头">
+      <created>1419643175923</created>
+      <option name="number" value="00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1419643175924</updated>
+    </task>
+    <task id="LOCAL-00023" summary="TODO:&#10;1.首页-限时抢购&#10;2.首页-选择优选&#10;3.购物车上传数据&#10;4.搜索列表返回键需要点击2次&#10;">
+      <created>1419658328242</created>
+      <option name="number" value="00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1419658328242</updated>
+    </task>
+    <task id="LOCAL-00024" summary="fixed:&#10;1.顶部样式做了色彩的统一&#10;2.返回键的样式都做了格式统一&#10;3.首页顶部的样式做了统一&#10;4.分类搜索的页面，品牌中心的页面&#10;5.出现头部掉到中间的bug&#10;TODO：&#10;1.所有需要登录的check&#10;2.首页的【选择优选】，【限时抢购】的倒计时&#10;3.购物车需要在页面卸载时上传数据">
+      <created>1419668110893</created>
+      <option name="number" value="00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1419668110893</updated>
+    </task>
+    <task id="LOCAL-00025" summary="fixed:&#10;1.cart的数据实时同步">
+      <created>1419820545431</created>
+      <option name="number" value="00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1419820545431</updated>
+    </task>
+    <task id="LOCAL-00026" summary="fixed:&#10;1.中文搜索功能">
+      <created>1419824692031</created>
+      <option name="number" value="00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1419824692031</updated>
+    </task>
+    <task id="LOCAL-00027" summary="fixed:&#10;1.中文搜索功能">
+      <created>1419832202840</created>
+      <option name="number" value="00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1419832202840</updated>
+    </task>
+    <task id="LOCAL-00028" summary="fixed:&#10;1.首页的部分样式调整">
+      <created>1419838008705</created>
+      <option name="number" value="00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1419838008705</updated>
+    </task>
+    <task id="LOCAL-00029" summary="fixed:&#10;1.购物车保存到本地数据中">
+      <created>1419839271476</created>
+      <option name="number" value="00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1419839271476</updated>
+    </task>
+    <task id="LOCAL-00030" summary="fixed:&#10;1.订单的头部样式">
+      <created>1419843142245</created>
+      <option name="number" value="00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1419843142245</updated>
+    </task>
+    <task id="LOCAL-00031" summary="fixed:&#10;1.将订单的订单总额加入到ds中">
+      <created>1419845103221</created>
+      <option name="number" value="00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1419845103221</updated>
+    </task>
+    <task id="LOCAL-00032" summary="fixed:&#10;1.生成订单的总价和列表保存到了ds中">
+      <created>1419845509249</created>
+      <option name="number" value="00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1419845509249</updated>
+    </task>
+    <task id="LOCAL-00033" summary="fixed:&#10;1.购物车未选择任何商品则不允许出现结算按钮">
+      <created>1419900217783</created>
+      <option name="number" value="00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1419900217783</updated>
+    </task>
+    <task id="LOCAL-00034" summary="fixed:&#10;1.搜索缓存的问题">
+      <created>1419905698915</created>
+      <option name="number" value="00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1419905698915</updated>
+    </task>
+    <task id="LOCAL-00035" summary="fixed:&#10;1.搜索缓存的问题,搜索页返回按钮的问题">
+      <created>1419905912609</created>
+      <option name="number" value="00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1419905912609</updated>
+    </task>
+    <task id="LOCAL-00036" summary="TODO:&#10;1.修复搜索列表缓存的问题">
+      <created>1419907836614</created>
+      <option name="number" value="00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1419907836614</updated>
+    </task>
+    <task id="LOCAL-00037" summary="TODO:&#10;1.修复搜索列表缓存的问题">
+      <created>1419915927561</created>
+      <option name="number" value="00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1419915927561</updated>
+    </task>
+    <task id="LOCAL-00038" summary="TODO:&#10;1.集成了支付宝支付">
+      <created>1419925635643</created>
+      <option name="number" value="00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1419925635643</updated>
+    </task>
+    <task id="LOCAL-00039" summary="TODO:&#10;1.order_type: 如果选择一个物品则调用了直接购买的接口">
+      <created>1419927904596</created>
+      <option name="number" value="00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1419927904596</updated>
+    </task>
+    <task id="LOCAL-00040" summary="fixed:&#10;1.来回跳转的问题">
+      <created>1419929396012</created>
+      <option name="number" value="00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1419929396012</updated>
+    </task>
+    <task id="LOCAL-00041" summary="fixed:&#10;1.alipay">
+      <created>1419929634973</created>
+      <option name="number" value="00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1419929634973</updated>
+    </task>
+    <task id="LOCAL-00042" summary="fixed:&#10;1.alipay">
+      <created>1419930661759</created>
+      <option name="number" value="00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1419930661759</updated>
+    </task>
+    <task id="LOCAL-00043" summary="fixed:&#10;1.购物车删除">
+      <created>1419991250673</created>
+      <option name="number" value="00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1419991250673</updated>
+    </task>
+    <task id="LOCAL-00044" summary="fixed:&#10;1.列表的缓存">
+      <created>1419996681878</created>
+      <option name="number" value="00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1419996681878</updated>
+    </task>
+    <task id="LOCAL-00045" summary="fixed:&#10;1.分类搜索页面跳转到搜索列表后未重新加载的bug">
+      <created>1419997842003</created>
+      <option name="number" value="00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1419997842003</updated>
+    </task>
+    <task id="LOCAL-00046" summary="fixed:&#10;1.空列表的提示">
+      <created>1419998125589</created>
+      <option name="number" value="00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1419998125589</updated>
+    </task>
+    <task id="LOCAL-00047" summary="fixed:&#10;1.登出后购物车一直加载中得问题">
+      <created>1420004768476</created>
+      <option name="number" value="00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1420004768476</updated>
+    </task>
+    <task id="LOCAL-00048" summary="fixed:&#10;1.登出后购物车一直加载中得问题">
+      <created>1420006913235</created>
+      <option name="number" value="00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1420006913235</updated>
+    </task>
+    <task id="LOCAL-00049" summary="fixed:&#10;1.同类推荐和评论页面的头部定位问题">
+      <created>1420009866902</created>
+      <option name="number" value="00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1420009866902</updated>
+    </task>
+    <task id="LOCAL-00050" summary="fixed:&#10;1.同类推荐和评论页面的头部定位问题">
+      <created>1420009918284</created>
+      <option name="number" value="00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1420009918290</updated>
+    </task>
+    <task id="LOCAL-00051" summary="fixed:&#10;1.同类推荐和评论页面的头部定位问题">
+      <created>1421047834388</created>
+      <option name="number" value="00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1421047834393</updated>
+    </task>
+    <task id="LOCAL-00052" summary="fixed:&#10;1月">
+      <created>1423553751898</created>
+      <option name="number" value="00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1423553751899</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
+    <servers />
+  </component>
+  <component name="TodoView" selected-index="4">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1280" height="705" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295129" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871014" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24978903" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20492454" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32808024" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32300162" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871014" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871014" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32871014" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+    <MESSAGE value="fixed:&#10;1.购物车的显示底部的内容在获取到数据之后&#10;2.返回箭头" />
+    <MESSAGE value="TODO:&#10;1.首页-限时抢购&#10;2.首页-选择优选&#10;3.购物车上传数据&#10;4.搜索列表返回键需要点击2次&#10;" />
+    <MESSAGE value="fixed:&#10;1.顶部样式做了色彩的统一&#10;2.返回键的样式都做了格式统一&#10;3.首页顶部的样式做了统一&#10;4.分类搜索的页面，品牌中心的页面&#10;5.出现头部掉到中间的bug&#10;TODO：&#10;1.所有需要登录的check&#10;2.首页的【选择优选】，【限时抢购】的倒计时&#10;3.购物车需要在页面卸载时上传数据" />
+    <MESSAGE value="fixed:&#10;1.cart的数据实时同步" />
+    <MESSAGE value="fixed:&#10;1.中文搜索功能" />
+    <MESSAGE value="fixed:&#10;1.首页的部分样式调整" />
+    <MESSAGE value="fixed:&#10;1.购物车保存到本地数据中" />
+    <MESSAGE value="fixed:&#10;1.订单的头部样式" />
+    <MESSAGE value="fixed:&#10;1.将订单的订单总额加入到ds中" />
+    <MESSAGE value="fixed:&#10;1.生成订单的总价和列表保存到了ds中" />
+    <MESSAGE value="fixed:&#10;1.购物车未选择任何商品则不允许出现结算按钮" />
+    <MESSAGE value="fixed:&#10;1.搜索缓存的问题" />
+    <MESSAGE value="fixed:&#10;1.搜索缓存的问题,搜索页返回按钮的问题" />
+    <MESSAGE value="TODO:&#10;1.修复搜索列表缓存的问题" />
+    <MESSAGE value="TODO:&#10;1.集成了支付宝支付" />
+    <MESSAGE value="TODO:&#10;1.order_type: 如果选择一个物品则调用了直接购买的接口" />
+    <MESSAGE value="fixed:&#10;1.来回跳转的问题" />
+    <MESSAGE value="fixed:&#10;1.alipay" />
+    <MESSAGE value="fixed:&#10;1.购物车删除" />
+    <MESSAGE value="fixed:&#10;1.列表的缓存" />
+    <MESSAGE value="fixed:&#10;1.分类搜索页面跳转到搜索列表后未重新加载的bug" />
+    <MESSAGE value="fixed:&#10;1.空列表的提示" />
+    <MESSAGE value="fixed:&#10;1.登出后购物车一直加载中得问题" />
+    <MESSAGE value="fixed:&#10;1.同类推荐和评论页面的头部定位问题" />
+    <MESSAGE value="fixed:&#10;1月" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed:&#10;1月" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="4" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/js/filter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="57" max-vertical-offset="1005">
+          <caret line="40" column="17" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="465" max-vertical-offset="1530">
+          <caret line="51" column="35" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="35" />
+          <folding>
+            <element signature="e#2876#3240#0" expanded="false" />
+            <element signature="e#3345#3649#0" expanded="false" />
+            <marker date="1422346499000" expanded="true" signature="0:91" placeholder="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/cart/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="915">
+          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/tab/heart.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="300">
+          <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1485">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/product/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="855">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/tab/category.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="255">
+          <caret line="4" column="81" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="495">
+          <caret line="24" column="50" selection-start-line="24" selection-start-column="50" selection-end-line="24" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/tabs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="465" max-vertical-offset="630">
+          <caret line="31" column="54" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/tab/cart.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="615">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="417" max-vertical-offset="1110">
+          <caret line="42" column="16" selection-start-line="42" selection-start-column="16" selection-end-line="42" selection-end-column="16" />
+          <folding>
+            <element signature="e#2876#3240#0" expanded="false" />
+            <element signature="e#3345#3649#0" expanded="false" />
+            <marker date="1422346499000" expanded="true" signature="0:91" placeholder="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/head/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="135">
+          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/ionic/js/angular/angular-animate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="9735" max-vertical-offset="32145">
+          <caret line="672" column="34" selection-start-line="672" selection-start-column="34" selection-end-line="672" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="431">
+          <caret line="0" column="10" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cordova_plugins.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="795">
+          <caret line="29" column="6" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/tabs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40358743" vertical-offset="0" max-vertical-offset="669">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/ionic/version.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.116099074" vertical-offset="0" max-vertical-offset="646">
+          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/category/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17910448" vertical-offset="0" max-vertical-offset="670">
+          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/ionic/css/ionic.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.481482" vertical-offset="61241" max-vertical-offset="105285">
+          <caret line="4098" column="25" selection-start-line="4098" selection-start-column="19" selection-end-line="4098" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/product.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5340557" vertical-offset="0" max-vertical-offset="646">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/product/product-detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="855">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/tab/person.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2445">
+          <caret line="0" column="77" selection-start-line="0" selection-start-column="77" selection-end-line="0" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/product/single-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="360">
+          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="4" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/tab/category.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="405">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/tab/heart.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1146789" vertical-offset="0" max-vertical-offset="654">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/person/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="2400">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/ionic/js/angular-ui/angular-ui-router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.148149" vertical-offset="43496" max-vertical-offset="63480">
+          <caret line="2923" column="13" selection-start-line="2923" selection-start-column="13" selection-end-line="2923" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/order/queryOrder.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="670">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/org.apache.cordova.device/www/device.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1275">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/order/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.018182" vertical-offset="4059" max-vertical-offset="5340">
+          <caret line="300" column="0" selection-start-line="300" selection-start-column="0" selection-end-line="300" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/ionic/js/ionic.bundle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33281493" vertical-offset="748946" max-vertical-offset="785805">
+          <caret line="49949" column="24" selection-start-line="49949" selection-start-column="7" selection-end-line="49949" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/search/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2475">
+          <caret line="26" column="62" selection-start-line="26" selection-start-column="62" selection-end-line="26" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/cart/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="545" max-vertical-offset="1245">
+          <caret line="145" column="55" selection-start-line="145" selection-start-column="55" selection-end-line="145" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/product/same-class.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
+          <caret line="0" column="60" selection-start-line="0" selection-start-column="60" selection-end-line="0" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/product/comment.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
+          <caret line="0" column="39" selection-start-line="0" selection-start-column="39" selection-end-line="0" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/tab/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.75" vertical-offset="0" max-vertical-offset="3675">
+          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/filter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="435" max-vertical-offset="1785">
+          <caret line="37" column="20" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2100">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="10" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/tab/cart.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="82" max-vertical-offset="660">
+          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/product/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="817" max-vertical-offset="4890">
+          <caret line="77" column="13" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/com.zt.pay/www/pay.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/home/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="3555">
+          <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/order/allOrders.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="1245">
+          <caret line="46" column="25" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2970">
+          <caret line="94" column="19" selection-start-line="94" selection-start-column="19" selection-end-line="94" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/product/product-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1260" max-vertical-offset="1710">
+          <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/servicesm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8190">
+          <caret line="374" column="13" selection-start-line="374" selection-start-column="13" selection-end-line="374" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/order/address.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3030">
+          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+          <folding>
+            <element signature="e#2876#3240#0" expanded="false" />
+            <element signature="e#3345#3649#0" expanded="false" />
+            <marker date="1422346499000" expanded="true" signature="0:91" placeholder="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/order/order.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1807" max-vertical-offset="2640">
+          <caret line="152" column="29" selection-start-line="152" selection-start-column="29" selection-end-line="152" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/product/pic-detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="270">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.5775402" vertical-offset="0" max-vertical-offset="975">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
