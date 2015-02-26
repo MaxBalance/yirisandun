@@ -1,0 +1,240 @@
+<ion-view id="index">
+    <ion-header-bar class="bar-stable">
+        <span class="locate"><i class="ion-ios7-location-outline"></i> 扬州</span>
+        <div class="title">
+            <form>
+                <label class="item-input-wrapper">
+                    <i class="icon ion-ios7-search placeholder-icon"></i>
+                    <input type="search" placeholder="搜索您关注的商品" ng-model="search.content" ng-keypress="searchKeyPress($event)" />
+                </label>
+            </form>
+        </div>
+        <a class="person-icon" href="#/tab/person" >
+            <i class="icon ion-ios7-person-outline"></i>
+        </a>
+    </ion-header-bar>
+    <ion-content >
+        <ion-slide-box class="slider" on-slide-changed="slideHasChanged($index)">
+            <ion-slide>
+                <div class="box">
+                    <a href="#/product/{{page1.id}}">
+                        <img ng-src="{{page1.fileurl}}" />
+                    </a>
+                </div>
+            </ion-slide>
+            <ion-slide>
+                <div class="box">
+                    <a href="#/product/{{page2.id}}">
+                        <img ng-src="{{page2.fileurl}}" />
+                    </a>
+                </div>
+            </ion-slide>
+            <ion-slide>
+                <div class="box">
+                    <a href="#/product/{{page2.id}}">
+                        <img ng-src="{{page3.fileurl}}" />
+                    </a>
+                </div>
+            </ion-slide>
+        </ion-slide-box>
+
+        <div class="row">
+            <div class="col col1">
+                <a class="text-center button-block" href="#/search/zao"><i class="icon ion-ios7-alarm"></i>早餐</a>
+            </div>
+            <div class="col col2">
+                <a class="text-center button-block" href="#/search/zhong"><i class="icon ion-ios7-sunny"></i>中餐</a>
+            </div>
+            <div class="col col3">
+                <a class="text-center button-block" href="#/search/wan"><i class="icon ion-fork"></i>晚餐</a>
+            </div>
+            <div class="col col4">
+                <a class="text-center button-block" ng-click="showOpinion()"><i class="icon ion-ios7-telephone"></i>日顿客服</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col1">
+                <a class="text-center button-block" href="#tab/person"><i class="icon ion-ios7-person"></i>会员中心</a>
+            </div>
+            <div class="col col2">
+                <a class="text-center button-block" ng-click="showBrand()"><i class="icon ion-trophy"></i>品牌中心</a>
+            </div>
+            <div class="col col3">
+                <a class="text-center button-block" ng-click="showBook()"><i class="icon ion-clipboard"></i>预定预售</a>
+            </div>
+            <div class="col col4">
+                <a class="text-center button-block"><i class="icon ion-ribbon-b"></i>暂未开放</a>
+            </div>
+        </div>
+
+        <div class="row line line2">
+            <div class="col" id="limit">
+                <a href="#/limit">
+                    <img ng-src="{{limit.pic}}" />
+                    <p class="text-center"><b>限时抢购</b></p>
+                    <span id="limit-timer">{{overdateStr}}</span>
+                </a>
+            </div>
+
+            <div class="col">
+                <a href="#/search/tuijian">
+                    <img ng-src="{{star.pic}}" />
+                    <p class="text-center"><b>精品推荐</b></p>
+                </a>
+            </div>
+            <div class="col" id="youxuan">
+                <a href="#/search/youxuan">
+                    <p class="text-center"><b>选择优选</b></p>
+                </a>
+            </div>
+        </div>
+
+        <div class="row line line3">
+            <div class="col col3-1">
+                <a href="#/product/{{line3_1.id}}">
+                    <img ng-src="{{line3_1.pic}}" />
+                    <span class="bottom-title">
+                        <span class="text-center">{{line3_1.title}}</span>
+                        <span class="text-center">￥{{line3_1.uprice}}</span>
+                    </span>
+                </a>
+            </div>
+            <div class="col col3-2">
+                <a href="#/product/{{line3_2.id}}">
+                    <img ng-src="{{line3_2.pic}}" />
+                    <span class="bottom-title">
+                        <span class="text-center">{{line3_2.title}}</span>
+                        <span class="text-center">￥{{line3_2.uprice}}</span>
+                    </span>
+                </a>
+            </div>
+            <div class="col col3-3">
+                <a href="#/product/{{line3_3.id}}">
+                    <img ng-src="{{line3_3.pic}}" />
+                    <span class="bottom-title">
+                        <span class="text-center">{{line3_3.title}}</span>
+                        <span class="text-center">￥{{line3_3.uprice}}</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <div class="row line line4">
+            <div class="col-66 col col4-1">
+                <a href="#/product/{{line4_1.id}}">
+                    <img ng-src="{{line4_1.pic}}" />
+                    <span class="bottom-title-mask"></span>
+                    <span class="bottom-title">
+                        <span class="text-right">￥{{line4_1.uprice}}</span>
+                        <span class="text-right">{{line4_1.title}}</span>
+                    </span>
+                </a>
+            </div>
+            <div class="col col4-22">
+
+                <div class="col4-2" ng-click="forward(line4_2)">
+                    <a href="#/product/{{line4_2.id}}">
+                        <img ng-src="{{line4_2.pic}}" />
+                        <span class="bottom-title-mask"></span>
+                        <span class="bottom-title">
+                            <span class="text-right">￥{{line4_2.uprice}}</span>
+                            <span class="text-right">{{line4_2.title}}</span>
+                        </span>
+                    </a>
+                </div>
+                <div class="col4-3" ng-click="forward(line4_3)">
+                    <a href="#/product/{{line4_3.id}}">
+                        <img ng-src="{{line4_3.pic}}" />
+                        <span class="bottom-title-mask"></span>
+                        <span class="bottom-title">
+                            <span class="text-right">￥{{line4_3.uprice}}</span>
+                            <span class="text-right">{{line4_3.title}}</span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </ion-content>
+</ion-view>
+
+
+<!-- 日顿客服 -->
+<script id="opinion.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar-stable">
+            <button class="button back-button buttons  button-clear button-dark header-item" ng-click="hideModal(opinionModal)"><i class="icon ion-ios7-arrow-left"></i> 返回</button>
+            <p class="title">日顿客服</p>
+        </ion-header-bar>
+        <ion-content class="service">
+            <div class="list list-inset">
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">手机号码</span>
+                    <input type="text" placeholder="1370000000" ng-model="opinion.phone">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">真实姓名</span>
+                    <input type="text" placeholder="日顿小优" ng-model="opinion.truename">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">宝贵意见</span>
+                    <textarea rows="4" placeholder="大吉大利" ng-model="opinion.content"></textarea>
+                </label>
+            </div>
+            <button class="button button-block button-balanced" ng-click="postOpinion(opinion)">
+                提 交
+            </button>
+        </ion-content>
+    </ion-modal-view>
+</script>
+
+
+<!-- 预定预售 -->
+<script id="book.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar-stable">
+            <button class="button back-button buttons  button-clear button-dark header-item" ng-click="hideModal(bookModal)"><i class="icon ion-ios7-arrow-left"></i> 返回</button>
+            <p class="title">预定预售</p>
+        </ion-header-bar>
+        <ion-content class="book">
+            <div class="list list-inset">
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">手机号码</span>
+                    <input type="text" placeholder="1370000000" ng-model="book.phone">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">真实姓名</span>
+                    <input type="text" placeholder="日顿小优" ng-model="book.truename">
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">预定信息</span>
+                    <textarea rows="4" placeholder="大闸蟹" ng-model="book.content"></textarea>
+                </label>
+            </div>
+            <button class="button button-block button-balanced" ng-click="postBook(book)">
+                提 交
+            </button>
+        </ion-content>
+    </ion-modal-view>
+</script>
+
+<!-- 品牌中心 -->
+<script id="brand.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar-stable">
+            <button class="button back-button buttons  button-clear button-dark header-item" ng-click="hideModal(brandModal)"><i class="icon ion-ios7-arrow-left"></i> 返回</button>
+            <p class="title">品牌中心</p>
+        </ion-header-bar>
+
+        <ion-content class="brand">
+            <ion-list>
+                <ion-item class="" ng-repeat="brand in brandList"
+                          type="item-text-wrap" ng-click="hideModal(brandModal)" href="#/search/brand_{{brand.id}}">
+                    <img ng-src="{{brand.pic}}" />
+                    <span>{{brand.title}}</span>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-modal-view>
+</script>
