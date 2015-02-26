@@ -1,0 +1,108 @@
+<ion-tabs id="product-list-tabs" class="tabs-positive tabs-top tabs-background-balanced">
+
+    <ion-tab title="热卖">
+        <!-- Tab 1 content -->
+
+        <ion-content class="has-top-bar" ng-style="listPanel">
+            <p ng-if="productList.l1.rows.length == 0">未搜索到数据!</p>
+            <ion-list>
+                <ion-item class="item-pic item-icon-right " ng-repeat="product in productList.l1.rows"
+                          type="item-text-wrap" ng-click="detail(product)">
+                    <img class="img" ng-src="{{product.pic}}">
+                    <h2>{{product.title}}</h2>
+                    <p class="price"><b>￥{{product.uprice}}</b><span>￥{{product.mprice}}</span></p>
+                    <p>产地：扬州</p>
+                    <i class="icon ion-ios7-cart-outline" ng-click='addToCart(product,$event)'></i>
+                </ion-item>
+            </ion-list>
+
+
+            <ion-infinite-scroll ng-if="moreDataCanBeLoaded(1)"
+            on-infinite="loadMoreProduct(1)"
+            distance="20%">
+            </ion-infinite-scroll>
+        </ion-content>
+    </ion-tab>
+
+    <ion-tab title="价格">
+        <!-- Tab 2 content -->
+        <ion-content class="has-top-bar" ng-style="listPanel">
+            <p ng-if="productList.l1.rows.length == 0">未搜索到数据!</p>
+            <ion-list>
+                <ion-item class="item-pic item-icon-right " ng-repeat="product in productList.l2.rows"
+                          type="item-text-wrap" ng-click="detail(product)">
+                    <img class="img" ng-src="{{product.pic}}">
+                    <h2>{{product.title}}</h2>
+                    <p class="price"><b>￥{{product.uprice}}</b><span>￥{{product.mprice}}</span></p>
+                    <p>产地：扬州</p>
+                    <i class="icon ion-ios7-cart-outline" ng-click='addToCart(product,$event)'></i>
+                </ion-item>
+            </ion-list>
+
+
+            <ion-infinite-scroll ng-if="moreDataCanBeLoaded(2)"
+                                 on-infinite="loadMoreProduct(2)"
+            distance="20%">
+            </ion-infinite-scroll>
+        </ion-content>
+    </ion-tab>
+
+    <ion-tab title="评价">
+        <!-- Tab 3 content -->
+        <ion-content class="has-top-bar" ng-style="listPanel">
+            <p ng-if="productList.l1.rows.length == 0">未搜索到数据!</p>
+            <ion-list>
+                <ion-item class="item-pic item-icon-right " ng-repeat="product in productList.l3.rows"
+                          type="item-text-wrap" ng-click="detail(product)">
+                    <img class="img" ng-src="{{product.pic}}">
+                    <h2>{{product.title}}</h2>
+                    <p class="price"><b>￥{{product.uprice}}</b><span>￥{{product.mprice}}</span></p>
+                    <p>产地：扬州</p>
+                    <i class="icon ion-ios7-cart-outline" ng-click='addToCart(product,$event)'></i>
+                </ion-item>
+            </ion-list>
+
+            <ion-infinite-scroll ng-if="moreDataCanBeLoaded(3)"
+                                 on-infinite="loadMoreProduct(3)"
+                                 distance="2%">
+            </ion-infinite-scroll>
+        </ion-content>
+    </ion-tab>
+    <ion-tab title="新品">
+        <!-- Tab 3 content -->
+        <ion-content class="has-top-bar" >
+            <p ng-if="productList.l1.rows.length == 0">未搜索到数据!</p>
+            <ion-list>
+                <ion-item class="item-pic item-icon-right " ng-repeat="product in productList.l4.rows"
+                          type="item-text-wrap" ng-click="detail(product)">
+                    <img class="img" ng-src="{{product.pic}}">
+                    <h2>{{product.title}}</h2>
+                    <p class="price"><b>￥{{product.uprice}}</b><span>￥{{product.mprice}}</span></p>
+                    <p>产地：扬州</p>
+                    <i class="icon ion-ios7-cart-outline" ng-click='addToCart(product,$event)'></i>
+                </ion-item>
+            </ion-list>
+
+            <ion-infinite-scroll ng-if="moreDataCanBeLoaded(4)"
+                                 on-infinite="loadMoreProduct(4)"
+                                 distance="2%">
+            </ion-infinite-scroll>
+        </ion-content>
+    </ion-tab>
+
+</ion-tabs>
+<ion-view id="product-list">
+    <ion-header-bar class="bar-stable">
+        <button class="button button-clear" ng-click="back()"><i class="icon ion-ios7-arrow-left"></i> 返回</button>
+        <form>
+            <label class="item-input-wrapper">
+                <i class="icon ion-ios7-search placeholder-icon"></i>
+                <input type="search" placeholder="搜索您关注的商品" ng-model="search.content" ng-keypress="searchKeyPress($event)" />
+            </label>
+        </form>
+    </ion-header-bar>
+
+
+</ion-view>
+
+

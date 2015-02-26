@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>72EF4334-6B2B-47BF-8169-D8EB540C3161</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>16904E3BD268E1B557221031972CF231F1A27F8E</key>
+		<string>https://gitcafe.com/yfsoftcom/ridunapp.git</string>
+	</dict>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>16904E3BD268E1B557221031972CF231F1A27F8E</key>
+		<string>www/</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://gitcafe.com/yfsoftcom/ridunapp.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>16904E3BD268E1B557221031972CF231F1A27F8E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>16904E3BD268E1B557221031972CF231F1A27F8E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>www</string>
+		</dict>
+	</array>
+</dict>
+</plist>

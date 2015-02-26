@@ -1,0 +1,9 @@
+2015-01-30 11:22:45.644 yirisandun[16271:121083] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/zt/Library/Developer/CoreSimulator/Devices/09E31535-29E8-45BA-BF4C-A8F0DCAEDF4D/data/Containers/Data/Application/EE8E49BA-8CDF-445E-A220-7BB024E28A3E/Library/Cookies/Cookies.binarycookies
+2015-01-30 11:22:46.274 yirisandun[16271:121083] Apache Cordova native platform version 3.7.0 is starting.
+2015-01-30 11:22:46.275 yirisandun[16271:121083] Multi-tasking -> Device: YES, App: YES
+2015-01-30 11:22:46.499 yirisandun[16271:121083] Unlimited access to network resources
+2015-01-30 11:22:47.874 yirisandun[16271:121083] [CDVTimer][keyboard] 0.106037ms
+2015-01-30 11:22:47.875 yirisandun[16271:121083] [CDVTimer][TotalPluginStartup] 0.371993ms
+2015-01-30 11:22:49.222 yirisandun[16271:121083] Resetting plugins due to page load.
+2015-01-30 11:22:49.759 yirisandun[16271:121083] Finished load of: file:///Users/zt/Library/Developer/CoreSimulator/Devices/09E31535-29E8-45BA-BF4C-A8F0DCAEDF4D/data/Containers/Bundle/Application/4944465D-D4A4-4317-88D6-EF2999FF8DB3/yirisandun.app/www/index.html#/tab/dash
+2015-01-30 11:22:50.185 yirisandun[16271:121083] THREAD WARNING: ['Device'] took '17.303955' ms. Plugin should use a background thread.

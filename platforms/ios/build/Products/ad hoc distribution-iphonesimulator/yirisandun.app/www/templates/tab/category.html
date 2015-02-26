@@ -1,0 +1,21 @@
+<ion-view view-title="商品分类" id="category" class="ridun-view">
+    <ion-header-bar class="bar-stable">
+        <p class="title">商品分类</p>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+            <ion-item class="" ng-repeat="category in categoryList"
+                      type="item-text-wrap">
+                <h2 ng-click="category.show = !category.show ">
+                    <i class="icon ion-chevron-down icon-accessory" ng-class="category.show?'ion-chevron-up':'ion-chevron-down'"></i> {{category.catename}}
+                </h2>
+
+                <ion-list ng-show="category.show">
+                    <ion-item class="item-bottom-border item-borderless" ng-repeat="subCate in category.info"
+                              type="item-text-wrap">
+                        <h3><a href="#/search/category_{{subCate.cateid}}">{{subCate.catename}}</a></h3>
+                </ion-list>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
