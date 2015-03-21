@@ -199,8 +199,8 @@ appControllers
                                 YFPay.alipay(function () {
                                     $state.go('state_order',{state:2});
                                 }, function () {
-                                    alert('支付失败')
-                                },[orderInfo.orderid,'一日三顿','一日三顿',orderInfo.total]);
+                                    $state.go('state_order',{state:1});
+                                },[orderInfo.orderid,'一日三顿','一日三顿',orderInfo.totalmoney]);
                             } else {
                                 $state.go('all_order');
                             }
@@ -312,7 +312,6 @@ appControllers
                             confirmPopup.then(function(res) {
                                 if(res) {
                                     if(Ds.get("user").amount < order.totalmoney){
-                                        //alert("余额不足");
                                         var alertPopup = $ionicPopup.alert({
                                             title:'余额不足!',
                                             okType:'button-balanced',okText:'确定'
@@ -334,8 +333,12 @@ appControllers
                             });
                             confirmPopup.then(function(res) {
                                 if(res) {
-                                    YFPay.alipay(function(){$state.go('state_order',{state:2})},
-                                        function(){alert('支付失败');},[order.orderid,'一日三顿','一日三顿',orderInfo.total]);
+                                    YFPay.alipay(function(){
+                                            $state.go('state_order',{state:2})
+                                        },
+                                        function(){
+                                            $state.go('all_order');
+                                        },[order.orderid,'一日三顿','一日三顿',order.totalmoney]);
                                 } else {
                                     $state.go('all_order');
                                 }
@@ -431,7 +434,7 @@ appControllers
                                 Pay.balance_pay(order, userid);
                             }
                         }else{
-                            $state.go('all_order');
+                            $state.go('state_order',{state:1});
                         }
                     }else{
                         //在线支付
@@ -443,8 +446,12 @@ appControllers
                         });
                         confirmPopup.then(function(res) {
                             if(res) {
-                                YFPay.alipay(function(){$state.go('state_order',{state:2})},
-                                    function(){alert('支付失败');},[order.orderid,'一日三顿','一日三顿',orderInfo.total]);
+                                YFPay.alipay(function(){
+                                        $state.go('state_order',{state:2});
+                                    },
+                                    function(){
+                                        $state.go('state_order',{state:1});
+                                    },[order.orderid,'一日三顿','一日三顿',order.totalmoney]);
                             } else {
                                 $state.go('state_order',{state:1});
                             }

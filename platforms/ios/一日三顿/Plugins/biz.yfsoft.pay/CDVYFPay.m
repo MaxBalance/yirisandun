@@ -68,6 +68,26 @@
         
         [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
             NSLog(@"called payOrder from yfpayplugin");
+            NSLog(@"%@",resultDic);
+            NSString* resultStatus = [resultDic objectForKey:@"resultStatus"];
+            NSLog(@"resultStatus = %@",resultStatus);
+            if([@"6001" isEqualToString:resultStatus]){
+                //取消支付
+                NSLog(@"取消支付");
+                
+                NSDictionary *resultDic = @{@"result":resultStatus};
+                CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:resultDic];
+                [self.commandDelegate sendPluginResult:result callbackId:self.currentCallbackId];
+                
+            }else if([@"9000" isEqualToString:resultStatus]){
+                //支付成功
+                NSLog(@"成功支付");
+                NSDictionary *resultDic = @{@"result":resultStatus};
+                CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:resultDic];
+                [self.commandDelegate sendPluginResult:result callbackId:self.currentCallbackId];
+            }
+
+            
         
         }];
 //        NSString* resultStatus = [AppDelegate payResult];
@@ -98,12 +118,15 @@
     NSURL* url = [notification object];
 
     NSLog(@"====notification===%@",url);
+    NSLog(@"%@",url.host);
     //跳转支付宝钱包进行支付，需要将支付宝钱包的支付结果回传给SDK
     if ([url.host isEqualToString:@"safepay"]) {
+        
         [[AlipaySDK defaultService]
          processOrderWithPaymentResult:url
          standbyCallback:^(NSDictionary *resultDic) {
-             NSString* resultStatus = [resultDic objectForKey:@"resultStatus"];
+             NSLog(@"dhit");
+             NSString* resultStatus = [resultDic objectForKey:@"ResultStatus"];
              NSLog(@"resultStatus = %@",resultStatus);
              if([@"6001" isEqualToString:resultStatus]){
                  //取消支付
