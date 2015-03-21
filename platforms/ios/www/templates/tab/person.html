@@ -1,0 +1,161 @@
+<ion-view view-title="个人中心" cache-view="false" id="person" class="ridun-view">
+  <ion-header-bar class="bar-stable">
+    <a class="title">个人中心</a>
+  </ion-header-bar>
+  <ion-content class="person" >
+    <div style="height:70px;">
+      <div style="font-size: 20px;margin: 15px;"><a>用户名: <label style="font-size: 20px;" ng-bind="view_username"></label></a></div>
+      <div style="font-size: 15px;margin:5px 15px;display: inline-block;"><a>积分: <label style="font-size: 17px;" ng-bind="view_point"></label></a></div>
+      <div style="font-size: 15px;margin-left:100px;display: inline-block;"><a>余额: <label style="font-size: 17px;" ng-bind="view_amount"></label></a></div>
+    </div>
+    <div class="button-bar bar-light padding" style="margin-bottom: -15px;">
+      <a class="button bk_lightgreen " ng-click="query_order_state(1);">未付款</a>
+      <a class="button bk_lightgreen " ng-click="query_order_state(2);">已发货</a>
+      <a class="button bk_lightgreen" ng-click="query_order_state(3);">已完成</a>
+    </div>
+    <div class="list card">
+      <a class="item item-icon-left" ng-click="query_order();">
+        <i class="icon ion-ios-copy-outline lightgreen"></i>
+        订单信息
+      </a>
+      <a ng-click="tickets();" class="item item-icon-left">
+        <i class="icon ion-ios-pricetag-outline lightgreen"></i>
+        我的消费券
+      </a>
+      <a ng-click="message();" class="item item-icon-left">
+        <i class="icon ion-ios-email-outline lightgreen"></i>
+        消息中心
+      </a>
+      <a ng-click="password();" class="item item-icon-left">
+        <i class="icon ion-ios-unlocked-outline lightgreen"></i>
+        修改密码
+      </a>
+    </div>
+
+    <div class="padding">
+      <button class="button button-block button-balanced activated" ng-click="logout();">登出</button>
+    </div>
+  </ion-content>
+</ion-view>
+
+<script id="login.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar-stable">
+      <div><button ng-click="login_back();" class="button back-button buttons  button-clear button-dark header-item">
+        <i class="icon ion-ios-arrow-back"></i>
+        <span class="back-text">返回</span></button></div>
+      <a class="title">用户登录</a>
+    </ion-header-bar>
+    <ion-content class="login">
+      <div class="list list-inset">
+        <label class="item item-input">
+          <i class="icon ion-ios-person placeholder-icon"></i>
+          <input ng-model="person.username" type="text" placeholder="用户名">
+        </label>
+        <label class="item item-input">
+          <i class="icon ion-ios-locked placeholder-icon"></i>
+          <input ng-model="person.password" type="password" placeholder="密码">
+        </label>
+      </div>
+      <div class="padding">
+        <button class="button button-block button-balanced activated" ng-click="login(person);">登陆</button>
+      </div>
+      <div class="padding" class="list" ng-click="qqLogin();">
+        <a class="item item-avatar-left" style="line-height: 40px;"><img src="img/qq.png"/>QQ登陆</a>
+      </div>
+      <div class="padding" style="display:inline-block;">
+        <a ng-click="register();">快速注册</a>
+      </div>
+      <div class="padding" style="float:right;display:inline-block;">
+        <a>找回密码</a>
+      </div>
+    </ion-content>
+  </ion-modal-view>
+</script>
+
+<script id="register.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar-stable">
+      <div><button ng-click="register_back();" class="button back-button buttons  button-clear button-dark header-item">
+        <i class="icon ion-ios-arrow-back"></i>
+        <span class="back-text">返回</span></button></div>
+      <a class="title">用户注册</a>
+    </ion-header-bar>
+    <ion-content class="register">
+      <div class="list list-inset">
+        <label class="item item-input">
+          <i class="icon ion-ios-person placeholder-icon"></i>
+          <input ng-model="person_r.username" type="text" placeholder="用户名(5-20位,由a-z\0-9\_组成)">
+        </label>
+        <label class="item item-input">
+          <i class="icon ion-ios-locked placeholder-icon"></i>
+          <input ng-model="person_r.password_one" type="password" placeholder="密码(6-16位,由a-z\0-9\_组成)">
+        </label>
+
+      </div>
+      <div class="list list-inset" style="margin-top: -22px;">
+        <label class="item item-input">
+          <i class="icon ion-ios-locked placeholder-icon"></i>
+          <input ng-model="person_r.password_two" type="password" placeholder="确认密码(6-16位,由a-z\0-9\_组成)">
+        </label>
+      </div>
+      <div class="padding">
+        <button class="button button-block button-balanced activated" ng-click="_register(person_r);">注册</button>
+      </div>
+    </ion-content>
+  </ion-modal-view>
+</script>
+
+<script id="password.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar-stable">
+      <div><button ng-click="password_back();" class="button back-button buttons  button-clear button-dark header-item">
+      <i class="icon ion-ios-arrow-back"></i>
+      <span class="back-text">返回</span></button></div>
+      <div class="h1 title">修改密码</div>
+    </ion-header-bar>
+    <ion-content class="password">
+      <div class="list list-inset">
+        <label class="item item-input">
+          <i class="icon ion-ios-person placeholder-icon"></i>
+          <input ng-model="person_w.password_origin" type="password" placeholder="原密码">
+        </label>
+        <label class="item item-input">
+          <i class="icon ion-ios-locked placeholder-icon"></i>
+          <input ng-model="person_w.password_one" type="password" placeholder="新密码(6-16位,由a-z\0-9\_组成)">
+        </label>
+      </div>
+      <div class="list list-inset" style="margin-top: -22px;">
+        <label class="item item-input">
+          <i class="icon ion-ios-locked placeholder-icon"></i>
+          <input ng-model="person_w.password_two" type="password" placeholder="确认新密码(6-16位,由a-z\0-9\_组成)">
+        </label>
+      </div>
+      <div class="padding">
+        <button class="button button-block button-balanced activated" ng-click="_password(person_w);">提交</button>
+      </div>
+    </ion-content>
+  </ion-modal-view>
+</script>
+
+<script id="message.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar-stable">
+      <div><button ng-click="message_back();" class="button back-button buttons  button-clear button-dark header-item">
+        <i class="icon ion-ios-arrow-back"></i>
+        <span class="back-text">返回</span></button></div>
+      <div class="h1 title">消息中心</div>
+    </ion-header-bar>
+    <ion-content id="message-list">
+      <ion-list>
+        <ion-item ng-show="messageList.length != 0" ng-repeat="message in messageList" type="item-text-wrap" >
+          <p style="white-space:normal;overflow: visible;text-overflow: clip;">{{message.title}}</p>
+          <p class="text-right">{{message.createdate}}</p>
+        </ion-item>
+        <ion-item ng-show="messageList.length == 0" type="item-text-wrap">
+          <h2 class="text-center">暂无消息!</h2>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-modal-view>
+</script>

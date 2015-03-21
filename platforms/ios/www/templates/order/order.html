@@ -1,0 +1,169 @@
+<ion-view view-title="确认订单" id="orderReview">
+    <ion-header-bar align-title="center" class="bar-stable">
+        <button ng-click="order_back();" class="button back-button buttons  button-clear button-dark header-item">
+            <i class="icon ion-ios-arrow-left"></i>
+            <span class="back-text">返回</span></button>
+        <a class="title">确认订单</a>
+    </ion-header-bar>
+    <ion-content id="address-list" style="margin-bottom: 44px;">
+        <div style="margin-top: -10px;" ng-show="addressList.length == 0" ng-click="first_address();" >
+            <button class="button button-full button-balanced" style="height: 80px;">
+            请添加用户地址
+            </button>
+        </div>
+        <div class="card" style="margin-top: 15px;" ng-show="addressList.length != 0" ng-click="modify_address(addressList);">
+            <div class="item item-text-wrap">
+                <div style="display: inline-block;width:250px;">
+                    <p>收货地址：{{addressList[0].address}},{{addressList[0].username}},{{addressList[0].mobile}}</p>
+                </div>
+                <div style="display: inline-block;">
+                    <i style="padding-bottom: 10px;" class="ion-ios-arrow-right"></i>
+                </div>
+            </div>
+        </div>
+        <div class="padding" style="margin-top: -10px;">
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    支付方式
+                </div>
+                <select ng-model="payway" ng-options="option.val as option.key for option in paymodel" ng-change="change(payway);">
+
+                </select>
+            </label>
+        </div>
+
+        <div class="list list-inset" style="height:40px;margin-top: 5px;">
+            <label class="item item-input" style="height:40px;">
+                <input ng-model="productList.words" type="text" placeholder="给我留言">
+            </label>
+        </div>
+        <div class="padding list">
+        <ion-list>
+            <ion-item class="item item-avatar" ng-repeat="product in productList">
+                <img src="{{product.pic}}">
+                <h2>{{product.title}}</h2>
+                <p class="price"><b>￥{{product.uprice}}</b><span>￥{{product.mprice}}</span>
+                    <label style="float:right;">X&nbsp;{{product.pro_cnt}}</label></p>
+            </ion-item>
+        </ion-list>
+        </div>
+    </ion-content>
+    <div class="bar bar-positive  bar-footer bar-balanced">
+        <div style="font-size: 17px;height:30px;line-height: 30px;">应付：{{product_oprice}}&nbsp;元</div>
+        <button class="button button-clear pull-right" ng-click="submit_order(productList,addressList[0]);">提交订单</button>
+    </div>
+</ion-view>
+
+<script id="add_address.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar-stable">
+            <div><button ng-click="add_address_back();" class="button back-button buttons  button-clear button-dark header-item">
+                <i class="icon ion-ios-arrow-back"></i>
+                <span class="back-text">返回</span></button></div>
+            <a class="title">新增地址</a>
+        </ion-header-bar>
+        <ion-content class="register">
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <i class="icon ion-ios-person placeholder-icon"></i>
+                    <input ng-model="address.username" type="text" placeholder="姓名">
+                </label>
+                <label class="item item-input">
+                    <i class="icon ion-iphone placeholder-icon"></i>
+                    <input ng-model="address.mobile" type="text" placeholder="手机">
+                </label>
+            </div>
+            <div style="margin-top: -21px;padding: 0px 11px;">
+                <label class="item item-input item-select">
+                    <div class="input-label" style="font-size: 15px;">
+                        所在区域
+                    </div>
+                    <select ng-model="address.area">
+                        <option class="" value="">-- 区域 --</option>
+                        <option selected>邗江区</option>
+                        <option>广陵区</option>
+                        <option>江都区</option>
+                        <option>高邮市</option>
+                        <option>仪征市</option>
+                        <option>宝应市</option>
+                    </select>
+                </label>
+            </div>
+            <div style="padding: 0px 11px;" ng-click="showPlace();" >
+                <label class="item item-input item-select">
+                    <div class="input-label"  style="font-size: 15px;text-align: center;" ng-model="address_place">
+                            {{address_place}}
+                    </div>
+                </label>
+            </div>
+            <div class="padding">
+                <button class="button button-block button-balanced activated" ng-click="_add_address(address);">保存</button>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>
+
+<script id="myself_place.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar-stable">
+            <div><button ng-click="myself_place_back();" class="button back-button buttons  button-clear button-dark header-item">
+                <i class="icon ion-ios-arrow-back"></i>
+                <span class="back-text">返回</span></button></div>
+            <a class="title">选择自提点</a>
+        </ion-header-bar>
+        <ion-content>
+            <ul class="list">
+                <li class="item" ng-repeat="place in placeList" ng-click="choose(place);">{{place.title}}</li>
+            </ul>
+        </ion-content>
+    </ion-modal-view>
+</script>
+
+<script id="modify_address.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar-stable">
+            <div><button ng-click="modify_address_back();" class="button back-button buttons  button-clear button-dark header-item">
+                <i class="icon ion-ios-arrow-back"></i>
+                <span class="back-text">返回</span></button></div>
+            <a class="title">修改地址</a>
+        </ion-header-bar>
+        <ion-content class="register">
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <i class="icon ion-ios-person placeholder-icon"></i>
+                    <input ng-model="addressList[0].username" type="text" placeholder="姓名">
+                </label>
+                <label class="item item-input">
+                    <i class="icon ion-iphone placeholder-icon"></i>
+                    <input ng-model="addressList[0].mobile" type="text" placeholder="手机">
+                </label>
+            </div>
+            <div style="margin-top: -21px;padding: 0px 11px;">
+                <label class="item item-input item-select">
+                    <div class="input-label" style="font-size: 15px;">
+                        所在区域：
+                    </div>
+                    <select ng-model="addressList[0].area" ng-change="areaChange(addressList[0].area);">
+                        <option class="" value="">-- 区域 --</option>
+                        <option selected value="邗江区">邗江区</option>
+                        <option value="广陵区" ng-selected="addressList[0].area.equals('广陵区')">广陵区</option>
+                        <option value="江都区">江都区</option>
+                        <option value="高邮市">高邮市</option>
+                        <option value="仪征市">仪征市</option>
+                        <option value="宝应市">宝应市</option>
+                    </select>
+                </label>
+            </div>
+            <div style="padding: 0px 11px;" ng-click="showPlace();">
+                <label class="item item-input">
+                    <div class="input-label" ng-model="address_place" style="font-size: 15px;" >
+                        {{address_place}}
+                    </div>
+                </label>
+            </div>
+            <div class="padding">
+                <button class="button button-block button-balanced activated" ng-click="_modify_address(addressList[0]);">保存</button>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>

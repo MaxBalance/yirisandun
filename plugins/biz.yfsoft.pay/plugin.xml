@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:rim="http://www.blackberry.com/ns/widgets"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="biz.yfsoft.pay"
+    version="1.0">
+    <name>YFShare</name>
+    <description>A cordova plugin, a JS version of YF Pay</description>
+    <license>MIT</license>
+    <keywords>cordova,alipay,pay</keywords>
+    <repo>https://git.oschina.net/yfsoft/cordova-plugin-pay.git</repo>
+    <issue>http://git.oschina.net/yfsoft/cordova-plugin-pay/issues</issue>
+
+    <!-- add this to your config.xml -->
+    <!-- <preference name="WechatAppId" value="YOUR_WECHAT_APP_ID_HERE" /> -->
+
+    <js-module src="www/pay.js" name="YFPay">
+        <clobbers target="YFPay" />
+    </js-module>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="YFPay">
+                <param name="ios-package" value="CDVYFPay"/>
+            </feature>
+        </config-file>
+
+
+
+        <config-file target="*-Info.plist" parent="CFBundleURLTypes">
+            <array>
+                <dict>
+                    <key>CFBundleTypeRole</key>
+                    <string>Editor</string>
+                    <key>CFBundleURLSchemes</key>
+                    <array>
+                        <string>yf.alipay</string>
+                    </array>
+                </dict>
+            </array>
+        </config-file>
+        <!-- Plugin source code -->
+
+        <header-file src="src/ios/CDVYFPay.h" />
+        <source-file src="src/ios/CDVYFPay.m" />
+        <header-file src="src/ios/Order.h" />
+        <source-file src="src/ios/Order.m" />
+
+
+        <source-file src="lib/alipay/libcrypto.a" framework="true" />
+        <source-file src="lib/alipay/libssl.a" framework="true" />
+
+        <framework src="SystemConfiguration.framework" />
+        <framework src="Security.framework" />
+        <framework src="QuartzCore.framework" />
+        <framework src="libz.dylib" />
+        <framework src="CoreText.framework" />
+        <framework src="CoreTelephony.framework" />
+        <framework src="CoreGraphics.framework" />
+        <framework src="Foundation.framework" />
+        <framework src="UIKit.framework" />
+    </platform>
+
+    <!-- android -->
+    <!--
+    <platform name="android">
+        <hook type="after_plugin_install" src="scripts/android-install.js" />
+        <hook type="before_plugin_uninstall" src="scripts/android-install.js" />
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Wechat">
+                <param name="android-package" value="xu.li.cordova.wechat.Wechat"/>
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+          <activity
+              android:name=".wxapi.WXEntryActivity"
+              android:label="@string/launcher_name"
+              android:exported="true">
+            <intent-filter>
+              <action android:name="android.intent.action.VIEW"/>
+              <category android:name="android.intent.category.DEFAULT"/>
+              <data android:scheme="Anything"/>
+            </intent-filter>
+          </activity>
+        </config-file>
+
+        <source-file src="src/android/Wechat.java" target-dir="src/xu/li/cordova/wechat" />
+        <source-file src="src/android/libammsdk.jar" target-dir="libs" />
+
+
+    </platform>
+        -->
+    <!--
+            微信需要回调app的package name下的wxapi/WXEntryActivity.java，所以使用钩子 (hook) 脚本android-install.js添加到你的项目 id 对应的文件夹中,
+            除此之外脚本还会修改该文件中的包名, 以匹配应用 id. 某些旧版本的cordova貌似不会trigger这个js，如果发现WXEntryActivty没有被拷贝，建议更新cordova
+        -->
+</plugin>

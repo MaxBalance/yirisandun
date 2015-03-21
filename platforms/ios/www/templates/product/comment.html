@@ -1,0 +1,19 @@
+<ion-view view-title="用户评论" id="comment">
+    <ion-header-bar align-title="center" class="bar-stable">
+        <button ng-click="comment_back();" class="button back-button buttons  button-clear button-dark header-item">
+            <i class="icon ion-ios-arrow-left"></i>
+            <span class="back-text">返回</span></button>
+        <a class="title">用户评论</a>
+    </ion-header-bar>
+    <ion-content id="product-list">
+        <ion-list>
+            <ion-item ng-show="commentList.length != 0" ng-repeat="comment in commentList" type="item-text-wrap">
+                <h2>{{comment.content}}</h2>
+                <p style="float: right;">{{comment.username}}&nbsp;&nbsp;&nbsp;{{comment.createdate}}</p>
+            </ion-item>
+            <ion-item ng-show="commentList.length == 0" type="item-text-wrap">
+                <h2 class="text-center">暂无用户评论</h2>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

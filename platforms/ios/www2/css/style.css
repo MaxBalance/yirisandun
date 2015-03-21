@@ -1,0 +1,513 @@
+.user{
+    height: 160px;
+}
+
+.user img{
+    width: 60px;/*元素的宽度*/
+    height:60px;/*元素的高度*/
+    position: absolute;
+    left: 50%;/*配合margin-left的负值实现水平居中*/
+    margin-left: -30px;/*值的大小等于元素宽度的一半*/
+    top:50%;/*配合margin-top的负值实现垂直居中*/
+    margin-top: -40px;/*值的大小等于元素高度的一半*/
+    /*-webkit-border-radius: 30px;-moz-border-radius: 30px;*/
+    border-radius: 30px;
+    border:1px solid;
+    box-shadow:0px 0px 10px 2px #000;
+}
+
+.user div{
+    margin-top:100px;
+    width:240px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.user_list ion-item{
+    background-image: inherit;
+    background-color: transparent;
+    background-size: cover;
+    border-color: #A0522D;
+}
+
+ion-item.click_bg:focus{
+    background-color: #0099FF;
+}
+
+.user_list ion-item a{
+    color: #ffffff;
+}
+
+.sidemenu_bg{
+    background-image: url(../img/sidemenu_bg.png)
+}
+
+.bg_img_inherit{
+    background-image: inherit;
+}
+
+.bg_col_trans{
+    background-color: transparent;
+}
+
+.height_160p{
+    height: 160px;
+}
+
+.left_div {
+    float:left;
+    width:45%;
+    height:134px;
+    margin:0% 1% 2% 3%;
+}
+
+.right_div{
+    float:left;
+    width:45%;
+    height:134px;
+    margin:0% 1% 2% 3%;
+}
+
+.left_div_2 {
+    float:left;
+    width:45%;
+    height:134px;
+    margin:4% 1% 0% 3%;
+}
+
+.border_lightgray{
+    border:1px solid lightgray;
+}
+
+.width_100{
+    width:100%;
+}
+
+.width_37{
+    width:37%;
+}
+
+.width_46{
+    width:46%;
+}
+
+.height_100{
+    height:100%;
+}
+
+.height_80{
+    height:80%;
+}
+
+.height-15{
+    height:15%;
+}
+
+.height_20{
+    height:20%;
+}
+
+.height_28{
+    height:28%;
+}
+
+.height_37{
+    height: 37%;
+}
+
+.height_144p{
+    height: 134px;
+}
+
+.line-height_180{
+    line-height: 230%;
+}
+
+.bg_ffffff{
+    background: #ffffff;
+}
+
+.margin_left_7p{
+    margin-left:7px;
+}
+
+.margin_10{
+    margin:10px;
+}
+
+.margin_top_10p{
+    margin-top: 10px;
+}
+
+.margin_top_5p{
+    margin-top: 5px;
+}
+
+.margin_bottom_20p{
+    margin-bottom: 20px;
+}
+
+.margin_left_5p{
+    margin-left: 5px;
+}
+
+.margin_left_10p{
+    margin-left: 10px;
+}
+
+.border_bottom_lightgray{
+    border-bottom: 1px solid lightgray;
+}
+
+.padding-left_5p{
+    padding-left: 5px;
+}
+
+.bgcolor_none{
+    background-color:transparent;
+}
+
+.detail_head{
+    margin-top: 25%;
+    color:#ffffff;
+    font-size: medium;
+}
+
+.detail_head div{
+    margin:20px;
+}
+
+.width_6 {
+    width: 6%;
+}
+
+.detail_pic1{
+    float: left;
+    width:60%;
+    height:68%;
+    margin:3% 2% 0% 3%;
+}
+
+.detail_pic2{
+    float: left;
+    width:30%;
+    height:33%;
+    margin:3% 2% 0% 2%;
+}
+
+.detail_pic3{
+    float: left;
+    width:30%;
+    height:33%;
+    margin:4% 2% 0% 2%;
+}
+
+.detail_pic4{
+    float: left;
+    width:28%;
+    height:25%;
+    margin:2% 2% 0% 3%;
+}
+
+.detail_pic5{
+    float: left;
+    width:28%;
+    height:25%;
+    margin:2% 2% 0% 2%;
+}
+
+.detail_pic6{
+    float: left;
+    width:30%;
+    height:25%;
+    margin:2% 2% 0% 2%;
+}
+
+.detail_pic_name{
+    margin-top: -25px;
+    height:25px;
+    line-height:25px;
+    text-align: center;
+    background-color: #000000;
+    opacity:0.8;
+    color: #ffffff;"
+}
+
+.bg_size_cover{
+    background-size: cover;
+}
+
+.bg_position_center{
+    background-position: center;
+}
+
+.overflow_hidden{
+    overflow: hidden;
+}
+
+
+
+
+
+
+/*
+* jack 20150304
+*/
+.width-100{
+    width:100%;
+}
+.border-none{
+    border:none;
+}
+.margin-top-50{
+    margin-top: 80%;
+}
+.margin-top-60{
+    margin-top: 90%;
+}
+.margin-left-5{
+    margin-left: 5%;
+}
+.width-82p{
+    width:82px;
+}
+.margin-top-0p{
+    margin-top: 0px !important;
+}
+.margin-bottom-0p{
+    margin-bottom:0px !important;
+}
+.margin-top-20p{
+    margin-top: 20px;
+}
+.margin-left-38{
+    margin-left: 38%;
+}
+.padding-top-20p{
+    padding-top:20px;
+}
+.item h2.margin-left-140px{
+    margin-left: 140px;
+}
+.margin-left-140px{
+    margin-left: 140px;
+}
+.col-offset-40{
+    margin-left: 40%;
+}
+.col-offset-45{
+    margin-left: 45%;
+}
+.col-offset-30{
+    margin-left: 30%;
+}
+.platform-ios.platform-cordova:not(.fullscreen) .has-tabs-top {
+    top: 0px;
+}
+.myMenu_img{
+    position: absolute;
+    top: 2px;
+    left: 16px;
+    max-width: 120px;
+    max-height: 70px;
+    width: 100%;
+}
+.ion-ios7-heart-outline.sc {
+   font-size:32px;
+}
+.sc.price{
+    position: absolute;
+    right: 20px;
+    
+    bottom: 10px;
+    background-color: #ff6666;
+    padding: 5px;
+}
+.login-back{
+    background:url("../img/login.png");
+    height:100%
+}
+.position-absolute{
+    position:absolute;
+}
+.scroll{
+    height:100%;
+}
+.bgcolor-ff6666{
+    background-color: #FF6666;
+}
+.orange{
+    color:orange;
+}
+.bgcolor-gray{
+    background-color: gray;
+}
+.white{
+    color:#FFFFFF;
+}
+.float-left{
+    float:left;
+}
+.float-right{
+    float:right;
+}
+.line-height-40p{
+    line-height: 40px;
+}
+.payOrder{
+    position: relative;
+    float: right;
+    margin-top: -22%;
+}
+/* star */
+.star{position:relative;width:600px;margin:20px 10px;height:24px;}
+.star ul,.star span{float:left;display:inline;height:19px;line-height:19px;}
+.star ul{margin:0 10px;}
+.star li{float:left;width:24px;cursor:pointer;text-indent:-9999px;background:url(../img/star.png) no-repeat;}
+.star strong{color:#f60;padding-left:10px;}
+.star li.on{background-position:0 -28px;}
+.star p{position:absolute;top:20px;width:159px;height:60px;display:none;background:url(../img/icon.gif) no-repeat;padding:7px 10px 0;}
+.star p em{color:#f60;display:block;font-style:normal;}
+.text-center{
+    text-align: center;
+}
+.margin-top-100{
+    margin-top: 100%;
+}
+.width-20{
+    width:20%;
+}
+.width-40{
+    width:40%;
+}
+.width-60{
+    width:60%;
+}
+.height-50{
+    height:50%;
+}
+.height-100{
+    height:100%;
+}
+#product-list-tabs > .tab-nav.tabs{
+    border: solid 1px #FF6666;
+    color: #000000;
+    top: 75px;
+    margin-left: 5%;
+    padding-top: 0;
+    background-position: bottom;
+    background-color: #FFFFFF;
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: 0;
+    z-index: 5;
+    width: 90%;
+    height: 30px;
+    border-style: solid;
+    line-height: 49px;
+    background-image: linear-gradient(0deg, #ff6666, #ff6666 50%, transparent 50%);
+    border-color: #ff6666;
+}
+#product-list-tabs > .tab-nav.tabs > a{
+    border-right-width: 1px;
+    border-right-color: #FF6666;
+    border-style: solid;
+}
+#product-list-tabs > .tab-nav.tabs > a{
+    flex: 1;
+    display: block;
+    overflow: hidden;
+    max-width: 150px;
+    height: 100%;
+    color: inherit;
+    text-align: center;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 400;
+    font-size: 14px;
+    font-family: "Helvetica Neue", "Roboto", sans-serif;
+    opacity: 0.7;
+    outline: 0;
+}
+#product-list-tabs > .tab-nav.tabs > a > span{
+    display: block;
+    margin-top: -10px;
+}
+.menubody{
+    background-color: #eee;
+}
+.tab-item-active{
+    background-color: #ee3333;
+}
+.itembuttom{
+    position: relative;
+    z-index: 2;
+    display: block;
+    margin: -1px;
+    padding: 0px 16px;
+}
+.width-50p{
+    width: 50px;
+}
+.text-right{
+    text-align: right;
+}
+
+.junitem{
+    border-color: #ddd;
+    background-color: #fff;
+    color: #444;
+    position: relative;
+    z-index: 2;
+    display: block;
+    margin: -1px;
+    padding: 16px;
+    border-width: 1px;
+    border-style: solid;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+
+.junpic{
+    width: 300px;/*元素的宽度*/
+    height:300px;/*元素的高度*/
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    box-shadow:0px 0px 20px 1px #000;
+}
+
+.item-complex.item-icon-right .item-content {
+    /*height: 80px;*/
+    background-color: rgb(255, 255, 255);
+}
+.item-complex.item-icon-right.activated > .item-content {
+    /*height: 80px;*/
+    background-color: #D9D9D9;
+}
+.item-complex.item-icon-right.activated {
+    border-color: #ccc;
+    background-color: #D9D9D9;
+}
+.button-assertive.updateAddr{
+    border-color: #e42012;
+    background-color: #ef473a;
+    color: #fff;
+    border-right-color: #eee;
+    border-right-style: solid;
+    border-right-width: 1px;
+}
+.payway{
+    float: right;
+    font-size: 85%;
+    margin-top: 3px;
+}
+.padding-urb-0p{
+    padding-bottom: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+}

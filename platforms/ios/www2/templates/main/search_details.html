@@ -1,0 +1,51 @@
+<ion-view view-title="饭店详情">
+    <ion-content  style="background-image: url(img/resback.png);" class="bg_size_cover" overflow-scroll="true">
+        <ion-slide-box  on-slide-changed="slideHasChanged($index)" class="height_100">
+            <ion-slide class="bg_img_inherit">
+                <div class="detail_head">
+                    <div>{{restaurant_Detail.name}}</div>
+                    <div>菜系：淮扬菜</div>
+                    <div>评分：4.9分</div>
+                    <div>配送时间：{{restaurant_Detail.dist_time}}</div>
+                    <div>配送范围:{{restaurant_Detail.dist_scope}}</div>
+                    <div>分享:（0）&nbsp;收藏:（{{restaurant_Detail.sc_cnt}}）</div>
+                    <div><img class="width_6" ng-src="img/phone.png"/>&nbsp;{{restaurant_Detail.phone}}</div>
+                    <div><img class="width_6" ng-src="img/dingwei.png"/>&nbsp;{{restaurant_Detail.address}}</div>
+                </div>
+            </ion-slide>
+
+            <ion-slide ng-repeat="foods in foodList">
+                <div class="detail_pic1">
+                    <div class="height_100 width_100 bg_position_center bg_size_cover" style="background-image: url({{foods.food1.file_path}});"></div>
+                    <div ng-show="foods.food1.file_path" class="detail_pic_name overflow_hidden">{{foods.food1.name}}</div>
+                </div>
+                <div class="detail_pic2">
+                    <div style="width:100%; height:100%;background-image: url({{foods.food2.file_path}});
+                        background-size: cover;background-position: center;"></div>
+                    <div ng-show="foods.food2.file_path" class="detail_pic_name overflow_hidden">{{foods.food2.name}}</div>
+                </div>
+                <div class="detail_pic3">
+                    <div style="width:100%; height:100%;background-image: url({{foods.food3.file_path}});
+                        background-size: cover;background-position: center;"></div>
+                    <div ng-show="foods.food3.file_path" class="detail_pic_name overflow_hidden">{{foods.food3.name}}</div>
+                </div>
+                <div class="detail_pic4">
+                    <div style="width:100%; height:100%;background-image: url({{foods.food4.file_path}});
+                        background-size: cover;background-position: center;"></div>
+                    <div ng-show="foods.food4.file_path" class="detail_pic_name overflow_hidden">{{foods.food4.name}}</div>
+                </div>
+                <div class="detail_pic5">
+                    <div style="width:100%; height:100%;background-image: url({{foods.food5.file_path}});
+                        background-size: cover;background-position: center;"></div>
+                    <div ng-show="foods.food5.file_path" class="detail_pic_name overflow_hidden">{{foods.food5.name}}</div>
+                </div>
+                <div class="detail_pic6">
+                    <div style="width:100%; height:100%;background-image: url({{foods.food6.file_path}});
+                        background-size: cover;background-position: center;"></div>
+                    <div ng-show="foods.food6.file_path" class="detail_pic_name overflow_hidden">{{foods.food6.name}}</div>
+                </div>
+            </ion-slide>
+        </ion-slide-box>
+    </ion-content>
+</ion-view>
+

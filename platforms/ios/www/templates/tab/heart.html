@@ -1,0 +1,17 @@
+<ion-view view-title="新品列表" class="ridun-view" id="heart">
+    <ion-header-bar class="bar-stable">
+        <p class="title">新品列表</p>
+    </ion-header-bar>
+    <ion-content id="product-list">
+        <ion-list>
+            <ion-item class="item-pic item-icon-right " ng-repeat="product in productList"
+                      type="item-text-wrap" ng-click="detail(product)">
+                <img class="img" ng-src="{{product.pic}}">
+                <h2>{{product.title}}</h2>
+                <p class="price"><b>￥{{product.uprice}}</b><span>￥{{product.mprice}}</span></p>
+                <p>产地：扬州</p>
+                <i class="icon ion-ios-cart-outline" ng-click='addToCart(product,$event)'></i>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,88 @@
+<ion-view view-title="就餐地址">
+    <ion-header-bar class="bar-stable">
+        <a class="title">就餐地址</a>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+            <ion-item class="item-remove-animate item-icon-right" ng-repeat="address in addresses" type="item-text-wrap" ng-click="update(address)">
+                <!--<a>-->
+                    <h2>{{address.to_addr}}</h2>
+                    <p>{{address.to_name}},{{address.to_phone}}</p>
+                    <i class="icon ion-chevron-right icon-accessory"></i>
+                <!--</a>-->
+                <ion-option-button class="button-assertive" ng-click="remove(address)">
+                    删 除
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <ion-footer-bar>
+        <div class="bar bar-footer">
+            <button class="margin-top-0p margin-bottom-0p button button-block bgcolor-ff6666 white" ng-click="add()" type="button">新 增</button>
+        </div>
+    </ion-footer-bar>
+</ion-view>
+
+<script id="add.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar-stable">
+            <div><button ng-click="add_back();" class="button back-button buttons  button-clear button-dark header-item">
+                <i class="icon ion-ios-arrow-back"></i>
+                <span class="back-text">返回</span></button></div>
+            <div class="h1 title">新增地址</div>
+        </ion-header-bar>
+        <ion-content id="add-list">
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <i class="icon ion-ios-person placeholder-icon"></i>
+                    <input ng-model="addressInfo.to_name" type="text" placeholder="姓名">
+                </label>
+                <label class="item item-input">
+                    <i class="icon ion-iphone placeholder-icon"></i>
+                    <input ng-model="addressInfo.to_phone" type="text" placeholder="手机">
+                </label>
+                <label class="item item-input">
+                    <i class="icon ion-home placeholder-icon"></i>
+                    <textarea rows="2" calss="padding-top-20p" ng-model="addressInfo.to_addr"></textarea>
+                </label>
+            </div>
+            <div class="padding">
+                <button class="button button-block bgcolor-ff6666 white" ng-click="postAdd(addressInfo)">
+                    保 存
+                </button>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>
+
+<script id="updaddress.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar-stable">
+            <div><button ng-click="update_back();" class="button back-button buttons  button-clear button-dark header-item">
+                <i class="icon ion-ios-arrow-back"></i>
+                <span class="back-text">返回</span></button></div>
+            <div class="h1 title">编辑地址</div>
+        </ion-header-bar>
+        <ion-content id="update-list">
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <i class="icon ion-ios-person placeholder-icon"></i>
+                    <input ng-model="address_toname" type="text" placeholder="姓名">
+                </label>
+                <label class="item item-input">
+                    <i class="icon ion-iphone placeholder-icon"></i>
+                    <input ng-model="address_tophone" type="text" placeholder="手机">
+                </label>
+                <label class="item item-input">
+                    <i class="icon ion-home placeholder-icon"></i>
+                    <textarea rows="2" class="padding-top-20p" ng-model="address_toaddr"></textarea>
+                </label>
+            </div>
+            <div class="padding">
+                <button class="button button-block bgcolor-ff6666 white" ng-click="postUpdate(address_toname,address_tophone,address_toaddr)">
+                    保 存
+                </button>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>

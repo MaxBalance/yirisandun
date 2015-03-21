@@ -1,0 +1,37 @@
+<ion-view view-title="我的消息">
+    <ion-content>
+        <ion-list>
+            <ion-item ng-show="messageList.length != 0 && message.isread == 0;" ng-repeat="message in messageList" type="item-text-wrap" ng-click="msg_detail(message);">
+                <div>
+                    <div style="display:inline-block;font-size:18px;"><strong>{{message.title}}</strong></div>
+                    <div style="display:inline-block;float: right;"><strong>{{message.create_date | date:'yyyy-MM-dd HH:mm:ss'}}</strong></div>
+                </div>
+                <div style="text-overflow:ellipsis;overflow:hidden"><strong><a style="text-overflow:ellipsis;">{{message.content}}</a></strong></div>
+            </ion-item>
+            <ion-item ng-show="messageList.length != 0 && message.isread != 0;" ng-repeat="message in messageList" type="item-text-wrap" ng-click="msg_detail(message);">
+                <div>
+                    <div style="display:inline-block;">{{message.title}}</div>
+                    <div style="display:inline-block;float: right;">{{message.create_date | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+                </div>
+                <div style="text-overflow:ellipsis;overflow:hidden"><a style="text-overflow:ellipsis;">{{message.content}}</a></div>
+            </ion-item>
+            <ion-item ng-show="messageList.length==0" type="item-text-wrap">
+                <h2 class="text-center">暂无消息</h2>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
+
+<script id="msg_detail.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar-stable">
+            <div><button ng-click="back();" class="button back-button buttons  button-clear button-dark header-item">
+                <i class="icon ion-ios-arrow-back"></i>
+                <span class="back-text">返回</span></button></div>
+            <div class="h1 title">消息详情</div>
+        </ion-header-bar>
+        <ion-content>
+            <div style="margin:10px;font-size:17px;">{{msg_details.content}}</div>
+        </ion-content>
+    </ion-modal-view>
+</script>

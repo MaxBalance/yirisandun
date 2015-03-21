@@ -1,0 +1,56 @@
+<ion-view view-title="附近美食">
+    <ion-content>
+        <div class="left_div border_lightgray" ng-repeat="food in foodsList">
+            <div class="height_80"><image ng-src={{food.file_path}} class="height_100 width_100 border_bottom_lightgray"  ng-click="showFoodDetails(food.id);"/></div>
+            <div class="height_20 line-height_180 padding-left_5p" ng-bind="food.name"></div>
+            <ion-infinite-scroll on-infinite="addFoosList()"></ion-infinite-scroll>
+        </div>
+    </ion-content>
+</ion-view>
+
+<script id="foodDetails.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar-stable">
+            <div>
+                <button ng-click="view_back();" class="button icon-left ion-chevron-left button-clear button-dark">返回</button>
+            </div>
+            <div class="h1 title">{{foodInfo.name}}</div>
+            <div class="button ion-social-yen button-clear button-dark">{{foodInfo.price}}元</div>
+        </ion-header-bar>
+        <ion-content>
+            <div style="width: 100%;text-align:center;">
+                <image class="junpic" ng-src={{foodInfo.file_path}} />
+            </div>
+            <div >
+                <a class=" item" href="#">
+                    <i>烹饪时长：</i>{{foodInfo.cooking_time}}
+                </a>
+                <a class=" item" href="#">
+                    <i>派送时长：</i>
+                </a>
+                <a class="item " href="#">
+                    <i>餐厅：</i>{{foodInfo.rname}}
+                </a>
+                <a class="junitem " href="#">
+                    <i>食材：</i>{{foodInfo.ingredients}}
+                </a>
+                <a class="junitem " href="#">
+                    <i>说明：</i>{{foodInfo.introduction}}
+                </a>
+                <a class="junitem " href="#">
+                    <i>功效：</i>{{foodInfo.effect}}
+                </a>
+                <a class="item " href="#">
+                    <i>厨师：</i>
+                </a>
+            </div>
+        </ion-content>
+        <ion-footer-bar class="bar-stable">
+            <div class="bar bar-footer">
+                <button class="{{junheart}}"  style="width: 30%" ng-click="addCollect(foodInfo.id)"></button>
+                <button class="button button-clear ion-share button-dark" style="width: 30%"></button>
+                <button class="button button-clear button-dark" style="width: 40%;background-color: #ef473a;color: #ffffff" ng-click="addMenuList(foodInfo.id)">加入菜单</button>
+            </div>
+        </ion-footer-bar>
+    </ion-modal-view>
+</script>

@@ -1,0 +1,34 @@
+{
+    "org.apache.cordova.device": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.device"
+        }
+    },
+    "org.apache.cordova.console": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.console"
+        }
+    },
+    "com.ionic.keyboard": {
+        "source": {
+            "type": "registry",
+            "id": "com.ionic.keyboard"
+        }
+    },
+    "biz.yfsoft.share": {
+        "source": {
+            "type": "git",
+            "url": "https://git.oschina.net/yfsoft/cordova-plugin-yfshare.git",
+            "subdir": "."
+        }
+    },
+    "biz.yfsoft.pay": {
+        "source": {
+            "type": "git",
+            "url": "https://git.oschina.net/yfsoft/cordova-plugin-pay.git",
+            "subdir": "."
+        }
+    }
+}

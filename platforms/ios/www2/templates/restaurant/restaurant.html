@@ -1,0 +1,10 @@
+<body ng-app="k2h" class="platform-ios platform-cordova platform-webview">
+    <ion-view view-title="附近餐厅">
+        <ion-content>
+            <div class="left_div_2 border_lightgray height_28" ng-repeat="restaurant in restaurantList">
+                <div class="height_80" ng-click="details(restaurant);"><image ng-src={{restaurant.file_path}} class="height_100 width_100 border_bottom_lightgray"/></div>
+                <div class="height_20 line-height_180 padding-left_5p" ng-bind="restaurant.name" ng-click="search();"></div>
+            </div>
+        </ion-content>
+    </ion-view>
+</body>
