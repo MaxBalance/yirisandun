@@ -39,6 +39,7 @@ appControllers
         $scope.toggleAll = function () {
             var tempAmount = 0;
             if($scope.allChecked){
+                total = 0;
                 angular.forEach($scope.goods, function (data) {
                     tempAmount = parseFloat((data.uprice*data.pro_cnt).toFixed(2));
                     total += tempAmount;
@@ -115,7 +116,7 @@ appControllers
         };
 
 
-
+        var flag = false;
         $scope.toggle = function(good){
             var tempAmount = parseFloat(good.uprice*good.pro_cnt);
             tempAmount = parseFloat(parseFloat(tempAmount.toFixed(2)));
@@ -135,7 +136,29 @@ appControllers
 
             $scope.amount = total.toFixed(2);
 
+
+            //angular.forEach($scope.goods, function (data,index) {
+            //
+            //    if(data.checked == undefined || data.checked == false){
+            //        flag = false;
+            //        //throw new Error();
+            //    }else{
+            //        flag = true;
+            //    }
+            //})
+            //$scope.allChecked = flag;
+
+            for(var i= 0;i<$scope.goods.length;i++){
+                if($scope.goods[i].checked == undefined || $scope.goods[i].checked == false){
+                    flag = false;
+                    break;
+                }else{
+                    flag = true;
+                }
+            }
+            $scope.allChecked = flag;
         };
+
 
         $scope.deal = function($event){
 
@@ -155,9 +178,9 @@ appControllers
             $state.go('cart_order');
         };
 
-        $scope.pay = function(){
-            YFPay.alipay(['2014123023432060909','testsubject1','testbody','0.01']);
-        };
+        //$scope.pay = function(){
+        //    YFPay.alipay(['2014123023432060909','testsubject1','testbody','0.01']);
+        //};
 
         $rootScope.$on('$stateChangeSuccess',
             function($event, toState, toParams, fromState, fromParams){
@@ -186,5 +209,8 @@ appControllers
             }
         );
 
+        $scope.productCart_back = function () {
+            history.back();
+        }
     }]);
 

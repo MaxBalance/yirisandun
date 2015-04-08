@@ -19,7 +19,6 @@ appControllers
 
         //用户登录广播(失败)
         $scope.$on('person.login.fail',function(event){
-            //alert("登录失败,用户名或密码错误!");
             var alertPopup = $ionicPopup.alert({
                 title:'登录失败,用户名或密码错误!',
                 okType:'button-balanced',okText:'确定'
@@ -49,23 +48,19 @@ appControllers
             });
         }else{
             //个人中心显示用户信息
-            $scope.view_username = Ds.get("user").username;
-            $scope.view_point = Ds.get("user").point;
-            $scope.view_amount = Ds.get("user").amount;
-
             var userid = Ds.get("user").userid;
+            Login.query(userid);
         }
 
-        if(Ds.has("user")){
-            //个人中心显示用户信息
+        $scope.$on('person.query.success', function () {
             $scope.view_username = Ds.get("user").username;
             $scope.view_point = Ds.get("user").point;
             $scope.view_amount = Ds.get("user").amount;
-        }
+        })
 
         //登录
         $scope.login = function(person){
-            Login.login(person);
+            Login.login(person.username,person.password);
         };
 
         $scope.login_back = function(){
@@ -77,10 +72,13 @@ appControllers
 
         //登出
         $scope.logout = function () {
-            YFShare.logout(function () {
-                Ds.clear();
-                location.href="#/tab/home";
-            },['qq']);
+            Ds.clear();
+            location.href="#/tab/home";
+
+            //YFShare.logout(function () {
+            //    Ds.clear();
+            //    location.href="#/tab/home";
+            //},['qq']);
         };
 
         //用户注册广播(成功)

@@ -174,11 +174,12 @@ appControllers
                         $stateParams.keyword = toParams.keyword;
                         init();
                     }
-
-
-
                 }
             );
+
+            $scope.to_cart = function () {
+                $state.go('product-detail-cart');
+            }
 
 }])
 ;

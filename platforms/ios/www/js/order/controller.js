@@ -14,13 +14,13 @@ appControllers
                 Address.address_search(userid);
             }
 
-            $ionicLoading.show({template: '加载中...'});
             $scope.addressList = [];
             //初始化地址监听
             $scope.$on('address.search',function(event){
-                $ionicLoading.hide();
+                $scope.addressList = [];
                 $scope.addressList = Address.addressList;
             });
+
 
             $scope.productList = [];
             if(Ds.has("cart.order")){
@@ -37,7 +37,6 @@ appControllers
 
             //初始化页面广播监听
             $scope.$on('productDetail.init',function(event){
-                $ionicLoading.hide();
                 $filter('imgFilter')(ProductDetail.content);
                 $scope.productList[0] = ProductDetail.content;
                 $scope.productList[0].pro_cnt = $stateParams.cnt;
@@ -57,7 +56,7 @@ appControllers
 
             //添加地址
             $scope._add_address = function (address) {
-                if(address.area == undefined){
+                if($scope.address_place1 == undefined){
                     var alertPopup = $ionicPopup.alert({
                         title:'请选择区域!',
                         okType:'button-balanced',okText:'确定'
@@ -74,14 +73,13 @@ appControllers
 
             //添加地址监听
             $scope.$on('address.add',function(event){
-                $ionicLoading.hide();
-                $scope.modal.hide();
                 Address.address_search(userid);
+                $scope.modal.hide();
             });
 
             //修改地址
             $scope._modify_address = function (addressList) {
-                if(addressList.area == undefined){
+                if($scope.address_place1 == undefined){
                     var alertPopup = $ionicPopup.alert({
                         title:'请选择区域!',
                         okType:'button-balanced',okText:'确定'
@@ -96,18 +94,18 @@ appControllers
                 }
             }
 
-            //添加地址监听
+            //修改地址监听
             $scope.$on('address.modify',function(event){
-                $ionicLoading.hide();
-                $scope.modal2.hide();
                 Address.address_search(userid);
+                $scope.modal2.hide();
             });
 
-            $scope.query_address = function () {
-                $state.go('address');
-            }
+            //$scope.query_address = function () {
+            //    $state.go('address');
+            //}
 
             $scope.modify_address = function (addressList) {
+                $scope.address_place1 = '邗江区';
                 $scope.address_place = addressList[0].address;
                 Address.address_search(userid);
                 //跳转至新增地址页面
@@ -195,17 +193,16 @@ appControllers
                         });
                         confirmPopup.then(function(res) {
                             if(res) {
-                                //TODO: 修改支付金额  orderInfo.total
+                                //TODO: 修改支付金额  orderInfo.totalmoney
                                 YFPay.alipay(function () {
                                     $state.go('state_order',{state:2});
                                 }, function () {
                                     $state.go('state_order',{state:1});
-                                },[orderInfo.orderid,'一日三顿','一日三顿',orderInfo.totalmoney]);
+                                },[orderInfo.orderid,'一日三顿','一日三顿',0.01]);
                             } else {
                                 $state.go('all_order');
                             }
                         });
-                        
                     }
                 }else{
                     if(Order.state == 1){
@@ -236,7 +233,7 @@ appControllers
             //余额支付监听
             $scope.$on('pay.success', function (event) {
                 if(Pay.state == 1){
-                    Login.query(userid);
+                    //Login.query(userid);
                     $state.go('state_order',{state:2});
                 }
             });
@@ -338,7 +335,8 @@ appControllers
                                         },
                                         function(){
                                             $state.go('all_order');
-                                        },[order.orderid,'一日三顿','一日三顿',order.totalmoney]);
+                                                 //order.totalmoney
+                                        },[order.orderid,'一日三顿','一日三顿',0.01]);
                                 } else {
                                     $state.go('all_order');
                                 }
@@ -451,7 +449,8 @@ appControllers
                                     },
                                     function(){
                                         $state.go('state_order',{state:1});
-                                    },[order.orderid,'一日三顿','一日三顿',order.totalmoney]);
+                                        //order.totalmoney
+                                    },[order.orderid,'一日三顿','一日三顿',0.01]);
                             } else {
                                 $state.go('state_order',{state:1});
                             }

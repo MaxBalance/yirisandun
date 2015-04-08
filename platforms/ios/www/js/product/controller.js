@@ -145,7 +145,7 @@ appControllers
 
         //跳转至购物车
         $scope.to_cart = function () {
-            $state.go('tab.cart');
+            $state.go('product-detail-cart');
         }
     }]);
 
@@ -270,5 +270,9 @@ appControllers
             $scope.detail = function(product){
                 $state.go('product-detail',{productId:product.id});
 
+            }
+
+            $scope.to_cart = function () {
+                $state.go('product-detail-cart');
             }
         }]);

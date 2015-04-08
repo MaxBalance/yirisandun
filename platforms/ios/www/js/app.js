@@ -71,10 +71,19 @@ ridunApp.config(function($stateProvider, $urlRouterProvider) {
     .state('product-detail', {
       cache: false,
       url: '/product/:productId',
-          templateUrl: 'templates/product/product-detail.html',
-          controller: 'ProductDetailCtrl'
-          //abstract:true
+      templateUrl: 'templates/product/product-detail.html',
+      controller: 'ProductDetailCtrl'
     })
+
+      //详情购物车
+      .state('product-detail-cart', {
+        cache: false,
+        url: '/product/cart',
+            templateUrl: 'templates/product/product-cart.html',
+            controller: 'CartCtrl'
+      })
+
+     //列表
     .state('search', {
       cache: false,
       url: '/search/:keyword',

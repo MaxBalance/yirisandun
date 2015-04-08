@@ -5,7 +5,9 @@
             <span class="back-text">返回</span></button>
         <a class="title">图文详情</a>
     </ion-header-bar>
-    <ion-content zooming="true" direction="xy" ng-show="product_content"><div ng-bind-html="product_content"></div></ion-content>
+    <ion-content zooming="true" direction="xy" ng-show="product_content">
+        <div style="width: 100%;" ng-bind-html="product_content"></div>
+    </ion-content>
     <ion-content ng-show="!product_content">
         <div style="text-align: center;padding:10px 0px;border-bottom: 1px solid;">暂无商品图文详情</div>
     </ion-content>

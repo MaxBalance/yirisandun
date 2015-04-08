@@ -1,8 +1,8 @@
 services.service( 'Login', [ '$rootScope', '$http','Ds','$ionicPopup','$timeout',function( $rootScope,$http,Ds,$ionicPopup,$timeout ) {
     var service = {
         state:{},
-        login:function(person){
-            $http.get(API.url('login?username='+person.username+'&password='+person.password))
+        login:function(username,password){
+            $http.get(API.url('login?username='+username+'&password='+password))
                 .success(function(data) {
                     if(data.code == 0){
                         Ds.set("user",data);
@@ -22,9 +22,8 @@ services.service( 'Login', [ '$rootScope', '$http','Ds','$ionicPopup','$timeout'
                     if(data.code == 0){
                         Ds.set("user",data);
                         service.state = 1;
-                        //alert("登录成功!");
                     }
-                    $rootScope.$broadcast( 'person.login.success' );
+                    $rootScope.$broadcast( 'person.query.success' );
                 });
         },
 
@@ -34,7 +33,6 @@ services.service( 'Login', [ '$rootScope', '$http','Ds','$ionicPopup','$timeout'
                     if(data.code == 0){
                         Ds.set("user",data);
                         service.state = 1;
-                        //alert("登录成功!");
                     }
                     $rootScope.$broadcast( 'person.login.success' );
                 });
@@ -337,7 +335,6 @@ services.service( 'Address', [ '$rootScope', '$http','$ionicPopup','$timeout',fu
                 .success(function(data) {
                     if(data.code == 0){
                         service.state = 1;
-                        //alert("修改成功");
                         var alertPopup = $ionicPopup.alert({
                             title:'修改成功!',
                             okType:'button-balanced',okText:'确定'
@@ -346,7 +343,6 @@ services.service( 'Address', [ '$rootScope', '$http','$ionicPopup','$timeout',fu
                             alertPopup.close(); //close the popup after 1 seconds for some reason
                         }, 1000);
                     }else{
-                        //alert("修改失败!");
                         var alertPopup = $ionicPopup.alert({
                             title:'修改失败!',
                             okType:'button-balanced',okText:'确定'
@@ -384,10 +380,11 @@ services.service( 'Order', [ '$rootScope', '$http','$ionicPopup','$timeout',func
             }else{
                 payway = 'alipay';
             }
+
             $http.get(API.url('addOrder?' +
             'userid='+userId+'&pro_id='+pro_id+'&user_name='+encodeURI(encodeURI(addressList.username))+'&user_msisdn='+
             encodeURI(encodeURI(addressList.mobile))+'&user_zipcode=225000&user_addr='+encodeURI(encodeURI(addressList.address))+'&pro_cnt='+pro_cnt+
-                    '&content='+encodeURI(encodeURI(productList.words))+'&order_type='+order_type+'&pay_way='+payway))
+                    '&content='+encodeURI(encodeURI(productList.words))+'&order_type='+order_type+'&pay_way='+payway+'&deliveryid=1'))
                 .success(function(data) {
                     if(data.code == 0){
                         service.state = 1;
