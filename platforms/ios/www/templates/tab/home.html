@@ -13,25 +13,21 @@
             <i class="icon ion-ios-person-outline"></i>
         </a>
     </ion-header-bar>
-    <ion-content>
+    <ion-content has-bouncing="false" overflow-scroll="false">
         <ion-slide-box class="slider" does-continue="true" on-slide-changed="slideHasChanged($index)">
             <ion-slide>
-                <div class="box" ng-click="goDetail(page1.id);" style="width: inherit;">
+                <a class="box" ng-click="goDetail(page1.id);">
                     <img ng-src="{{page1.fileurl}}" />
+                </a>
+            </ion-slide>
+            <ion-slide>
+                <div class="box" ng-click="goDetail(page2.id);">
+                    <img ng-src="{{page2.fileurl}}" />
                 </div>
             </ion-slide>
             <ion-slide>
-                <div class="box">
-                    <div class="box" ng-click="goDetail(page2.id);" style="width: inherit;">
-                        <img ng-src="{{page2.fileurl}}" />
-                    </div>
-                </div>
-            </ion-slide>
-            <ion-slide>
-                <div class="box">
-                    <div class="box" ng-click="goDetail(page3.id);" style="width: inherit;">
-                        <img ng-src="{{page3.fileurl}}" />
-                    </div>
+                <div class="box" ng-click="goDetail(page3.id);">
+                    <img ng-src="{{page3.fileurl}}" />
                 </div>
             </ion-slide>
         </ion-slide-box>

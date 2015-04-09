@@ -43,4 +43,10 @@
     <feature name="YFPay">
         <param name="ios-package" value="CDVYFPay" />
     </feature>
+    <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" />
+    </feature>
+    <feature name="AppVersion">
+        <param name="ios-package" value="AppVersion" />
+    </feature>
 </widget>

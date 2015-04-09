@@ -8,7 +8,7 @@ module.exports = {
         exec(onSuccess, onError, "YFShare","auth", args);
     },
     logout:function(onSuccess,args){
-               exec(onSuccess,function(){}, "YFShare","logout", args);
+        exec(onSuccess, function(){},"YFShare","logout", args);
     },
     share:function(onSuccess,onError,args){
         exec(onSuccess, onError, "YFShare","share", args);

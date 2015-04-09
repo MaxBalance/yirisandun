@@ -1,7 +1,7 @@
 appControllers
 .controller('HomeCtrl',
-    [ '$rootScope','$cacheFactory','$templateCache','$scope', '$ionicLoading','$ionicModal','$state','$interval','Index','Ds','$ionicPopup',
-        function($rootScope,$cacheFactory,$templateCache,$scope,$ionicLoading,$ionicModal,$state,$interval,Index,Ds,$ionicPopup){
+    [ '$rootScope','$cacheFactory','$templateCache','$scope', '$ionicLoading','$ionicModal','$state','$interval','Index','Ds','$ionicPopup','$cordovaInAppBrowser','$cordovaAppVersion',
+        function($rootScope,$cacheFactory,$templateCache,$scope,$ionicLoading,$ionicModal,$state,$interval,Index,Ds,$ionicPopup,$cordovaInAppBrowser,$cordovaAppVersion){
             //TODO fix:进入首页需要将搜索栏清空
             //首页会被缓存，所以需要通过控制器之间进行通信才能实现该功能
             $scope.search = {content:''};
@@ -66,9 +66,6 @@ appControllers
                 modal.remove();
             }
 
-            $scope.goDetail = function (id) {
-                $state.go('product-detail',{'productId':id});
-            }
             //日顿客服
             $scope.showOpinion = function(){
                 $ionicModal.fromTemplateUrl('opinion.html', {
@@ -233,10 +230,40 @@ appControllers
                     //    $templateCache.remove(toState.templateUrl);
                     //    //toState.cache = false;
                     //}
-
-
                 }
             );
 
+            var options= {
+                location:'yes',
+                clearcache:'yes',
+                toolbar:'yes'
+            }
+
+            $scope.goDetail = function () {
+                //$cordovaInAppBrowser.open('http://www.yirisandun.com/list.asp?classid=118','_blank',options)
+                //    .then(function (event) {
+                //
+                //    })
+                //    .catch(function (event) {
+                //
+                //    });
+            }
+
+            //$scope.$on('$cordovaInAppBrowser:loadstop', function (e,event) {
+            //    $cordovaInAppBrowser.insertCSS({
+            //        code:'body{width:100%;height:100%;}'
+            //    })
+            //})
+            //document.addEventListener(function () {
+            //    $cordovaInAppBrowserProvider.open('http://www.yirisandun.com/list.asp?classid=118','_blank',options)
+            //        .then(function (event) {
+            //
+            //        })
+            //        .catch(function (event) {
+            //
+            //        });
+            //
+            //    $cordovaInAppBrowserProvider.close();
+            //},false);
 }])
 ;

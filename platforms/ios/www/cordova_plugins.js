@@ -43,31 +43,17 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.geolocation/www/Coordinates.js",
-        "id": "org.apache.cordova.geolocation.Coordinates",
+        "file": "plugins/org.apache.cordova.inappbrowser/www/inappbrowser.js",
+        "id": "org.apache.cordova.inappbrowser.inappbrowser",
         "clobbers": [
-            "Coordinates"
+            "window.open"
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.geolocation/www/PositionError.js",
-        "id": "org.apache.cordova.geolocation.PositionError",
+        "file": "plugins/uk.co.whiteoctober.cordova.appversion/www/AppVersionPlugin.js",
+        "id": "uk.co.whiteoctober.cordova.appversion.AppVersionPlugin",
         "clobbers": [
-            "PositionError"
-        ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.geolocation/www/Position.js",
-        "id": "org.apache.cordova.geolocation.Position",
-        "clobbers": [
-            "Position"
-        ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.geolocation/www/geolocation.js",
-        "id": "org.apache.cordova.geolocation.geolocation",
-        "clobbers": [
-            "navigator.geolocation"
+            "cordova.getAppVersion"
         ]
     }
 ];
@@ -79,7 +65,8 @@ module.exports.metadata =
     "org.apache.cordova.device": "0.3.0",
     "biz.yfsoft.share": "1.0",
     "biz.yfsoft.pay": "1.0",
-    "org.apache.cordova.geolocation": "0.3.12"
+    "org.apache.cordova.inappbrowser": "0.6.0",
+    "uk.co.whiteoctober.cordova.appversion": "0.1.5"
 }
 // BOTTOM OF METADATA
 });

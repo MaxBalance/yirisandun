@@ -30,5 +30,18 @@
             "url": "https://git.oschina.net/yfsoft/cordova-plugin-pay.git",
             "subdir": "."
         }
+    },
+    "org.apache.cordova.inappbrowser": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.inappbrowser"
+        }
+    },
+    "uk.co.whiteoctober.cordova.appversion": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/whiteoctober/cordova-plugin-app-version.git",
+            "subdir": "."
+        }
     }
 }

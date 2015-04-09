@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0C1DFBCA46D64AE8B747CB30 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F034440A96EF4D13B6A19C46 /* libz.dylib */; };
 		0CA6DEA2EF7F4356B8AB69AC /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC29F86AB1914C0493D9872F /* CoreTelephony.framework */; };
@@ -148,6 +147,8 @@
 		CA0D78BDC43A4136B395D17C /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 67C834E0EFF34114A99BE95D /* CDVDevice.m */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		F200BF426A37432CA16905FC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C1425D4931042F6BF67268A /* UIKit.framework */; };
+		7AE58976BE234553AE166742 /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = C37B5E8EBBAB4CD8A285E8CE /* CDVInAppBrowser.m */; };
+		78DB2F41920C49BA9E6764EB /* AppVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0C492ED263449FBF333DBA /* AppVersion.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -419,6 +420,10 @@
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "一日三顿/config.xml"; sourceTree = "<group>"; };
 		F93C50CAD85D44BE9DEA2041 /* CDVLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVLogger.h; path = org.apache.cordova.console/CDVLogger.h; sourceTree = "<group>"; };
 		FCA8D556862A45D8B1D1227E /* UIWebViewExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIWebViewExtension.m; path = com.ionic.keyboard/UIWebViewExtension.m; sourceTree = "<group>"; };
+		C37B5E8EBBAB4CD8A285E8CE /* CDVInAppBrowser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVInAppBrowser.m"; path = "org.apache.cordova.inappbrowser/CDVInAppBrowser.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		2FCA1195270B4B538812278E /* CDVInAppBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVInAppBrowser.h"; path = "org.apache.cordova.inappbrowser/CDVInAppBrowser.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		3D0C492ED263449FBF333DBA /* AppVersion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "AppVersion.m"; path = "uk.co.whiteoctober.cordova.appversion/AppVersion.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		0F12C92BE63047279FE2585B /* AppVersion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "AppVersion.h"; path = "uk.co.whiteoctober.cordova.appversion/AppVersion.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -635,6 +640,10 @@
 				BD2DEA9E4C754C6595E6E810 /* Order.m */,
 				E3EE3F1D23D647C6A5EE029B /* CDVYFPay.h */,
 				78C978E45FAC41E0996B0B5A /* Order.h */,
+				C37B5E8EBBAB4CD8A285E8CE /* CDVInAppBrowser.m */,
+				2FCA1195270B4B538812278E /* CDVInAppBrowser.h */,
+				3D0C492ED263449FBF333DBA /* AppVersion.m */,
+				0F12C92BE63047279FE2585B /* AppVersion.h */,
 			);
 			name = Plugins;
 			path = "一日三顿/Plugins";
@@ -1153,6 +1162,8 @@
 				9C3236A5E41D4169872D051F /* AppDelegate+CDVYFShare.m in Sources */,
 				502E1AF4FE9342A7967A9D73 /* CDVYFPay.m in Sources */,
 				A163EFE3DF2647C4A2BAF4D7 /* Order.m in Sources */,
+				7AE58976BE234553AE166742 /* CDVInAppBrowser.m in Sources */,
+				78DB2F41920C49BA9E6764EB /* AppVersion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

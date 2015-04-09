@@ -27,6 +27,14 @@
                         {
                             "xml": "<feature name=\"YFPay\"><param name=\"ios-package\" value=\"CDVYFPay\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"InAppBrowser\"><param name=\"ios-package\" value=\"CDVInAppBrowser\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"AppVersion\"><param name=\"ios-package\" value=\"AppVersion\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -114,7 +122,7 @@
                     "CoreGraphics.framework": [
                         {
                             "xml": false,
-                            "count": 2
+                            "count": 3
                         }
                     ],
                     "UIKit.framework": [
@@ -198,6 +206,12 @@
         },
         "biz.yfsoft.pay": {
             "PACKAGE_NAME": "com.ionicframework.一日三顿696205"
+        },
+        "org.apache.cordova.inappbrowser": {
+            "PACKAGE_NAME": "ztemap.com"
+        },
+        "uk.co.whiteoctober.cordova.appversion": {
+            "PACKAGE_NAME": "ztemap.com"
         }
     },
     "dependent_plugins": {}

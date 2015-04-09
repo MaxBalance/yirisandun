@@ -234,6 +234,7 @@ appControllers
             $scope.$on('pay.success', function (event) {
                 if(Pay.state == 1){
                     //Login.query(userid);
+                    alert(1)
                     $state.go('state_order',{state:2});
                 }
             });
