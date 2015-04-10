@@ -1,8 +1,8 @@
 //新品的控制器，不需要加载更多数据的功能
 appControllers
 .controller('NewProductCtrl',
-[ '$scope', '$ionicLoading','$state','Product','Cart','Ds','$ionicPopup','$timeout',
-    function($scope,$ionicLoading,$state,Product,Cart,Ds,$ionicPopup,$timeout){
+[ '$scope', '$ionicLoading','$state','Product','Cart','Ds','$ionicPopup','$timeout','Login',
+    function($scope,$ionicLoading,$state,Product,Cart,Ds,$ionicPopup,$timeout,Login){
         $ionicLoading.show({template: '加载中...'});
         $scope.productList = [];
         $scope.$on('product.found',function(event){
@@ -20,6 +20,15 @@ appControllers
             $timeout(function() {
                 alertPopup.close();
             }, 2000);
+
+            var userLogined = $scope.user = {};
+            if(Ds.has('user')){
+                Login.getCart(Ds.get('user').userid);
+            }
+
+            $scope.$on('person.cart.success',function () {
+                $scope.user = Ds.get('user');
+            })
         });
 
         $scope.addToCart = function(product,$event){

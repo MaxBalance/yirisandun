@@ -1,4 +1,4 @@
-var ridunApp = angular.module('ridun', ['ionic', 'ridun.controllers','ridun.services']);
+var ridunApp = angular.module('ridun', ['ionic', 'ridun.controllers','ridun.services','ngCordova']);
 
 ridunApp.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -37,8 +37,9 @@ ridunApp.config(function($stateProvider, $urlRouterProvider) {
   .state('tab', {
     url: '/tab',
     abstract: true,
+    cache:false,
     templateUrl: 'templates/tabs.html',
-    controller: 'HomeCtrl'
+    controller: 'HomeTabsCtrl'
   })
   .state('tab.home', {
     cache:false,

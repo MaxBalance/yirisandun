@@ -36,7 +36,18 @@ services.service( 'Login', [ '$rootScope', '$http','Ds','$ionicPopup','$timeout'
                     }
                     $rootScope.$broadcast( 'person.login.success' );
                 });
+        },
+
+        getCart: function (userid) {
+            $http.get('http://192.168.88.32:8080/yirisandun/badge?user_id='+userid)
+                .success(function(data) {
+                    if(data.code == 0){
+                        Ds.set("user",data);
+                    }
+                    $rootScope.$broadcast( 'person.cart.success' );
+                });
         }
+
     }
     return service;
 }]);

@@ -1,7 +1,7 @@
 appControllers
 .controller('HomeCtrl',
-    [ '$rootScope','$cacheFactory','$templateCache','$scope', '$ionicLoading','$ionicModal','$state','$interval','Index','Ds','$ionicPopup','$cordovaInAppBrowser','$cordovaAppVersion',
-        function($rootScope,$cacheFactory,$templateCache,$scope,$ionicLoading,$ionicModal,$state,$interval,Index,Ds,$ionicPopup,$cordovaInAppBrowser,$cordovaAppVersion){
+    [ '$rootScope','$cacheFactory','$templateCache','$scope', '$ionicLoading','$ionicModal','$state','$interval','Index','Ds','$ionicPopup','$cordovaInAppBrowser','$cordovaAppVersion','Login',
+        function($rootScope,$cacheFactory,$templateCache,$scope,$ionicLoading,$ionicModal,$state,$interval,Index,Ds,$ionicPopup,$cordovaInAppBrowser,$cordovaAppVersion,Login){
             //TODO fix:进入首页需要将搜索栏清空
             //首页会被缓存，所以需要通过控制器之间进行通信才能实现该功能
             $scope.search = {content:''};
@@ -206,7 +206,6 @@ appControllers
             $scope.searchKeyPress = function($event){
                 if($event.keyCode == 13){
                     if($scope.search.content ==''){
-                        //alert('您尚未输入任何信息!');
                         var alertPopup = $ionicPopup.alert({
                             title:'您尚未输入任何信息!',
                             okType:'button-balanced',okText:'确定'
@@ -233,20 +232,29 @@ appControllers
                 }
             );
 
-            var options= {
-                location:'yes',
-                clearcache:'yes',
-                toolbar:'yes'
-            }
 
-            $scope.goDetail = function () {
-                //$cordovaInAppBrowser.open('http://www.yirisandun.com/list.asp?classid=118','_blank',options)
-                //    .then(function (event) {
-                //
-                //    })
-                //    .catch(function (event) {
-                //
-                //    });
+
+            $scope.goDetail = function (id) {
+                var url = '';
+                switch(id){
+                    case 1:  url = 'http://www.yirisandun.com/list.asp?classid=118';
+                    case 2:  url = 'http://www.yirisandun.com/list.asp?classid=118';
+                    case 3:  url = 'http://www.yirisandun.com/huod/index.asp';
+                }
+
+                var options= {
+                    location:'yes',
+                    clearcache:'yes',
+                    toolbar:'yes'
+                }
+
+                $cordovaInAppBrowser.open(url,'_blank',options)
+                    .then(function (event) {
+
+                    })
+                    .catch(function (event) {
+
+                    });
             }
 
             //$scope.$on('$cordovaInAppBrowser:loadstop', function (e,event) {
@@ -265,5 +273,24 @@ appControllers
             //
             //    $cordovaInAppBrowserProvider.close();
             //},false);
+
+
 }])
 ;
+
+appControllers
+    .controller('HomeTabsCtrl',
+    [ '$rootScope','$cacheFactory','$templateCache','$scope', '$ionicLoading','$ionicModal','$state','$interval','Index','Ds','Login',
+        function($rootScope,$cacheFactory,$templateCache,$scope,$ionicLoading,$ionicModal,$state,$interval,Index,Ds,Login){
+
+            var userLogined = $scope.user = {};
+            if(Ds.has('user')){
+                Login.getCart(Ds.get('user').userid);
+            }
+
+            $scope.$on('person.cart.success',function () {
+                $scope.user = Ds.get('user');
+            })
+
+        }]);
+
