@@ -6,6 +6,7 @@ services.service( 'Login', [ '$rootScope', '$http','Ds','$ionicPopup','$timeout'
                 .success(function(data) {
                     if(data.code == 0){
                         Ds.set("user",data);
+                        alert(Ds.get('user').userid)
                         service.state = 1;
                         $rootScope.$broadcast( 'person.login.success' );
                     }else{
@@ -39,7 +40,7 @@ services.service( 'Login', [ '$rootScope', '$http','Ds','$ionicPopup','$timeout'
         },
 
         getCart: function (userid) {
-            $http.get('http://192.168.88.32:8080/yirisandun/badge?user_id='+userid)
+            $http.get(API2.url('badge?user_id='+userid))
                 .success(function(data) {
                     if(data.code == 0){
                         Ds.set("user",data);
@@ -56,37 +57,12 @@ services.service( 'Register', [ '$rootScope', '$http','Ds','$ionicPopup','$timeo
     var service = {
         state:{},
         _register:function(person_r){
-            if(person_r.password_one != person_r.password_two){
-                //alert("两次输入密码不一致");
-                var alertPopup = $ionicPopup.alert({
-                    title:'两次输入密码不一致!',
-                    okType:'button-balanced',okText:'确定'
-                });
-                $timeout(function() {
-                    alertPopup.close(); //close the popup after 1 seconds for some reason
-                }, 1500);
-                return service;
-            }
-            var reg = /^[_0-9a-zA-Z]{0,20}$/
-            if (!reg.test(person_r.username) || person_r.username.length <= 5 || person_r.username.length >=20 || person_r.username=='' )
-            {
-                $rootScope.$broadcast( 'person.register.fail' );
-                return false;
-            }
-
-            if (!reg.test(person_r.password_one) || person_r.password_one.length < 6 || person_r.password_one =='')
-            {
-                $rootScope.$broadcast( 'person.register.fail' );
-                return false;
-            }
-            $http.get(API.url('register?username='+person_r.username+'&password='+person_r.password_one))
+            $http.get(API2.url('register?username='+person_r.username+'&password='+person_r.password_one+'&mobile='+person_r.phone))
                 .success(function(data) {
                     if(data.code == 0){
                     Ds.set("user",data);
-                        service.state = 1;
-                        //alert("注册成功!");
+                    service.state = 1;
                     }else{
-                        //alert("注册失败，用户名已存在!");
                         var alertPopup = $ionicPopup.alert({
                             title:'注册失败，用户名已存在!',
                             okType:'button-balanced',okText:'确定'
@@ -98,7 +74,22 @@ services.service( 'Register', [ '$rootScope', '$http','Ds','$ionicPopup','$timeo
                     }
                     $rootScope.$broadcast( 'person.register.success' );
                 });
+        },
+        getCode: function (person_r) {
+            $http.get(API2.url('random?mobile='+person_r.phone))
+                .success(function (data) {
+                    if(data.code == 0){
+                        Ds.set('LoginCode',data.random)
+                        $rootScope.$broadcast('getCode.success');
+                    }else{
+                        var alertPopup = $ionicPopup.alert({
+                            title:'该手机号已注册过!',
+                            okType:'button-balanced',okText:'确定'
+                        });
+                    }
+                })
         }
+
     }
     return service;
 }]);

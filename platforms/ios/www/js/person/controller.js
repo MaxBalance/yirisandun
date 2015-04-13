@@ -1,32 +1,18 @@
 appControllers
     .controller('PersonCtrl',
-    [ '$scope', '$ionicLoading','Login','Ds','$ionicModal','Register','Password','Message','$state','Order','$ionicHistory','$timeout','$ionicPopup',
-        function($scope,$ionicLoading,Login,Ds, $ionicModal,Register,Password,Message,$state,Order,$ionicHistory,$timeout,$ionicPopup) {
+    [ '$scope', '$ionicLoading','Login','Ds','$ionicModal','Register','Password','Message','$state','Order','$ionicHistory','$timeout','$ionicPopup','$interval',
+        function($scope,$ionicLoading,Login,Ds, $ionicModal,Register,Password,Message,$state,Order,$ionicHistory,$timeout,$ionicPopup,$interval) {
 
         //用户登录广播(成功)
         $scope.$on('person.login.success',function(event){
             if(Login.state == 1){
                 $scope.modal.hide();
             }
-            $scope.view_username = Ds.get("user").username;
-            $scope.view_point = Ds.get("user").point;
-            $scope.view_amount = Ds.get("user").amount;
+            $scope.user = Ds.get("user");
 
             if(Ds.has("type")){
                 $state.go('tab.cart');
             }
-        });
-
-        //用户登录广播(失败)
-        $scope.$on('person.login.fail',function(event){
-            var alertPopup = $ionicPopup.alert({
-                title:'登录失败,用户名或密码错误!',
-                okType:'button-balanced',okText:'确定'
-            });
-
-            $timeout(function() {
-                alertPopup.close(); //close the popup after 1 seconds for some reason
-            }, 1000);
         });
 
         $scope.qqLogin = function () {
@@ -48,14 +34,11 @@ appControllers
             });
         }else{
             //个人中心显示用户信息
-            var userid = Ds.get("user").userid;
-            Login.query(userid);
+            Login.query(Ds.get("user").userid);
         }
 
         $scope.$on('person.query.success', function () {
-            $scope.view_username = Ds.get("user").username;
-            $scope.view_point = Ds.get("user").point;
-            $scope.view_amount = Ds.get("user").amount;
+            $scope.user = Ds.get("user");
         })
 
         //登录
@@ -72,13 +55,10 @@ appControllers
 
         //登出
         $scope.logout = function () {
-            Ds.clear();
-            location.href="#/tab/home";
-
-            //YFShare.logout(function () {
-            //    Ds.clear();
-            //    location.href="#/tab/home";
-            //},['qq']);
+            YFShare.logout(function () {
+                Ds.clear();
+                location.href="#/tab/home";
+            },['qq']);
         };
 
         //用户注册广播(成功)
@@ -89,9 +69,7 @@ appControllers
                     $scope.modal.hide();
                 };
             }
-            $scope.view_username = Ds.get("user").username;
-            $scope.view_point = Ds.get("user").point;
-            $scope.view_amount = Ds.get("user").amount;
+            Login.query(Ds.get("user").userid);
         });
 
         //用户注册广播(失败)
@@ -114,6 +92,7 @@ appControllers
                 scope: $scope,
                 animation: 'slide-in-up'
             }).then(function(modal2) {
+                $scope.turnNum = 10;
                 $scope.modal2 = modal2;
                 $scope.modal2.show();
             });
@@ -122,8 +101,58 @@ appControllers
 
         //注册用户
         $scope._register = function (person_r) {
+            if(person_r.password_one != person_r.password_two){
+                var alertPopup = $ionicPopup.alert({
+                    title:'两次输入密码不一致!',
+                    okType:'button-balanced',okText:'确定'
+                });
+                $timeout(function() {
+                    alertPopup.close(); //close the popup after 1 seconds for some reason
+                }, 1500);
+                return service;
+            }
+            var reg = /^[_0-9a-zA-Z]{0,20}$/
+            if (!reg.test(person_r.username) || person_r.username.length <= 5 || person_r.username.length >=20 || person_r.username=='' )
+            {
+                $rootScope.$broadcast( 'person.register.fail' );
+                return false;
+            }
+
+            if (!reg.test(person_r.password_one) || person_r.password_one.length < 6 || person_r.password_one =='')
+            {
+                $rootScope.$broadcast( 'person.register.fail' );
+                return false;
+            }
+            if (!/^1\d{10}$/.test(person_r.phone)) {
+                var alertPopup = $ionicPopup.alert({
+                    title:'请填写正确的手机号!',
+                    okType:'button-balanced',
+                    okText:'确定'
+                });
+                return false;
+            }
+            if(Ds.has('LoginCode') && person_r.code != Ds.get('LoginCode')){
+                var alertPopup = $ionicPopup.alert({
+                    title:'验证码错误!',
+                    okType:'button-balanced',
+                    okText:'确定'
+                });
+                return false;
+            }
             Register._register(person_r);
         };
+
+        //用户登录广播(失败)
+        $scope.$on('person.login.fail',function(event){
+            var alertPopup = $ionicPopup.alert({
+                title:'登录失败,用户名或密码错误!',
+                okType:'button-balanced',okText:'确定'
+            });
+
+            $timeout(function() {
+                alertPopup.close(); //close the popup after 1 seconds for some reason
+            }, 1000);
+        });
 
         $scope.register_back = function(){
             $scope.modal2.hide();
@@ -196,5 +225,60 @@ appControllers
         $scope.query_order_state = function (state) {
             $state.go('state_order',{state:state});
         }
+
+        $scope.showCode = true;
+        //$scope.person_r = {};
+        //$scope.person_r.phone = '';
+        $scope.countNum = 60;
+        var num = '';
+        $scope.getCount = function (person_r) {
+            if (!/^1\d{10}$/.test(person_r.phone)) {
+                var alertPopup = $ionicPopup.alert({
+                    title:'请填写正确的手机号!',
+                    okType:'button-balanced',
+                    okText:'确定'
+                });
+                return false;
+            }
+     
+            Register.getCode(person_r);
+        }
+
+        $scope.$on('getCode.success', function () {
+                   $scope.showCode = false;
+                   (function(){
+                    num = $interval(turns,1000,61);
+                    })();
+        })
+
+        function turns() {
+            if($scope.countNum  == 0){
+                $scope.showCode = true;
+            }
+            $scope.countNum --;
+        }
+
+        //var code = $scope.code = {};
+        //$scope.countNum =60;
+        //$scope.counterStr = '60S'
+        //var num = '';
+        //$scope.getCount = function (counterStr ) {
+        //    counterStr = '60S';
+        //    $scope.showCode = false;
+        //    //(function(){
+        //    for(var i=0;i<10;i++){
+        //        var timer = i*1000;
+        //        (function(t){
+        //            $timeout(function(){
+        //                $scope.turnNum --;
+        //                $scope.counterStr = $scope.turnNum+'S'
+        //                if($scope.turnNum  == 0){
+        //                    $scope.showCode = true;
+        //                    clearInterval(num);
+        //                }
+        //            },t);
+        //        })(timer);
+        //    }
+        //}
     }])
 ;

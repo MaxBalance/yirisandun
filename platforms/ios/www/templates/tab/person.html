@@ -4,9 +4,10 @@
   </ion-header-bar>
   <ion-content class="person" >
     <div style="height:70px;">
-      <div style="font-size: 20px;margin: 15px;"><a>用户名: <label style="font-size: 20px;" ng-bind="view_username"></label></a></div>
-      <div style="font-size: 15px;margin:5px 15px;display: inline-block;"><a>积分: <label style="font-size: 17px;" ng-bind="view_point"></label></a></div>
-      <div style="font-size: 15px;margin-left:100px;display: inline-block;"><a>余额: <label style="font-size: 17px;" ng-bind="view_amount"></label></a></div>
+      <div style="font-size: 20px;margin: 15px;"><a>用户名: <label style="font-size: 20px;" ng-bind="user.username"></label></a></div>
+      <div style="font-size: 15px;margin:5px 15px;display: inline-block;"><a>积分: <label style="font-size: 17px;" ng-bind="user.point"></label></a></div>
+      <div style="font-size: 15px;margin-left:100px;display: inline-block;"><a>余额: <label style="font-size: 17px;" ng-bind="user.amount"></label></a></div>
+      <div style="font-size: 15px;margin-left:100px;display: inline-block;"><a>卡余额: <label style="font-size: 17px;" ng-bind="user.kamount"></label></a></div>
     </div>
     <div class="button-bar bar-light padding" style="margin-bottom: -15px;">
       <a class="button bk_lightgreen " ng-click="query_order_state(1);">未付款</a>
@@ -85,20 +86,41 @@
       <div class="list list-inset">
         <label class="item item-input">
           <i class="icon ion-ios-person placeholder-icon"></i>
-          <input ng-model="person_r.username" type="text" placeholder="用户名(5-20位,由a-z\0-9\_组成)">
+          <input ng-model="person_r.username" type="text" placeholder="用户名(5-20位,由a-z\0-9\_组成)" required>
         </label>
         <label class="item item-input">
           <i class="icon ion-ios-locked placeholder-icon"></i>
-          <input ng-model="person_r.password_one" type="password" placeholder="密码(6-16位,由a-z\0-9\_组成)">
+          <input ng-model="person_r.password_one" type="password" placeholder="密码(6-16位,由a-z\0-9\_组成)" required>
         </label>
 
       </div>
       <div class="list list-inset" style="margin-top: -22px;">
         <label class="item item-input">
           <i class="icon ion-ios-locked placeholder-icon"></i>
-          <input ng-model="person_r.password_two" type="password" placeholder="确认密码(6-16位,由a-z\0-9\_组成)">
+          <input ng-model="person_r.password_two" type="password" placeholder="确认密码(6-16位,由a-z\0-9\_组成)" required>
         </label>
       </div>
+      <div class="list list-inset" style="margin-top: -22px;">
+        <label class="item item-input">
+          <i class="icon ion-iphone placeholder-icon"></i>
+          <input ng-model="person_r.phone" type="tel" placeholder="请输入手机号" required>
+        </label>
+      </div>
+      <div class="list list-inset" style="float:left;width:54%;margin:-22px 0px 22px 3%!important;">
+        <label class="item item-input">
+          <i class="icon ion-compose placeholder-icon"></i>
+          <input ng-model="person_r.code" type="text" placeholder="请输入验证码" required>
+        </label>
+      </div>
+      <div class="list list-inset" style="float:left;margin:-24px 2% 22px 0px!important;width:40%">
+        <button class="button button-balanced" style="width:100%;" ng-click="getCount(person_r)" ng-show="showCode">
+          获取验证码
+        </button>
+        <button class="button" style="width:100%;" ng-show="!showCode">
+          {{countNum}}
+        </button>
+      </div>
+
       <div class="padding">
         <button class="button button-block button-balanced activated" ng-click="_register(person_r);">注册</button>
       </div>
