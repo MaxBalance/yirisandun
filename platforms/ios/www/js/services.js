@@ -1,5 +1,4 @@
-var host ='http://58.220.249.174:8088/API/';
-//var host ='http://192.168.88.104:8080/API/';
+var host ='http://192.168.88.104:8080/API/';
 var API = {
   url:function(key){
     return host+key;
