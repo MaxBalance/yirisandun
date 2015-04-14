@@ -56,12 +56,13 @@ appControllers
 
             //添加地址
             $scope._add_address = function (address) {
-                if($scope.address_place1 == undefined){
-                    var alertPopup = $ionicPopup.alert({
-                        title:'请选择区域!',
-                        okType:'button-balanced',okText:'确定'
-                    });
-                }else if($scope.address_place == undefined){
+                //if($scope.address_place1 == undefined){
+                //    var alertPopup = $ionicPopup.alert({
+                //        title:'请选择区域!',
+                //        okType:'button-balanced',okText:'确定'
+                //    });
+                //}else
+                if($scope.address_place == undefined){
                     var alertPopup = $ionicPopup.alert({
                         title:'请选择自提点!',
                         okType:'button-balanced',okText:'确定'
@@ -79,12 +80,13 @@ appControllers
 
             //修改地址
             $scope._modify_address = function (addressList) {
-                if($scope.address_place1 == undefined){
-                    var alertPopup = $ionicPopup.alert({
-                        title:'请选择区域!',
-                        okType:'button-balanced',okText:'确定'
-                    });
-                }else if($scope.address_place == undefined){
+                //if($scope.address_place1 == undefined){
+                //    var alertPopup = $ionicPopup.alert({
+                //        title:'请选择区域!',
+                //        okType:'button-balanced',okText:'确定'
+                //    });
+                //}else
+                if($scope.address_place == undefined){
                     var alertPopup = $ionicPopup.alert({
                         title:'请选择自提点!',
                         okType:'button-balanced',okText:'确定'

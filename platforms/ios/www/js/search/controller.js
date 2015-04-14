@@ -1,12 +1,12 @@
 appControllers
 .controller('SearchCtrl',
-    [ '$templateCache','$rootScope','$scope', '$ionicLoading','$ionicModal','$stateParams','$ionicHistory','$state','Search','Cart','Ds','$ionicPopup','$ionicTabsDelegate','$timeout',
-        function($templateCache,$rootScope,$scope,$ionicLoading,$ionicModal,$stateParams,$ionicHistory,$state,Search,Cart,Ds,$ionicPopup,$ionicTabsDelegate,$timeout){
+    [ '$templateCache','$rootScope','$scope', '$ionicLoading','$ionicModal','$stateParams','$ionicHistory','$state','Search','Cart','Ds','$ionicPopup','$ionicTabsDelegate','$timeout','Login',
+        function($templateCache,$rootScope,$scope,$ionicLoading,$ionicModal,$stateParams,$ionicHistory,$state,Search,Cart,Ds,$ionicPopup,$ionicTabsDelegate,$timeout,Login){
 
             $scope.back = function(){
                 history.back();
             }
-            $scope.listPanel = {height:'370px'};
+            //$scope.listPanel = {height:'370px'};
 
 
             var tag = 'asc';
@@ -181,5 +181,17 @@ appControllers
                 $state.go('product-detail-cart');
             }
 
+            $scope.user = {};
+            Login.getCart(Ds.get('user').userid);
+
+            $scope.$on('cart.add.ok',function () {
+                if(Ds.has('user')){
+                    Login.getCart(Ds.get('user').userid);
+                }
+            })
+
+            $scope.$on('person.cart.success',function () {
+                $scope.user = Ds.get('user');
+            })
 }])
 ;

@@ -292,5 +292,9 @@ appControllers
                 $scope.user = Ds.get('user');
             })
 
+            $scope.$on('cart.modify.ok',function () {
+                Login.getCart(Ds.get('user').userid);
+            })
+
         }]);
 

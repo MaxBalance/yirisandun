@@ -6,7 +6,6 @@ services.service( 'Login', [ '$rootScope', '$http','Ds','$ionicPopup','$timeout'
                 .success(function(data) {
                     if(data.code == 0){
                         Ds.set("user",data);
-                        alert(Ds.get('user').userid)
                         service.state = 1;
                         $rootScope.$broadcast( 'person.login.success' );
                     }else{

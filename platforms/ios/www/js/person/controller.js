@@ -55,6 +55,9 @@ appControllers
 
         //登出
         $scope.logout = function () {
+//     Ds.clear();
+//     location.href="#/tab/home";
+     
             YFShare.logout(function () {
                 Ds.clear();
                 location.href="#/tab/home";
