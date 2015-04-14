@@ -2,7 +2,7 @@ services.service( 'Login', [ '$rootScope', '$http','Ds','$ionicPopup','$timeout'
     var service = {
         state:{},
         login:function(username,password){
-            $http.get(API.url('login?username='+username+'&password='+password))
+            $http.get(API2.url('login?username='+username+'&password='+password))
                 .success(function(data) {
                     if(data.code == 0){
                         Ds.set("user",data);
@@ -283,10 +283,10 @@ services.service( 'Address', [ '$rootScope', '$http','$ionicPopup','$timeout',fu
                     if(data.code == 0){
                         service.state = 1;
                         service.addressList = data.content[0];
-                        if(service.addressList.length != 0){
-                            service.addressList[0].address = decodeURI(service.addressList[0].address);
-                            service.addressList[0].username = decodeURI(service.addressList[0].username);
-                        }
+                        //if(service.addressList.length != 0){
+                        //    service.addressList[0].address = decodeURI(service.addressList[0].address);
+                        //    service.addressList[0].username = decodeURI(service.addressList[0].username);
+                        //}
                     }else{
                         //alert("接口异常!");
                         var alertPopup = $ionicPopup.alert({

@@ -234,13 +234,7 @@ appControllers
 
 
 
-            $scope.goDetail = function (id) {
-                var url = '';
-                switch(id){
-                    case 1:  url = 'http://www.yirisandun.com/list.asp?classid=118';
-                    case 2:  url = 'http://www.yirisandun.com/list.asp?classid=118';
-                    case 3:  url = 'http://www.yirisandun.com/huod/index.asp';
-                }
+            $scope.goDetail = function (url) {
 
                 var options= {
                     location:'yes',

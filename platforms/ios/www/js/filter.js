@@ -112,3 +112,10 @@ ridunApp.filter('formatNumber', function () {
         return string.replace(/.$/, '');
     };;
 });
+
+//decodeURI
+ridunApp.filter('decodeText', function () {
+    return function (data) {
+        return decodeURI(data);
+    }
+});

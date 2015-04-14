@@ -4,8 +4,9 @@
             <i class="icon ion-ios-arrow-left"></i>
             <span class="back-text">返回</span></button>
         <a class="title">商品详情</a>
-        <button class="button button-clear" ng-click="to_cart();">
-            <i class="icon ion-ios-cart-outline" ></i></button>
+        <button class="button button-clear icon ion-ios-cart-outline" ng-click="to_cart();" style="margin-right:-2%;!important;">
+            <span class="badge badge-balanced header-badge" style="top: -7px !important;left:-11px !important;">{{user.cartcnt}}</span>
+        </button>
     </ion-header-bar>
     <ion-content class="padding">
         <div class="item item-image">

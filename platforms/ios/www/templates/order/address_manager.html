@@ -1,0 +1,20 @@
+<ion-view view-title="地址管理" id="address">
+    <ion-header-bar align-title="center" class="bar-stable">
+        <button ng-click="address_back();" class="button back-button buttons  button-clear button-dark header-item">
+            <i class="icon ion-ios-arrow-left"></i>
+            <span class="back-text">返回</span></button>
+        <a class="title">地址管理</a>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="address in addressList" ng-click="update()">
+                <div>
+                    <div style="font-size:18px;display: inline-table">{{address.username | decodeText}}</div>
+                    <div style="font-size:15px;display: inline-table;float: right;">{{address.mobile}}</div>
+                </div>
+                <div><a style="overflow:hidden;text-overflow: ellipsis;font-size:15px;">{{address.address | decodeText}}</a>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

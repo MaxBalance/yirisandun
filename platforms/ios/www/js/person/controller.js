@@ -55,13 +55,13 @@ appControllers
 
         //登出
         $scope.logout = function () {
-//     Ds.clear();
-//     location.href="#/tab/home";
+     Ds.clear();
+     location.href="#/tab/home";
      
-            YFShare.logout(function () {
-                Ds.clear();
-                location.href="#/tab/home";
-            },['qq']);
+            //YFShare.logout(function () {
+            //    Ds.clear();
+            //    location.href="#/tab/home";
+            //},['qq']);
         };
 
         //用户注册广播(成功)

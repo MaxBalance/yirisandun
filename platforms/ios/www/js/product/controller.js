@@ -53,8 +53,8 @@ appControllers
 //商品详情
 appControllers
     .controller('ProductDetailCtrl',
-    [ '$scope', '$ionicLoading','ProductDetail','$stateParams','$filter','$state','$ionicHistory','Ds','Cart','$ionicPopup','$timeout',
-    function($scope,$ionicLoading,ProductDetail,$stateParams,$filter,$state,$ionicHistory,Ds,Cart,$ionicPopup,$timeout){
+    [ '$scope', '$ionicLoading','ProductDetail','$stateParams','$filter','$state','$ionicHistory','Ds','Cart','$ionicPopup','$timeout','Login',
+    function($scope,$ionicLoading,ProductDetail,$stateParams,$filter,$state,$ionicHistory,Ds,Cart,$ionicPopup,$timeout,Login){
         $ionicLoading.show({template: '加载中...'});
         ProductDetail.productDetail($stateParams.productId);
 
@@ -156,6 +156,19 @@ appControllers
         $scope.to_cart = function () {
             $state.go('product-detail-cart');
         }
+
+        $scope.user = {};
+        Login.getCart(Ds.get('user').userid);
+
+        $scope.$on('cart.add.ok',function () {
+            if(Ds.has('user')){
+                Login.getCart(Ds.get('user').userid);
+            }
+        })
+
+        $scope.$on('person.cart.success',function () {
+            $scope.user = Ds.get('user');
+        })
     }]);
 
 //图文详情

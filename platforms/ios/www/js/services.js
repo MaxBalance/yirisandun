@@ -1,4 +1,4 @@
-//var host ='http://58.220.249.174:8088/yirisandun/';
+//var host ='http://192.168.88.32:8080/yirisandun/';
 var host ='http://58.220.249.174:8088/API/';
 var host2 ='http://58.220.249.174:8088/yirisandun/';
 var API = {

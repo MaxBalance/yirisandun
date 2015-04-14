@@ -20,24 +20,13 @@ ridunApp.config(function($stateProvider, $urlRouterProvider) {
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
 
-  //inAppBrowser
-  //var defaultOptions = {
-  //  location:'no',
-  //  clearcache:'no',
-  //  toolbar:'no'
-  //};
-  //
-  //document.addEventListener(function () {
-  //  $cordovaInAppBrowserProvider.setDefaultOptions(options);
-  //},false);
-
   $stateProvider
   // setup an abstract state for the tabs directive
   // Each tab has its own nav history stack:
   .state('tab', {
     url: '/tab',
     abstract: true,
-    cache:false,
+    //cache:false,
     templateUrl: 'templates/tabs.html',
     controller: 'HomeTabsCtrl'
   })
@@ -85,13 +74,13 @@ ridunApp.config(function($stateProvider, $urlRouterProvider) {
       controller: 'ProductDetailCtrl'
     })
 
-      //详情购物车
-      .state('product-detail-cart', {
-        cache: false,
-        url: '/product/cart',
-            templateUrl: 'templates/product/product-cart.html',
-            controller: 'CartCtrl'
-      })
+    //详情购物车
+    .state('product-detail-cart', {
+      //cache: false,
+      url: '/product/cart',
+          templateUrl: 'templates/product/product-cart.html',
+          controller: 'CartCtrl'
+    })
 
      //列表
     .state('search', {
@@ -125,7 +114,6 @@ ridunApp.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/product/comment.html',
       controller: 'CommentCtrl'
     })
-
 
     //个人中心
     .state('tab.person', {

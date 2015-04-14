@@ -6,7 +6,7 @@ appControllers
             $scope.back = function(){
                 history.back();
             }
-            //$scope.listPanel = {height:'370px'};
+            $scope.listPanel = {height:'370px'};
 
 
             var tag = 'asc';
