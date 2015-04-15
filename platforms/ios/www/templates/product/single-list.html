@@ -1,9 +1,10 @@
 <ion-view id="product-list">
     <ion-header-bar class="bar-stable">
         <button class="button back-button buttons  button-clear button-dark header-item" ng-click="back()"><i class="icon ion-ios-arrow-left"></i> 返回</button>
-        <p class="title">限时抢购</p>
-        <button class="button button-clear" ng-click="to_cart();">
-            <i class="icon ion-ios-cart-outline" ></i></button>
+        <a class="title" style="margin-left: 6%; left: 22% !important; right: 22% !important;">限时抢购</a>
+        <button class="button button-clear icon ion-ios-cart-outline" ng-click="to_cart();" style="margin-right:-2%;!important;">
+            <span class="badge badge-balanced header-badge" style="top: -7px !important;left:-11px !important;">{{user.cartcnt}}</span>
+        </button>
     </ion-header-bar>
     <ion-content>
         <ion-list>

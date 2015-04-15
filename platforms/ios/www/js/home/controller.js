@@ -106,7 +106,6 @@ appControllers
                     $scope.opinionModal.remove();
                 }
                 if(code ==0){
-                    //alert('谢谢');
                     var alertPopup = $ionicPopup.alert({
                         title:'谢谢!',
                         okType:'button-balanced',okText:'确定'
@@ -232,9 +231,11 @@ appControllers
                 }
             );
 
+            //$scope.goDetail = function (keyword) {
+            //    $state.go('search',{'keyword':keyword})
+            //}
 
-
-            $scope.goDetail = function (url) {
+            $scope.goURL = function (url) {
 
                 var options= {
                     location:'yes',

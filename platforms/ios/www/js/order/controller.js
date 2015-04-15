@@ -5,7 +5,6 @@ appControllers
 
             var isLogin = Ds.has('user');
             if(!isLogin){
-                //location.href="#/tab/person";
                 $state.go('tab.person');
                 return;
             }else{
@@ -14,11 +13,21 @@ appControllers
                 Address.address_search(userid);
             }
 
-            $scope.addressList = [];
+            $scope.addressList = {};
+            $scope.addressLists = [];
+
+            if(!$scope.index){
+                $scope.index = 0;
+            }
             //初始化地址监听
             $scope.$on('address.search',function(event){
-                $scope.addressList = [];
-                $scope.addressList = Address.addressList[1];
+                if(Address.addressList.length == 0){
+                    $scope.addressList = '';
+                }else{
+                    $scope.addressList =  Address.addressList[$scope.index];
+                    console.log($scope.addressList.mobile)
+                }
+                $scope.addressLists = Address.addressList;
             });
 
 
@@ -56,13 +65,7 @@ appControllers
 
             //添加地址
             $scope._add_address = function (address) {
-                //if($scope.address_place1 == undefined){
-                //    var alertPopup = $ionicPopup.alert({
-                //        title:'请选择区域!',
-                //        okType:'button-balanced',okText:'确定'
-                //    });
-                //}else
-                if($scope.address_place == undefined){
+                if($scope.address_place == undefined || $scope.address_place == '选择自提点'){
                     var alertPopup = $ionicPopup.alert({
                         title:'请选择自提点!',
                         okType:'button-balanced',okText:'确定'
@@ -74,13 +77,64 @@ appControllers
 
             //添加地址监听
             $scope.$on('address.add',function(event){
-                Address.address_search(userid);
-                $scope.modal.hide();
+                $scope.modal.hide().then(function () {
+                    Address.address_search(userid);
+                })
             });
 
-            //$scope.query_address = function () {
-            //    $state.go('address');
-            //}
+            //选择地址
+            $scope.query_address = function () {
+                $ionicModal.fromTemplateUrl('query_address.html',{
+                    scope:$scope,
+                    animation:'slide-in-up'
+                }).then(function (modal) {
+                    $scope.modal4 = modal;
+                    $scope.modal4.show();
+                })
+            }
+
+            $scope.choose_address = function (index) {
+                $scope.index = index;
+                $scope.modal4.hide().then(function () {
+                    $scope.addressList = {};
+                    Address.address_search(userid);
+                })
+            };
+
+            //修改地址
+            $scope.modify_address = function (address) {
+                $scope.address_place1 = '邗江区';
+                $scope.address_single = address;
+                $scope.address_place = address.address;
+                //跳转至新增地址页面
+                $ionicModal.fromTemplateUrl('modify_address.html', {
+                    scope: $scope,
+                    animation: 'slide-in-up'
+                }).then(function(modal) {
+                    $scope.modal2 = modal;
+                    $scope.modal2.show();
+                });
+            }
+
+            //保存修改地址
+            $scope._modify_address = function (address) {
+                if($scope.address_place == undefined || $scope.address_place == '选择自提点'){
+                    var alertPopup = $ionicPopup.alert({
+                        title:'请选择自提点!',
+                        okType:'button-balanced',okText:'确定'
+                    });
+                    return false;
+                }
+                Address.address_modify(address,userid,$scope.address_place);
+            }
+
+            //修改地址监听
+            $scope.$on('address.modify',function(event){
+                $scope.modal2.hide().then(function () {
+                    Address.address_search(userid);
+                })
+                $scope.address_place = '选择自提点';
+            });
 
             //自提点
             $scope.showPlace = function () {
@@ -111,6 +165,23 @@ appControllers
                 $scope.address_place = place.title;
                 $scope.modal3.hide();
             }
+
+            $scope.query_back = function () {
+                $scope.modal4.hide();
+            }
+
+            var indexNum = '';
+            //删除地址
+            $scope.delete_address = function (address,index){
+                indexNum = index;
+                Address.address_delete(address.id);
+                event.stopPropagation();
+            }
+            
+            $scope.$on('address.delete', function () {
+                $scope.addressLists.splice(indexNum,1);
+                Address.address_search(userid);
+            })
 
             var pay_way = '在线支付';
             //选择支付方式
@@ -198,7 +269,6 @@ appControllers
             $scope.$on('pay.success', function (event) {
                 if(Pay.state == 1){
                     //Login.query(userid);
-                    alert(1)
                     $state.go('state_order',{state:2});
                 }
             });
@@ -215,6 +285,7 @@ appControllers
                     Ds.remove("cart.order");
                 }
                 history.back();
+                //$ionicHistory.goBack();
             }
 
 }]);
@@ -469,44 +540,6 @@ appControllers
             //初始化地址监听
             $scope.$on('address.search',function(event){
                 $scope.addressList = Address.addressList;
-            });
-
-            $scope.modify_address = function (addressList) {
-                $scope.address_place1 = '邗江区';
-                $scope.address_place = addressList[0].address;
-                Address.address_search(userid);
-                //跳转至新增地址页面
-                $ionicModal.fromTemplateUrl('modify_address.html', {
-                    scope: $scope,
-                    animation: 'slide-in-up'
-                }).then(function(modal) {
-                    $scope.modal2 = modal;
-                    $scope.modal2.show();
-                });
-            }
-
-            //修改地址
-            $scope._modify_address = function (addressList) {
-                //if($scope.address_place1 == undefined){
-                //    var alertPopup = $ionicPopup.alert({
-                //        title:'请选择区域!',
-                //        okType:'button-balanced',okText:'确定s'
-                //    });
-                //}else
-                if($scope.address_place == undefined){
-                    var alertPopup = $ionicPopup.alert({
-                        title:'请选择自提点!',
-                        okType:'button-balanced',okText:'确定'
-                    });
-                }else{
-                    Address.address_modify(addressList,userid,$scope.address_place);
-                }
-            }
-
-            //修改地址监听
-            $scope.$on('address.modify',function(event){
-                Address.address_search(userid);
-                $scope.modal2.hide();
             });
 
 

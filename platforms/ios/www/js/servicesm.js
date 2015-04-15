@@ -301,12 +301,11 @@ services.service( 'Address', [ '$rootScope', '$http','$ionicPopup','$timeout',fu
 
         address_add:function(address,userId,place){
             $http.get(API.url('address/insert?' +
-            'userid='+userId+'&username='+encodeURI(encodeURI(address.username))+'&mobile='
-            +address.mobile+'&zipcode=225000'+'&address='+encodeURI(encodeURI(place))))
+            'userid='+userId+'&username='+encodeURI(address.username)+'&mobile='
+            +address.mobile+'&zipcode=225000'+'&address='+encodeURI(place)+'&id='+address.id))
                 .success(function(data) {
                     if(data.code == 0){
                         service.state = 1;
-                        //alert("添加成功");
                         var alertPopup = $ionicPopup.alert({
                             title:'添加成功!',
                             okType:'button-balanced',okText:'确定'
@@ -331,18 +330,20 @@ services.service( 'Address', [ '$rootScope', '$http','$ionicPopup','$timeout',fu
 
         address_modify:function(address,userId,place){
             $http.get(API.url('address/update?' +
-            'userid='+userId+'&username='+encodeURI(encodeURI(address.username))+'&mobile='
-            +address.mobile+'&zipcode=225000'+'&address='+encodeURI(encodeURI(place))+'&id='+address.id))
+            'userid='+userId+'&username='+encodeURI(address.username)+'&mobile='
+            +address.mobile+'&zipcode=225000'+'&address='+encodeURI(place)+'&id='+address.id))
                 .success(function(data) {
+                    alert(data.code)
                     if(data.code == 0){
                         service.state = 1;
-                        var alertPopup = $ionicPopup.alert({
-                            title:'修改成功!',
-                            okType:'button-balanced',okText:'确定'
-                        });
-                        $timeout(function() {
-                            alertPopup.close(); //close the popup after 1 seconds for some reason
-                        }, 1000);
+                        //var alertPopup = $ionicPopup.alert({
+                        //    title:'修改成功!',
+                        //    okType:'button-balanced',okText:'确定'
+                        //});
+                        //$timeout(function() {
+                        //    alertPopup.close(); //close the popup after 1 seconds for some reason
+                        //}, 1000);
+                        $rootScope.$broadcast( 'address.modify' );
                     }else{
                         var alertPopup = $ionicPopup.alert({
                             title:'修改失败!',
@@ -352,8 +353,37 @@ services.service( 'Address', [ '$rootScope', '$http','$ionicPopup','$timeout',fu
                             alertPopup.close(); //close the popup after 1 seconds for some reason
                         }, 1000);
                         service.state = -1;
+                        $rootScope.$broadcast( 'address.modify.fail' );
                     }
-                    $rootScope.$broadcast( 'address.modify' );
+
+                });
+        },
+        address_delete:function(id){
+            $http.get(API.url('address/delete?' +
+            'id='+id))
+                .success(function(data) {
+                    if(data.code == 0){
+                        service.state = 1;
+                        //var alertPopup = $ionicPopup.alert({
+                        //    title:'删除成功!',
+                        //    okType:'button-balanced',okText:'确定'
+                        //});
+                        //$timeout(function() {
+                        //    alertPopup.close(); //close the popup after 1 seconds for some reason
+                        //}, 1000);
+                        $rootScope.$broadcast( 'address.delete' );
+                    }else{
+                        var alertPopup = $ionicPopup.alert({
+                            title:'修改失败!',
+                            okType:'button-balanced',okText:'确定'
+                        });
+                        $timeout(function() {
+                            alertPopup.close(); //close the popup after 1 seconds for some reason
+                        }, 1000);
+                        service.state = -1;
+                        $rootScope.$broadcast( 'address.delete.fail' );
+                    }
+
                 });
         }
     }
@@ -383,9 +413,9 @@ services.service( 'Order', [ '$rootScope', '$http','$ionicPopup','$timeout',func
             }
 
             $http.get(API.url('addOrder?' +
-            'userid='+userId+'&pro_id='+pro_id+'&user_name='+encodeURI(encodeURI(addressList.username))+'&user_msisdn='+
-            encodeURI(encodeURI(addressList.mobile))+'&user_zipcode=225000&user_addr='+encodeURI(encodeURI(addressList.address))+'&pro_cnt='+pro_cnt+
-                    '&content='+encodeURI(encodeURI(productList.words))+'&order_type='+order_type+'&pay_way='+payway+'&deliveryid=1'))
+            'userid='+userId+'&pro_id='+pro_id+'&user_name='+encodeURI(addressList.username)+'&user_msisdn='+
+            addressList.mobile+'&user_zipcode=225000&user_addr='+encodeURI(addressList.address)+'&pro_cnt='+pro_cnt+
+                    '&content='+encodeURI(productList.words)+'&order_type='+order_type+'&pay_way='+payway+'&deliveryid=1'))
                 .success(function(data) {
                     if(data.code == 0){
                         service.state = 1;

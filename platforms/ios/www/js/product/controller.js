@@ -1,8 +1,8 @@
 //新品的控制器，不需要加载更多数据的功能
 appControllers
 .controller('NewProductCtrl',
-[ '$scope', '$ionicLoading','$state','Product','Cart','Ds','$ionicPopup','$timeout','Login',
-    function($scope,$ionicLoading,$state,Product,Cart,Ds,$ionicPopup,$timeout,Login){
+[ '$scope', '$ionicLoading','$state','Product','Cart','Ds','$ionicPopup','$timeout','Login','$ionicHistory',
+    function($scope,$ionicLoading,$state,Product,Cart,Ds,$ionicPopup,$timeout,Login,$ionicHistory){
         $ionicLoading.show({template: '加载中...'});
         $scope.productList = [];
         $scope.$on('product.found',function(event){
@@ -55,12 +55,12 @@ appControllers
     .controller('ProductDetailCtrl',
     [ '$scope', '$ionicLoading','ProductDetail','$stateParams','$filter','$state','$ionicHistory','Ds','Cart','$ionicPopup','$timeout','Login',
     function($scope,$ionicLoading,ProductDetail,$stateParams,$filter,$state,$ionicHistory,Ds,Cart,$ionicPopup,$timeout,Login){
-        $ionicLoading.show({template: '加载中...'});
+        //$ionicLoading.show({template: '加载中...'});
         ProductDetail.productDetail($stateParams.productId);
 
         //初始化页面广播监听
         $scope.$on('productDetail.init',function(event){
-            $ionicLoading.hide();
+            //$ionicLoading.hide();
             $filter('imgFilter')(ProductDetail.content);
             $scope.product = ProductDetail.content;
             $scope.product.oprice = $filter('formatNumber')(($scope.product.mprice-$scope.product.uprice),'#.000');
@@ -132,7 +132,11 @@ appControllers
 
             //console.log($ionicHistory.backView());
             //$ionicHistory.goBack();
-            history.back(); return;
+            history.back();
+            //$ionicHistory.nextViewOptions({
+            //    disableAnimate:true
+            //});
+            //$ionicHistory.currentView($ionicHistory.backView());
             //if($ionicHistory.backView()!=null){
             //    if($ionicHistory.backView().backViewId!=null){
             //        console.log($ionicHistory.backView().stateName);
@@ -214,7 +218,8 @@ appControllers
 
         //跳转至商品详情
         $scope.detail = function(product){
-            location.href="#/product/"+product.id;
+            //location.href="#/product/"+product.id;
+            $state('product-detail',{productId:product.id})
         }
 
         //返回
@@ -251,8 +256,8 @@ appControllers
 //限时抢购
 appControllers
     .controller('LimitCtrl',
-    [ '$scope', '$ionicLoading','$stateParams','$ionicHistory','$state','Search','Cart','Ds','$ionicPopup','$timeout',
-        function($scope,$ionicLoading,$stateParams,$ionicHistory,$state,Search,Cart,Ds,$ionicPopup,$timeout){
+    [ '$scope', '$ionicLoading','$stateParams','$ionicHistory','$state','Search','Cart','Ds','$ionicPopup','$timeout','Login',
+        function($scope,$ionicLoading,$stateParams,$ionicHistory,$state,Search,Cart,Ds,$ionicPopup,$timeout,Login){
             $ionicLoading.show({template: '加载中...'});
             $scope.limitList = [];
             $scope.$on('limit.ready',function($event){
@@ -263,7 +268,8 @@ appControllers
 
             //返回
             $scope.back = function(){
-                $ionicHistory.goBack();
+                history.back();
+                //$ionicHistory.goBack();
             }
 
             $scope.$on('cart.add.ok',function($event){
@@ -297,4 +303,17 @@ appControllers
             $scope.to_cart = function () {
                 $state.go('product-detail-cart');
             }
+
+            $scope.user = {};
+            Login.getCart(Ds.get('user').userid);
+
+            $scope.$on('cart.add.ok',function () {
+                if(Ds.has('user')){
+                    Login.getCart(Ds.get('user').userid);
+                }
+            })
+
+            $scope.$on('person.cart.success',function () {
+                $scope.user = Ds.get('user');
+            })
         }]);
