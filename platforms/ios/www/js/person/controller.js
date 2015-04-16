@@ -13,6 +13,7 @@ appControllers
             if(Ds.has("type")){
                 $state.go('tab.cart');
             }
+            Login.query(Ds.get("user").userid);
         });
 
         $scope.qqLogin = function () {
@@ -55,8 +56,8 @@ appControllers
 
         //登出
         $scope.logout = function () {
-     Ds.clear();
-     location.href="#/tab/home";
+         Ds.clear();
+         $state.go('tab.home');
      
             //YFShare.logout(function () {
             //    Ds.clear();

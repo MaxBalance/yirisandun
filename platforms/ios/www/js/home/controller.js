@@ -2,6 +2,7 @@ appControllers
 .controller('HomeCtrl',
     [ '$rootScope','$cacheFactory','$templateCache','$scope', '$ionicLoading','$ionicModal','$state','$interval','Index','Ds','$ionicPopup','$cordovaInAppBrowser','$cordovaAppVersion','Login',
         function($rootScope,$cacheFactory,$templateCache,$scope,$ionicLoading,$ionicModal,$state,$interval,Index,Ds,$ionicPopup,$cordovaInAppBrowser,$cordovaAppVersion,Login){
+
             //TODO fix:进入首页需要将搜索栏清空
             //首页会被缓存，所以需要通过控制器之间进行通信才能实现该功能
             $scope.search = {content:''};
@@ -35,6 +36,29 @@ appControllers
             });
             Index.get();
 
+            $scope.checkins = function () {
+                if(Ds.has('user')){
+                    Login.checkins(Ds.get('user').userid);
+                }else{
+                    var alertPopup = $ionicPopup.alert({
+                        title:'请先登录',
+                        okType:'button-balanced',okText:'确定'
+                    })
+                }
+            }
+
+            $scope.$on('checkins.success', function () {
+                var alertPopup = $ionicPopup.alert({
+                    title:'签到成功',
+                    okType:'button-balanced',okText:'确定'
+                })
+            })
+            $scope.$on('checkins.fail', function () {
+                var alertPopup = $ionicPopup.alert({
+                    title:'签到失败',
+                    okType:'button-balanced',okText:'确定'
+                })
+            })
 
             //购物车数量
             if(Ds.has('goods')){
@@ -268,7 +292,6 @@ appControllers
             //
             //    $cordovaInAppBrowserProvider.close();
             //},false);
-
 
 }])
 ;

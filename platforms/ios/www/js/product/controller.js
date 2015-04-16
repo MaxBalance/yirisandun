@@ -55,15 +55,24 @@ appControllers
     .controller('ProductDetailCtrl',
     [ '$scope', '$ionicLoading','ProductDetail','$stateParams','$filter','$state','$ionicHistory','Ds','Cart','$ionicPopup','$timeout','Login',
     function($scope,$ionicLoading,ProductDetail,$stateParams,$filter,$state,$ionicHistory,Ds,Cart,$ionicPopup,$timeout,Login){
-        //$ionicLoading.show({template: '加载中...'});
+        $ionicLoading.show({template: '努力加载中...'});
         ProductDetail.productDetail($stateParams.productId);
+
+        ionic.Platform.ready(function () {
+            if(ionic.Platform.isWebView() && $ionicConfig.views.swipeBackEnabled()){
+                self.initSwipeBack();
+            }
+        })
 
         //初始化页面广播监听
         $scope.$on('productDetail.init',function(event){
-            //$ionicLoading.hide();
+            $ionicLoading.hide();
             $filter('imgFilter')(ProductDetail.content);
             $scope.product = ProductDetail.content;
             $scope.product.oprice = $filter('formatNumber')(($scope.product.mprice-$scope.product.uprice),'#.000');
+            if(Ds.has('user')){
+                Login.getCart(Ds.get('user').userid);
+            }
         });
 
         //减号
@@ -162,7 +171,9 @@ appControllers
         }
 
         $scope.user = {};
-        Login.getCart(Ds.get('user').userid);
+        if(!$scope.user.cartcnt){
+            $scope.user.cartcnt = 0
+        }
 
         $scope.$on('cart.add.ok',function () {
             if(Ds.has('user')){

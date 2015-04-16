@@ -8,6 +8,12 @@ appControllers
             }
             $scope.listPanel = {height:'370px'};
 
+            ionic.Platform.ready(function () {
+                if(ionic.Platform.isWebView() && $ionicConfig.views.swipeBackEnabled()){
+                    self.initSwipeBack();
+                }
+            })
+
 
             var tag = 'asc';
             function init(){
@@ -182,7 +188,12 @@ appControllers
             }
 
             $scope.user = {};
-            Login.getCart(Ds.get('user').userid);
+            if(!$scope.user.cartcnt){
+                $scope.user.cartcnt = 0
+            }
+            if(Ds.has('user')){
+                Login.getCart(Ds.get('user').userid);
+            }
 
             $scope.$on('cart.add.ok',function () {
                 if(Ds.has('user')){

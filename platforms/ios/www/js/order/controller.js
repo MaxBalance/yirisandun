@@ -1,7 +1,7 @@
 appControllers
 .controller('OrderCtrl',
-    ['$scope', '$http','$ionicLoading','$ionicHistory','Address','Ds','Login','$ionicModal','$state','$ionicPopup','ProductDetail','$stateParams','$filter','Order','Pay','Place',
-        function($scope, $http,$ionicLoading,$ionicHistory,Address,Ds,Login,$ionicModal,$state,$ionicPopup,ProductDetail,$stateParams,$filter,Order,Pay,Place) {
+    ['$scope', '$http','$ionicLoading','$ionicHistory','Address','Ds','Login','$ionicModal','$state','$ionicPopup','ProductDetail','$stateParams','$filter','Order','Pay','Place','$ionicPopover',
+        function($scope, $http,$ionicLoading,$ionicHistory,Address,Ds,Login,$ionicModal,$state,$ionicPopup,ProductDetail,$stateParams,$filter,Order,Pay,Place,$ionicPopover) {
 
             var isLogin = Ds.has('user');
             if(!isLogin){
@@ -20,12 +20,12 @@ appControllers
                 $scope.index = 0;
             }
             //初始化地址监听
+            //..todo大坑待研究
             $scope.$on('address.search',function(event){
                 if(Address.addressList.length == 0){
                     $scope.addressList = '';
                 }else{
                     $scope.addressList =  Address.addressList[$scope.index];
-                    console.log($scope.addressList.mobile)
                 }
                 $scope.addressLists = Address.addressList;
             });
@@ -192,8 +192,80 @@ appControllers
                 pay_way = $scope.payway;
             }
 
+            //选择支付方式
+            $scope.selectWay = function ($event) {
+                $scope.popover.show($event)
+            }
 
-            var order_type = {};
+            $ionicPopover.fromTemplateUrl('payway.html',{
+                scope:$scope
+            }).then(function (popover) {
+                $scope.popover = popover;
+            })
+
+            $scope.ali = {};
+            $scope.ali.checked = true;
+            $scope.balance = {};
+            $scope.balance.name = 'balance';
+            $scope.points = {};
+            $scope.points.name = 'points';
+            $scope.card = {};
+            $scope.card.name = 'card';
+
+            if(Ds.has('user')){
+                $scope.balance.all = Ds.get('user').amount;
+                $scope.points.all = Ds.get('user').point;
+                $scope.card.all  = Ds.get('user').kamount;
+            }
+            $scope.select_ali = function (payway) {
+                if($scope.ali.checked == true){
+                    $scope.balance.checked = false;
+                    $scope.points.checked = false;
+                    $scope.card.checked = false;
+                }
+                if($scope.ali.checked == false){
+                    $scope.ali.checked = true;
+                }
+            }
+
+            var user_pay = 0;
+            $scope.select_count = function (payway) {
+                if($scope.ali.checked == true){
+                    $scope.ali.checked = false;
+                }
+                if(payway.amount == undefined){
+                    payway.amount = payway.all;
+                    if(payway.name == 'points'){
+                        user_pay += payway.all/100;
+                    }else{
+                        user_pay += payway.all;
+                    }
+                }else{
+                    if(payway.checked == true){
+                        if(payway.name == 'points'){
+                            user_pay += payway.amount/100;
+                        }else{
+                            user_pay += payway.amount;
+                        }
+                    }else{
+                        if(payway.name == 'points'){
+                            user_pay -= payway.amount/100;
+                        }else{
+                            user_pay -= payway.amount;
+                        }
+                    }
+                    if(user_pay < 0){
+                        user_pay = 0;
+                    }
+                }
+                alert($scope.product_oprice+"&&"+user_pay)
+                if(user_pay < $scope.product_oprice){
+                    alert('钱够不啊亲')
+                }
+
+            }
+
+            var order_type = false;
             //提交订单
             $scope.submit_order = function (productList,addressList) {
                 if(pay_way == ''){

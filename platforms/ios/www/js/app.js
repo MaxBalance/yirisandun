@@ -14,11 +14,12 @@ ridunApp.run(function($ionicPlatform) {
   });
 });
 
-ridunApp.config(function($stateProvider, $urlRouterProvider) {
+ridunApp.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
+  //$ionicConfigProvider.views.swipeBackEnabled('true');
 
   $stateProvider
   // setup an abstract state for the tabs directive
@@ -68,11 +69,12 @@ ridunApp.config(function($stateProvider, $urlRouterProvider) {
                 
     //商品详情
     .state('product-detail', {
-      //cache: false,
+      cache: false,
       url: '/product/:productId',
       templateUrl: 'templates/product/product-detail.html',
       controller: 'ProductDetailCtrl'
     })
+
 
     //详情购物车
     .state('product-detail-cart', {

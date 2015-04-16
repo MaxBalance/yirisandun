@@ -46,6 +46,17 @@ services.service( 'Login', [ '$rootScope', '$http','Ds','$ionicPopup','$timeout'
                     }
                     $rootScope.$broadcast( 'person.cart.success' );
                 });
+        },
+
+        checkins: function (userid) {
+            $http.get(API2.url('AddSign?userid='+userid))
+                .success(function (data) {
+                    if(data.code == 0){
+                        $rootScope.$broadcast('checkins.success')
+                    }else{
+                        $rootScope.$broadcast('checkins.fail')
+                    }
+                })
         }
 
     }
@@ -283,12 +294,7 @@ services.service( 'Address', [ '$rootScope', '$http','$ionicPopup','$timeout',fu
                     if(data.code == 0){
                         service.state = 1;
                         service.addressList = data.content[0];
-                        //if(service.addressList.length != 0){
-                        //    service.addressList[0].address = decodeURI(service.addressList[0].address);
-                        //    service.addressList[0].username = decodeURI(service.addressList[0].username);
-                        //}
                     }else{
-                        //alert("接口异常!");
                         var alertPopup = $ionicPopup.alert({
                             title:'接口异常!',
                             okType:'button-balanced',okText:'确定'
@@ -552,9 +558,9 @@ services.service( 'Pay', [ '$rootScope', '$http','Ds','$ionicPopup','$timeout',f
             $http.get(API.url('payIOS?orderid='+orderInfo.orderid+'&fee='+orderInfo.totalmoney+'&userid='+userId+'&pay_way=-1'))
                 .success(function(data) {
                     if(data.code == 0){
+                        alert(12388)
                         service.total = orderInfo.total;
                         service.state = 1;
-                        //alert("支付成功!");
                         var alertPopup = $ionicPopup.alert({
                             title:'支付成功!',
                             okType:'button-balanced',okText:'确定'
@@ -563,7 +569,6 @@ services.service( 'Pay', [ '$rootScope', '$http','Ds','$ionicPopup','$timeout',f
                             alertPopup.close(); //close the popup after 1 seconds for some reason
                         }, 1500);
                     }else{
-                        //alert("接口异常!");
                         var alertPopup = $ionicPopup.alert({
                             title:'接口异常!',
                             okType:'button-balanced',okText:'确定'
