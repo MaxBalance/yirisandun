@@ -14,8 +14,8 @@
         <div class="card" style="margin-top: 15px;" ng-show="addressList" ng-click="query_address(addressList);">
             <div class="item item-text-wrap">
                 <div style="display: inline-block;width:95%;">
-                    <div>收货人:{{addressList.username}}</div>
-                    <div>电话:{{addressList.mobile}};收货地址:{{addressList.address}}</div>
+                    <div>收货人:{{addressList.username | decodeText}}</div>
+                    <div>电话:{{addressList.mobile}};收货地址:{{addressList.address | decodeText}}</div>
                 </div>
                 <!--<div style="display: inline-block;">-->
                     <!--<i style="padding-bottom: 50%;" class="ion-ios-arrow-right"></i>-->
@@ -27,6 +27,7 @@
                 <div class="input-label">
                     支付方式
                 </div>
+                <div style="float:right;margin-left: 30%;">{{pay_way}}</div>
                 <!--<select ng-model="payway" ng-options="option.val as option.key for option in paymodel" ng-change="change(payway);">-->
 
                 <!--</select>-->
@@ -173,10 +174,10 @@
             <ion-list>
                 <ion-item ng-repeat="address in addressLists" ng-click="choose_address($index)">
                     <div>
-                        <div style="font-size:18px;display: inline-table">{{address.username}}</div>
+                        <div style="font-size:18px;display: inline-table">{{address.username | decodeText}}</div>
                         <div style="font-size:15px;display: inline-table;float: right;">{{address.mobile}}</div>
                     </div>
-                    <div><a style="overflow:hidden;text-overflow: ellipsis;font-size:15px;">{{address.address}}</a>
+                    <div><a style="overflow:hidden;text-overflow: ellipsis;font-size:15px;">{{address.address | decodeText}}</a>
                     </div>
                     <ion-option-button class="button button-balanced" ng-click="modify_address(address)">编辑</ion-option-button>
                     <ion-option-button class="button button-assertive" ng-click="delete_address(address,$index)">删除</ion-option-button>
@@ -190,40 +191,40 @@
 </script>
 
 <script id="payway.html" type="text/ng-template">
-    <ion-popover-view style="height: 210px;width: 280px;">
+    <ion-popover-view style="height: 210px;width: 290px;">
         <ion-content>
             <ion-list>
                 <ion-item style="padding:3px!important;">
                     <label class="checkbox" style="float: left;">
                         <input type="checkbox" ng-model="ali.checked" ng-click="select_ali(ali);">
                     </label>
-                    <label class="checkbox" style="float: left;font-size: 16px;">支付宝支付</label>
+                    <label class="checkbox" style="float: left;margin-left:-5px;margin-top:2px;font-size: 16px;">支付宝支付</label>
                 </ion-item>
                 <ion-item style="padding:3px!important;">
                     <label class="checkbox" style="float: left">
                         <input type="checkbox" ng-model="balance.checked" ng-click="select_count(balance);">
                     </label>
-                    <label class="checkbox" style="float: left;font-size: 16px;">余额支付({{balance.all}}元)</label>
-                    <label style="float: right;width:80px;">
-                        <input ng-model="balance.amount" style="width:100%;border:lightgray 1px solid;" type="number" placeholder="使用余额">
+                    <label class="checkbox" style="float: left;font-size: 16px;margin-left:-5px;margin-top:2px;">余额支付({{balance.all}}元)</label>
+                    <label class="input" style="float: right;width:80px;">
+                        <input ng-model="balance.amount" style="width:80%;border:lightgray 1px solid;" type="number" placeholder="余额">
                     </label>
                 </ion-item>
                 <ion-item style="padding:3px!important;">
                     <label class="checkbox" style="float: left">
                         <input type="checkbox" ng-model="points.checked" ng-click="select_count(points);">
                     </label>
-                    <label class="checkbox" style="float: left;font-size: 16px;">积分支付({{points.all}}分)</label>
-                    <label style="float: right;width:80px;">
-                        <input ng-model="points.amount" style="width:100%;border:lightgray 1px solid;" type="number" placeholder="使用积分">
+                    <label class="checkbox" style="float: left;font-size: 16px;margin-left:-5px;margin-top:2px;">积分支付({{points.all}}分)</label>
+                    <label class="input" style="float: right;width:80px;">
+                        <input ng-model="points.amount" style="width:80%;border:lightgray 1px solid;" type="number" placeholder="积分">
                     </label>
                 </ion-item>
                 <ion-item style="padding:3px!important;">
                     <label class="checkbox" style="float: left">
                         <input type="checkbox" ng-model="card.checked" ng-click="select_count(card);">
                     </label>
-                    <label class="checkbox" style="float: left;font-size: 16px;">卡余额支付({{card.all}}元)</label>
-                    <label style="float: right;width:80px;">
-                        <input ng-model="card.amount" style="width:100%;border:lightgray 1px solid;" type="number" placeholder="使用卡余额">
+                    <label class="checkbox" style="float: left;font-size: 16px;margin-left:-5px;margin-top:2px;">卡余额支付({{card.all}}元)</label>
+                    <label class="input" style="float: right;width:80px;">
+                        <input ng-model="card.amount" style="width:80%;border:lightgray 1px solid;" type="number" placeholder="卡余额">
                     </label>
                 </ion-item>
             </ion-list>

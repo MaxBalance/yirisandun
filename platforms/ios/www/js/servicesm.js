@@ -134,7 +134,6 @@ services.service( 'Password', [ '$rootScope', '$http','Ds','$ionicPopup','$timeo
                 .success(function(data) {
                     if(data.code == 0){
                         service.state = 1;
-                        //alert("修改成功!");
                         var alertPopup3 = $ionicPopup.alert({
                             title:'修改成功!',
                             okType:'button-balanced',okText:'确定'
@@ -143,7 +142,6 @@ services.service( 'Password', [ '$rootScope', '$http','Ds','$ionicPopup','$timeo
                             alertPopup.close(); //close the popup after 1 seconds for some reason
                         }, 1000);
                     }else{
-                        //alert("修改失败，原密码错误!");
                         var alertPopup4 = $ionicPopup.alert({
                             title:'修改失败，原密码错误!',
                             okType:'button-balanced',okText:'确定'
@@ -172,7 +170,6 @@ services.service( 'ProductDetail', [ '$rootScope', '$http','$ionicPopup',functio
                         service.state = 1;
                         service.content = data.content[0];
                     }else{
-                        //alert("接口异常!");
                         var alertPopup = $ionicPopup.alert({
                             title:'接口异常!',
                             okType:'button-balanced',okText:'确定'
@@ -305,10 +302,10 @@ services.service( 'Address', [ '$rootScope', '$http','$ionicPopup','$timeout',fu
                 });
         },
 
-        address_add:function(address,userId,place){
+        address_add:function(address,userId,place,id){
             $http.get(API.url('address/insert?' +
-            'userid='+userId+'&username='+encodeURI(address.username)+'&mobile='
-            +address.mobile+'&zipcode=225000'+'&address='+encodeURI(place)+'&id='+address.id))
+            'userid='+userId+'&username='+encodeURI(encodeURI(address.username))+'&mobile='
+            +address.mobile+'&zipcode=225000'+'&address='+encodeURI(encodeURI(place))+'&tcd='+id))
                 .success(function(data) {
                     if(data.code == 0){
                         service.state = 1;
@@ -320,7 +317,6 @@ services.service( 'Address', [ '$rootScope', '$http','$ionicPopup','$timeout',fu
                             alertPopup.close(); //close the popup after 1 seconds for some reason
                         }, 1000);
                     }else{
-                        //alert("添加失败!");
                         var alertPopup = $ionicPopup.alert({
                             title:'添加失败!',
                             okType:'button-balanced',okText:'确定'
@@ -334,10 +330,10 @@ services.service( 'Address', [ '$rootScope', '$http','$ionicPopup','$timeout',fu
                 });
         },
 
-        address_modify:function(address,userId,place){
+        address_modify:function(address,userId,place,id){
             $http.get(API.url('address/update?' +
-            'userid='+userId+'&username='+encodeURI(address.username)+'&mobile='
-            +address.mobile+'&zipcode=225000'+'&address='+encodeURI(place)+'&id='+address.id))
+            'userid='+userId+'&username='+encodeURI(encodeURI(address.username))+'&mobile='
+            +address.mobile+'&zipcode=225000'+'&address='+encodeURI(encodeURI(place))+'&tcd='+id))
                 .success(function(data) {
                     alert(data.code)
                     if(data.code == 0){
@@ -412,7 +408,7 @@ services.service( 'Order', [ '$rootScope', '$http','$ionicPopup','$timeout',func
                 }
             }
 
-            if(payway == '余额支付'){
+            if(payway == '账户支付'){
                 payway = -1;
             }else{
                 payway = 'alipay';
@@ -421,13 +417,12 @@ services.service( 'Order', [ '$rootScope', '$http','$ionicPopup','$timeout',func
             $http.get(API.url('addOrder?' +
             'userid='+userId+'&pro_id='+pro_id+'&user_name='+encodeURI(addressList.username)+'&user_msisdn='+
             addressList.mobile+'&user_zipcode=225000&user_addr='+encodeURI(addressList.address)+'&pro_cnt='+pro_cnt+
-                    '&content='+encodeURI(productList.words)+'&order_type='+order_type+'&pay_way='+payway+'&deliveryid=1'))
+                    '&content='+encodeURI(productList.words)+'&order_type='+order_type+'&pay_way='+payway+'&deliveryid='+addressList.tcd))
                 .success(function(data) {
                     if(data.code == 0){
                         service.state = 1;
                         service.orderInfo = data;
                     }else{
-                        //alert("提交失败!");
                         var alertPopup = $ionicPopup.alert({
                             title:'提交失败!',
                             okType:'button-balanced',okText:'确定'
@@ -461,7 +456,6 @@ services.service( 'Order', [ '$rootScope', '$http','$ionicPopup','$timeout',func
                         service.state = 1;
                         service.orderList1 = data.content;
                     }else{
-                        //alert("接口异常!");
                         var alertPopup = $ionicPopup.alert({
                             title:'接口异常!',
                             okType:'button-balanced',okText:'确定'
@@ -523,7 +517,6 @@ services.service( 'Order', [ '$rootScope', '$http','$ionicPopup','$timeout',func
                 .success(function(data) {
                     if(data.code == 0){
                         service.state = 1;
-                        //alert("取消成功!")
                         var alertPopup = $ionicPopup.alert({
                             title:'取消成功!',
                             okType:'button-balanced',okText:'确定'
@@ -532,7 +525,6 @@ services.service( 'Order', [ '$rootScope', '$http','$ionicPopup','$timeout',func
                             alertPopup.close(); //close the popup after 1 seconds for some reason
                         }, 1500);
                     }else{
-                        //alert("取消失败!");
                         var alertPopup = $ionicPopup.alert({
                             title:'取消失败!',
                             okType:'button-balanced',okText:'确定'
@@ -554,11 +546,11 @@ services.service( 'Pay', [ '$rootScope', '$http','Ds','$ionicPopup','$timeout',f
     var service = {
         total : {},
         state : {},
-        balance_pay:function(orderInfo,userId){
-            $http.get(API.url('payIOS?orderid='+orderInfo.orderid+'&fee='+orderInfo.totalmoney+'&userid='+userId+'&pay_way=-1'))
+        balance_pay:function(orderInfo,userId,pay_amount,pay_kamount,pay_point){
+            alert(orderInfo.orderid+'&fee='+orderInfo.totalmoney+'&userid='+userId+'&pay_way=-1'+'&pay_amount='+pay_amount+'&pay_kamount='+pay_kamount+'&pay_point='+pay_point*100)
+            $http.get(API.url('payIOS?orderid='+orderInfo.orderid+'&fee='+orderInfo.totalmoney+'&userid='+userId+'&pay_way=-1'+'&pay_amount='+pay_amount+'&pay_kamount='+pay_kamount+'&pay_point='+pay_point*100))
                 .success(function(data) {
                     if(data.code == 0){
-                        alert(12388)
                         service.total = orderInfo.total;
                         service.state = 1;
                         var alertPopup = $ionicPopup.alert({

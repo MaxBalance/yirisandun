@@ -86,7 +86,8 @@ ridunApp.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider
 
      //商品列表
     .state('search', {
-      //cache: false,
+      //todo..跳转所有订单大坑
+      cache: false,
       url: '/search/:keyword',
       templateUrl: 'templates/product/product-list.html',
       controller:'SearchCtrl'
@@ -179,7 +180,7 @@ ridunApp.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider
       cache: false,
       url: '/state_order/:state',
       templateUrl: 'templates/order/queryOrder.html',
-      controller: '_QueryOrderCtrl'
+      controller: 'QuerySingleOrderCtrl'
     })
 
   //地址列表

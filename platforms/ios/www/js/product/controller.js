@@ -58,11 +58,11 @@ appControllers
         $ionicLoading.show({template: '努力加载中...'});
         ProductDetail.productDetail($stateParams.productId);
 
-        ionic.Platform.ready(function () {
-            if(ionic.Platform.isWebView() && $ionicConfig.views.swipeBackEnabled()){
-                self.initSwipeBack();
-            }
-        })
+        //ionic.Platform.ready(function () {
+        //    if(ionic.Platform.isWebView() && $ionicConfig.views.swipeBackEnabled()){
+        //        self.initSwipeBack();
+        //    }
+        //})
 
         //初始化页面广播监听
         $scope.$on('productDetail.init',function(event){

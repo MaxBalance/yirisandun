@@ -71,7 +71,7 @@ appControllers
                         okType:'button-balanced',okText:'确定'
                     });
                 }else{
-                    Address.address_add(address,userid,$scope.address_place);
+                    Address.address_add(address,userid,$scope.address_place,$scope.address_place_id);
                 }
             }
 
@@ -125,7 +125,7 @@ appControllers
                     });
                     return false;
                 }
-                Address.address_modify(address,userid,$scope.address_place);
+                Address.address_modify(address,userid,$scope.address_place,$scope.address_place_id);
             }
 
             //修改地址监听
@@ -163,6 +163,7 @@ appControllers
             //选择自提点
             $scope.choose = function (place) {
                 $scope.address_place = place.title;
+                $scope.address_place_id = place.id;
                 $scope.modal3.hide();
             }
 
@@ -183,17 +184,19 @@ appControllers
                 Address.address_search(userid);
             })
 
-            var pay_way = '在线支付';
-            //选择支付方式
-            $scope.paymodel = [{"val":"在线支付","key":"在线支付"},{"val":"余额支付","key":"余额支付"}];
-            $scope.payway = "在线支付";
-            $scope.change = function(payway){
-                $scope.payway = payway;
-                pay_way = $scope.payway;
-            }
 
             //选择支付方式
+            //$scope.paymodel = [{"val":"在线支付","key":"在线支付"},{"val":"账户支付","key":"账户支付"}];
+            //$scope.payway = "在线支付";
+            //$scope.change = function(payway){
+            //    $scope.payway = payway;
+            //    pay_way = $scope.payway;
+            //}
+
+            //选择支付方式
+            var pay_way = $scope.pay_way = '在线支付';
             $scope.selectWay = function ($event) {
+                user_pay = 0;
                 $scope.popover.show($event)
             }
 
@@ -217,7 +220,7 @@ appControllers
                 $scope.points.all = Ds.get('user').point;
                 $scope.card.all  = Ds.get('user').kamount;
             }
-            $scope.select_ali = function (payway) {
+            $scope.select_ali = function () {
                 if($scope.ali.checked == true){
                     $scope.balance.checked = false;
                     $scope.points.checked = false;
@@ -229,41 +232,76 @@ appControllers
             }
 
             var user_pay = 0;
-            $scope.select_count = function (payway) {
+            $scope.select_count = function () {
                 if($scope.ali.checked == true){
                     $scope.ali.checked = false;
                 }
-                if(payway.amount == undefined){
-                    payway.amount = payway.all;
-                    if(payway.name == 'points'){
-                        user_pay += payway.all/100;
-                    }else{
-                        user_pay += payway.all;
-                    }
-                }else{
-                    if(payway.checked == true){
-                        if(payway.name == 'points'){
-                            user_pay += payway.amount/100;
-                        }else{
-                            user_pay += payway.amount;
-                        }
-                    }else{
-                        if(payway.name == 'points'){
-                            user_pay -= payway.amount/100;
-                        }else{
-                            user_pay -= payway.amount;
-                        }
-                    }
-                    if(user_pay < 0){
-                        user_pay = 0;
-                    }
-                }
-                alert($scope.product_oprice+"&&"+user_pay)
-                if(user_pay < $scope.product_oprice){
-                    alert('钱够不啊亲')
-                }
-
             }
+
+            var balance_pay = 0;
+            var points_pay = 0;
+            var card_pay = 0;
+            var reg = /^[0-9]+(.[0-9]{2})?$/;
+            $scope.$on('popover.hidden', function () {
+               if($scope.ali.checked == true){
+                   pay_way = $scope.pay_way ='在线支付';
+               }else{
+                   pay_way = $scope.pay_way ='账户支付';
+                   if($scope.balance.checked == true && $scope.balance.amount != undefined){
+                       if($scope.balance.amount > $scope.balance.all){
+                           $scope.balance.amount = $scope.balance.all;
+                       }
+                       balance_pay =  $scope.balance.amount;
+                       user_pay += $scope.balance.amount;
+                   }else if($scope.balance.checked == true && $scope.balance.amount == undefined ){
+                       balance_pay = $scope.balance.all;
+                       user_pay += $scope.balance.all;
+                   }else if($scope.balance.checked == false){
+                       balance_pay = 0
+                   }
+                   if($scope.points.checked == true && $scope.points.amount != undefined){
+                       if($scope.points.amount > $scope.points.all){
+                           $scope.points.amount = $scope.points.all;
+                       }
+                       points_pay = $scope.points.amount/100;
+                       user_pay += $scope.points.amount/100;
+                   }else if($scope.points.checked == true && $scope.points.amount == undefined ){
+                       points_pay = $scope.points.all/100;
+                       user_pay += $scope.points.all/100;
+                   }else if($scope.points.checked == false){
+                       points_pay = 0;
+                   }
+                   if($scope.card.checked == true && $scope.card.amount != undefined){
+                       if($scope.card.amount > $scope.card.all){
+                           $scope.card.amount = $scope.card.all;
+                       }
+                       card_pay = $scope.card.amount;
+                       user_pay += $scope.card.amount;
+                   }else if($scope.card.checked == true && $scope.card.amount == undefined ){
+                       card_pay = $scope.card.all;
+                       user_pay += $scope.card.all;
+                   }else if($scope.card.checked == false){
+                       card_pay = 0;
+                   }
+                   if(user_pay < $scope.product_oprice){
+                       var alertPopup = $ionicPopup.alert({
+                           title:'账户钱不够哦',
+                           okType:'button-balanced',okText:'确定'
+                       })
+                   }else{
+                       if(points_pay > $scope.product_oprice){
+                           points_pay = $scope.product_oprice;
+                           card_pay = 0;
+                           balance_pay = 0;
+                       }else if(card_pay > $scope.product_oprice){
+                           card_pay = ($scope.product_oprice - points_pay).toFixed(2);
+                           balance_pay = 0;
+                       }else if(card_pay < $scope.product_oprice){
+                           balance_pay = ($scope.product_oprice - points_pay - card_pay).toFixed(2);
+                       }
+                   }
+               }
+            })
 
             var order_type = false;
             //提交订单
@@ -273,6 +311,11 @@ appControllers
                         title:'请选择支付方式!',
                         okType:'button-balanced',okText:'确定'
                     });
+                }else if(pay_way == '账户支付' && user_pay < $scope.product_oprice){
+                    var alertPopup = $ionicPopup.alert({
+                        title:'账户钱不够哦',
+                        okType:'button-balanced',okText:'确定'
+                    })
                 }else{
                     if($stateParams.cnt != null){
                         $scope.productList[0].pro_cnt = $stateParams.cnt;
@@ -314,7 +357,7 @@ appControllers
                 }else{
                     if(Order.state == 1){
                         var confirmPopup = $ionicPopup.confirm({
-                            title: "是否使用余额支付？",
+                            title: "是否使用账户支付？",
                             okType:'button-balanced',okText:'确定',
                             cancelType:'button-balanced',cancelText:'取消'
                         });
@@ -327,7 +370,7 @@ appControllers
                                     });
                                     $state.go('all_order');
                                 }else {
-                                    Pay.balance_pay(orderInfo, userid);
+                                    Pay.balance_pay(orderInfo, userid,balance_pay,card_pay,points_pay);
                                 }
                             } else {
                                 $state.go('all_order');
@@ -337,7 +380,7 @@ appControllers
                 }
             });
 
-            //余额支付监听
+            //账户支付监听
             $scope.$on('pay.success', function (event) {
                 if(Pay.state == 1){
                     //Login.query(userid);
@@ -365,8 +408,8 @@ appControllers
 //查询所有订单
 appControllers
     .controller('QueryOrderCtrl',
-    [ '$scope', '$ionicLoading','Order','$stateParams','$ionicHistory','Ds','$state','$ionicPopup','Pay','Login',
-        function($scope,$ionicLoading,Order,$stateParams,$ionicHistory,Ds,$state,$ionicPopup,Pay,Login){
+    [ '$scope', '$ionicLoading','Order','$stateParams','$ionicHistory','Ds','$state','$ionicPopup','Pay','Login','$ionicPopover',
+        function($scope,$ionicLoading,Order,$stateParams,$ionicHistory,Ds,$state,$ionicPopup,Pay,Login,$ionicPopover){
 
             var userid = Ds.get("user").userid;
 
@@ -385,75 +428,244 @@ appControllers
             }
 
             //支付未付款订单
-            $scope.pay_order = function (order) {
-                var myPopup = $ionicPopup.show({
-                    template: '',
-                    title: '选择支付方式',
-                    subTitle: '',
-                    scope: $scope,
-                    buttons: [
-                        { text: '在线支付',
-                            type: 'button-balanced',
-                            onTap: function() {
-                                return false;
-                            }},
-                        {
-                            text: '余额支付',
-                            type: 'button-balanced',
-                            onTap: function() {
-                                    return true;
-                            }
-                        }
-                    ]
-                });
-                myPopup.then(function(res) {
-                        if(res){
-                            //余额支付
-                            var confirmPopup = $ionicPopup.confirm({
-                                title: "是否使用余额支付？",
-                                okType:'button-balanced',okText:'确定',
-                                cancelType:'button-balanced',cancelText:'取消'
-                            });
-                            confirmPopup.then(function(res) {
-                                if(res) {
-                                    if(Ds.get("user").amount < order.totalmoney){
-                                        var alertPopup = $ionicPopup.alert({
-                                            title:'余额不足!',
-                                            okType:'button-balanced',okText:'确定'
-                                        });
-                                        $state.go('all_order');
-                                    }else {
-                                        Pay.balance_pay(order, userid);
-                                    }
-                                } else {
-                                    $state.go('all_order');
-                                }
-                            });
-                        }else{
-                            //在线支付
-                            var confirmPopup = $ionicPopup.confirm({
-                                title: '是否现在去支付？',
-                                okType:'button-balanced',okText:'确定',
-                                cancelType:'button-balanced',cancelText:'取消'
-                            });
-                            confirmPopup.then(function(res) {
-                                if(res) {
-                                    YFPay.alipay(function(){
-                                            $state.go('state_order',{state:2})
-                                        },
-                                        function(){
-                                            $state.go('all_order');
-                                                 //order.totalmoney
-                                        },[order.orderid,'一日三顿','一日三顿',0.01]);
-                                } else {
-                                    $state.go('all_order');
-                                }
-                            });
-                        }
-                });
+            //$scope.pay_order = function (order) {
+            //    var myPopup = $ionicPopup.show({
+            //        template: '',
+            //        title: '选择支付方式',
+            //        subTitle: '',
+            //        scope: $scope,
+            //        buttons: [
+            //            { text: '在线支付',
+            //                type: 'button-balanced',
+            //                onTap: function() {
+            //                    return false;
+            //                }},
+            //            {
+            //                text: '账户支付',
+            //                type: 'button-balanced',
+            //                onTap: function() {
+            //                        return true;
+            //                }
+            //            }
+            //        ]
+            //    });
+            //    myPopup.then(function(res) {
+            //            if(res){
+            //                //账户支付
+            //                var confirmPopup = $ionicPopup.confirm({
+            //                    title: "是否使用账户支付？",
+            //                    okType:'button-balanced',okText:'确定',
+            //                    cancelType:'button-balanced',cancelText:'取消'
+            //                });
+            //                confirmPopup.then(function(res) {
+            //                    if(res) {
+            //                        if(Ds.get("user").amount < order.totalmoney){
+            //                            var alertPopup = $ionicPopup.alert({
+            //                                title:'余额不足!',
+            //                                okType:'button-balanced',okText:'确定'
+            //                            });
+            //                            $state.go('all_order');
+            //                        }else {
+            //                            Pay.balance_pay(order, userid);
+            //                        }
+            //                    } else {
+            //                        $state.go('all_order');
+            //                    }
+            //                });
+            //            }else{
+            //                //在线支付
+            //                var confirmPopup = $ionicPopup.confirm({
+            //                    title: '是否现在去支付？',
+            //                    okType:'button-balanced',okText:'确定',
+            //                    cancelType:'button-balanced',cancelText:'取消'
+            //                });
+            //                confirmPopup.then(function(res) {
+            //                    if(res) {
+            //                        YFPay.alipay(function(){
+            //                                $state.go('state_order',{state:2})
+            //                            },
+            //                            function(){
+            //                                $state.go('all_order');
+            //                                     //order.totalmoney
+            //                            },[order.orderid,'一日三顿','一日三顿',0.01]);
+            //                    } else {
+            //                        $state.go('all_order');
+            //                    }
+            //                });
+            //            }
+            //    });
+            //}
+
+            //支付未付款订单--选择支付方式
+            var order = {};
+            $ionicPopover.fromTemplateUrl('payway.html',{
+                scope:$scope
+            }).then(function (popover) {
+                $scope.popover = popover;
+            })
+
+            $scope.pay_order = function (orders,$event) {
+                order= orders;
+                var pay_way = $scope.pay_way = '在线支付';
+                user_pay = 0;
+                $scope.popover.show($event);
             }
 
-            //余额支付监听
+
+            $scope.ali = {};
+            $scope.ali.checked = true;
+            $scope.balance = {};
+            $scope.balance.name = 'balance';
+            $scope.points = {};
+            $scope.points.name = 'points';
+            $scope.card = {};
+            $scope.card.name = 'card';
+
+            if(Ds.has('user')){
+                $scope.balance.all = Ds.get('user').amount;
+                $scope.points.all = Ds.get('user').point;
+                $scope.card.all  = Ds.get('user').kamount;
+            }
+            $scope.select_ali = function () {
+                if($scope.ali.checked == true){
+                    $scope.balance.checked = false;
+                    $scope.points.checked = false;
+                    $scope.card.checked = false;
+                }
+                if($scope.ali.checked == false){
+                    $scope.ali.checked = true;
+                }
+            }
+
+            var user_pay = 0;
+            $scope.select_count = function () {
+                if($scope.ali.checked == true){
+                    $scope.ali.checked = false;
+                }
+            }
+
+            var balance_pay = 0;
+            var points_pay = 0;
+            var card_pay = 0;
+            $scope.$on('popover.hidden', function () {
+                if($scope.ali.checked == true){
+                    pay_way = $scope.pay_way ='在线支付';
+                    var myPopup = $ionicPopup.show({
+                        template: '',
+                        title: '是否现在支付',
+                        subTitle: '',
+                        scope: $scope,
+                        buttons: [
+                            { text: '否',
+                                type: 'button-balanced',
+                                onTap: function() {
+                                    return false;
+                                }},
+                            {
+                                text: '是',
+                                type: 'button-balanced',
+                                onTap: function() {
+                                    return true;
+                                }
+                            }
+                        ]
+                    });
+                    myPopup.then(function(res) {
+                        if(res){
+                            //在线支付
+                            if(res) {
+                                YFPay.alipay(function(){
+                                        $state.go('state_order',{state:2});
+                                    },
+                                    function(){
+                                        $state.go('state_order',{state:1});
+                                        //order.totalmoney
+                                    },[order.orderid,'一日三顿','一日三顿',0.01]);
+                            } else {
+                                $state.go('state_order',{state:1});
+                            }
+                        }else{
+                            return false;
+                        }
+                    });
+                }else{
+                    pay_way = $scope.pay_way ='账户支付';
+                    if($scope.balance.checked == true && $scope.balance.amount != undefined){
+                        balance_pay =  $scope.balance.amount;
+                        user_pay += $scope.balance.amount;
+                    }else if($scope.balance.checked == true && $scope.balance.amount == undefined ){
+                        balance_pay = $scope.balance.all;
+                        user_pay += $scope.balance.all;
+                    }else if($scope.balance.checked == false){
+                        balance_pay = 0
+                    }
+                    if($scope.points.checked == true && $scope.points.amount != undefined){
+                        points_pay = $scope.points.amount/100;
+                        user_pay += $scope.points.amount/100;
+                    }else if($scope.points.checked == true && $scope.points.amount == undefined ){
+                        points_pay = $scope.points.all/100;
+                        user_pay += $scope.points.all/100;
+                    }else if($scope.points.checked == false){
+                        points_pay = 0;
+                    }
+                    if($scope.card.checked == true && $scope.card.amount != undefined){
+                        card_pay = $scope.card.amount;
+                        user_pay += $scope.card.amount;
+                    }else if($scope.card.checked == true && $scope.card.amount == undefined ){
+                        card_pay = $scope.card.all;
+                        user_pay += $scope.card.all;
+                    }else if($scope.card.checked == false){
+                        card_pay = 0;
+                    }
+                    if(user_pay < order.totalmoney){
+                        var alertPopup = $ionicPopup.alert({
+                            title:'账户钱不够哦',
+                            okType:'button-balanced',okText:'确定'
+                        })
+                    }else if(pay_way == '账户支付'){
+                        if(points_pay > order.totalmoney){
+                            points_pay = order.totalmoney;
+                            card_pay = 0;
+                            balance_pay = 0;
+                        }else if(card_pay > order.totalmoney){
+                            card_pay = (order.totalmoney - points_pay).toFixed(2);
+                            balance_pay = 0;
+                        }else if(card_pay < order.totalmoney){
+                            balance_pay = (order.totalmoney - points_pay - card_pay).toFixed(2);
+                        }
+                        var myPopup = $ionicPopup.show({
+                            template: '',
+                            title: '是否现在支付',
+                            subTitle: '',
+                            scope: $scope,
+                            buttons: [
+                                { text: '否',
+                                    type: 'button-balanced',
+                                    onTap: function() {
+                                        return false;
+                                    }},
+                                {
+                                    text: '是',
+                                    type: 'button-balanced',
+                                    onTap: function() {
+                                        return true;
+                                    }
+                                }
+                            ]
+                        });
+                        myPopup.then(function(res) {
+                            if(res){
+                                //账户支付
+                                Pay.balance_pay(order,userid,balance_pay,card_pay,points_pay);
+                            }else{
+                                return false;
+                            }
+                        });
+                    }
+                }
+            })
+
+            //账户支付监听
             $scope.$on('pay.success', function (event) {
                 if(Pay.state == 1){
                     Login.query(userid);
@@ -485,9 +697,9 @@ appControllers
 
 //查询类别订单
 appControllers
-    .controller('_QueryOrderCtrl',
-    [ '$scope', '$ionicLoading','Order','$stateParams','$ionicHistory','Ds','$state','$ionicPopup','Pay',
-        function($scope,$ionicLoading,Order,$stateParams,$ionicHistory,Ds,$state,$ionicPopup,Pay){
+    .controller('QuerySingleOrderCtrl',
+    [ '$scope', '$ionicLoading','Order','$stateParams','$ionicHistory','Ds','$state','$ionicPopup','Pay','$ionicPopover','Login',
+        function($scope,$ionicLoading,Order,$stateParams,$ionicHistory,Ds,$state,$ionicPopup,Pay,$ionicPopover,Login){
             $ionicLoading.show({template: '加载中...'});
             var userid = Ds.get("user").userid;
 
@@ -504,72 +716,239 @@ appControllers
             }
 
             //支付未付款订单
-            $scope.pay_order = function (order) {
-                var myPopup = $ionicPopup.show({
-                    template: '',
-                    title: '选择支付方式',
-                    subTitle: '',
-                    scope: $scope,
-                    buttons: [
-                        { text: '在线支付',
-                            type: 'button-balanced',
-                            onTap: function() {
-                                return false;
-                            }},
-                        {
-                            text: '余额支付',
-                            type: 'button-balanced',
-                            onTap: function() {
-                                return true;
-                            }
-                        }
-                    ]
-                });
-                myPopup.then(function(res) {
-                    if(res){
-                        //余额支付
-                        if(confirm("是否使用余额支付？")){
-                            if(Ds.get("user").amount < order.totalmoney){
-                                //alert("余额不足");
-                                var alertPopup = $ionicPopup.alert({
-                                    title:'余额不足!'
-                                });
-                                $state.go('all_order');
-                            }else {
-                                Login.query(userid);
-                                Pay.balance_pay(order, userid);
-                            }
-                        }else{
-                            $state.go('state_order',{state:1});
-                        }
-                    }else{
-                        //在线支付
-                        //TODO: 修改支付金额  orderInfo.total
-                        var confirmPopup = $ionicPopup.confirm({
-                            title: '是否现在去支付？',
-                            okType:'button-balanced',okText:'确定',
-                            cancelType:'button-balanced',cancelText:'取消'
-                        });
-                        confirmPopup.then(function(res) {
-                            if(res) {
-                                YFPay.alipay(function(){
-                                        $state.go('state_order',{state:2});
-                                    },
-                                    function(){
-                                        $state.go('state_order',{state:1});
-                                        //order.totalmoney
-                                    },[order.orderid,'一日三顿','一日三顿',0.01]);
-                            } else {
-                                $state.go('state_order',{state:1});
-                            }
-                        });
-                        }
+            //$scope.pay_order = function (order) {
+            //    var myPopup = $ionicPopup.show({
+            //        template: '',
+            //        title: '选择支付方式',
+            //        subTitle: '',
+            //        scope: $scope,
+            //        buttons: [
+            //            { text: '在线支付',
+            //                type: 'button-balanced',
+            //                onTap: function() {
+            //                    return false;
+            //                }},
+            //            {
+            //                text: '账户支付',
+            //                type: 'button-balanced',
+            //                onTap: function() {
+            //                    return true;
+            //                }
+            //            }
+            //        ]
+            //    });
+            //    myPopup.then(function(res) {
+            //        if(res){
+            //            //账户支付
+            //            if(confirm("是否使用账户支付？")){
+            //                if(Ds.get("user").amount < order.totalmoney){
+            //                    //alert("余额不足");
+            //                    var alertPopup = $ionicPopup.alert({
+            //                        title:'余额不足!'
+            //                    });
+            //                    $state.go('all_order');
+            //                }else {
+            //                    Login.query(userid);
+            //                    Pay.balance_pay(order, userid);
+            //                }
+            //            }else{
+            //                $state.go('state_order',{state:1});
+            //            }
+            //        }else{
+            //            //在线支付
+            //            //TODO: 修改支付金额  orderInfo.total
+            //            var confirmPopup = $ionicPopup.confirm({
+            //                title: '是否现在去支付？',
+            //                okType:'button-balanced',okText:'确定',
+            //                cancelType:'button-balanced',cancelText:'取消'
+            //            });
+            //            confirmPopup.then(function(res) {
+            //                if(res) {
+            //                    YFPay.alipay(function(){
+            //                            $state.go('state_order',{state:2});
+            //                        },
+            //                        function(){
+            //                            $state.go('state_order',{state:1});
+            //                            //order.totalmoney
+            //                        },[order.orderid,'一日三顿','一日三顿',0.01]);
+            //                } else {
+            //                    $state.go('state_order',{state:1});
+            //                }
+            //            });
+            //            }
+            //
+            //
+            //    });
+            //}
 
-
-                });
+            //支付未付款订单--选择支付方式
+            var order = {};
+            $scope.pay_order = function (orders,$event) {
+                order= orders;
+                var pay_way = $scope.pay_way = '在线支付';
+                user_pay = 0;
+                $scope.popover.show($event);
             }
+            $ionicPopover.fromTemplateUrl('payway.html',{
+                scope:$scope
+            }).then(function (popover) {
+                $scope.popover = popover;
+            })
 
-            //余额支付监听
+                $scope.ali = {};
+                $scope.ali.checked = true;
+                $scope.balance = {};
+                $scope.balance.name = 'balance';
+                $scope.points = {};
+                $scope.points.name = 'points';
+                $scope.card = {};
+                $scope.card.name = 'card';
+
+                if(Ds.has('user')){
+                    $scope.balance.all = Ds.get('user').amount;
+                    $scope.points.all = Ds.get('user').point;
+                    $scope.card.all  = Ds.get('user').kamount;
+                }
+                $scope.select_ali = function () {
+                    if($scope.ali.checked == true){
+                        $scope.balance.checked = false;
+                        $scope.points.checked = false;
+                        $scope.card.checked = false;
+                    }
+                    if($scope.ali.checked == false){
+                        $scope.ali.checked = true;
+                    }
+                }
+
+                var user_pay = 0;
+                $scope.select_count = function () {
+                    if($scope.ali.checked == true){
+                        $scope.ali.checked = false;
+                    }
+                }
+
+                var balance_pay = 0;
+                var points_pay = 0;
+                var card_pay = 0;
+                $scope.$on('popover.hidden', function () {
+                    if($scope.ali.checked == true){
+                        pay_way = $scope.pay_way ='在线支付';
+                        var myPopup = $ionicPopup.show({
+                            template: '',
+                            title: '是否现在支付',
+                            subTitle: '',
+                            scope: $scope,
+                            buttons: [
+                                { text: '否',
+                                    type: 'button-balanced',
+                                    onTap: function() {
+                                        return false;
+                                    }},
+                                {
+                                    text: '是',
+                                    type: 'button-balanced',
+                                    onTap: function() {
+                                        return true;
+                                    }
+                                }
+                            ]
+                        });
+                        myPopup.then(function(res) {
+                            if(res){
+                                //在线支付
+                                if(res) {
+                                    YFPay.alipay(function(){
+                                            $state.go('state_order',{state:2});
+                                        },
+                                        function(){
+                                            $state.go('state_order',{state:1});
+                                            //order.totalmoney
+                                        },[order.orderid,'一日三顿','一日三顿',0.01]);
+                                } else {
+                                    $state.go('state_order',{state:1});
+                                }
+                            }else{
+                                return false;
+                            }
+                        });
+                    }else{
+                        pay_way = $scope.pay_way ='账户支付';
+                        if($scope.balance.checked == true && $scope.balance.amount != undefined){
+                            balance_pay =  $scope.balance.amount;
+                            user_pay += $scope.balance.amount;
+                        }else if($scope.balance.checked == true && $scope.balance.amount == undefined ){
+                            balance_pay = $scope.balance.all;
+                            user_pay += $scope.balance.all;
+                        }else if($scope.balance.checked == false){
+                            balance_pay = 0
+                        }
+                        if($scope.points.checked == true && $scope.points.amount != undefined){
+                            points_pay = $scope.points.amount/100;
+                            user_pay += $scope.points.amount/100;
+                        }else if($scope.points.checked == true && $scope.points.amount == undefined ){
+                            points_pay = $scope.points.all/100;
+                            user_pay += $scope.points.all/100;
+                        }else if($scope.points.checked == false){
+                            points_pay = 0;
+                        }
+                        if($scope.card.checked == true && $scope.card.amount != undefined){
+                            card_pay = $scope.card.amount;
+                            user_pay += $scope.card.amount;
+                        }else if($scope.card.checked == true && $scope.card.amount == undefined ){
+                            card_pay = $scope.card.all;
+                            user_pay += $scope.card.all;
+                        }else if($scope.card.checked == false){
+                            card_pay = 0;
+                        }
+                        if(user_pay < order.totalmoney){
+                            var alertPopup = $ionicPopup.alert({
+                                title:'账户钱不够哦',
+                                okType:'button-balanced',okText:'确定'
+                            })
+                        }else if(pay_way == '账户支付'){
+                            if(points_pay > order.totalmoney){
+                                points_pay = order.totalmoney;
+                                card_pay = 0;
+                                balance_pay = 0;
+                            }else if(card_pay > order.totalmoney){
+                                card_pay = (order.totalmoney - points_pay).toFixed(2);
+                                balance_pay = 0;
+                            }else if(card_pay < order.totalmoney){
+                                balance_pay = (order.totalmoney - points_pay - card_pay).toFixed(2);
+                            }
+                            var myPopup = $ionicPopup.show({
+                                template: '',
+                                title: '是否现在支付',
+                                subTitle: '',
+                                scope: $scope,
+                                buttons: [
+                                    { text: '否',
+                                        type: 'button-balanced',
+                                        onTap: function() {
+                                            return false;
+                                        }},
+                                    {
+                                        text: '是',
+                                        type: 'button-balanced',
+                                        onTap: function() {
+                                            return true;
+                                        }
+                                    }
+                                ]
+                            });
+                            myPopup.then(function(res) {
+                                if(res){
+                                    //账户支付
+                                    Pay.balance_pay(order,userid,balance_pay,card_pay,points_pay);
+                                }else{
+                                    return false;
+                                }
+                            });
+                        }
+                    }
+                })
+
+            //账户支付监听
             $scope.$on('pay.success', function (event) {
                 if(Pay.state == 1){
                     Login.query(userid);

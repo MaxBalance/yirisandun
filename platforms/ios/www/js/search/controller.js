@@ -8,12 +8,6 @@ appControllers
             }
             $scope.listPanel = {height:'370px'};
 
-            ionic.Platform.ready(function () {
-                if(ionic.Platform.isWebView() && $ionicConfig.views.swipeBackEnabled()){
-                    self.initSwipeBack();
-                }
-            })
-
 
             var tag = 'asc';
             function init(){
@@ -149,7 +143,6 @@ appControllers
             $scope.detail = function(product){
                 $state.go('product-detail',{productId:product.id});
             }
-
 
 
             //加入购物车

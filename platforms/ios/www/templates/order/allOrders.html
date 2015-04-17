@@ -1,4 +1,4 @@
-<ion-tabs id="allOrder-tabs" class="tabs-positive tabs-top tabs-background-balanced">
+<ion-tabs class="tabs-positive tabs-top tabs-background-balanced">
 
     <ion-tab title="未付款">
         <ion-content class="has-top-bar" ng-style="listPanel">
@@ -9,7 +9,7 @@
                         <p style="font-size: 12px;"><b>订单总额：</b>{{order.totalmoney}}</p>
                         <p style="font-size: 12px;"><b>下单时间：</b>{{order.createdate}}</p>
                         <p style="font-size: 12px;"><b>订单商品：</b>{{order.info}}</p>
-                        <i ng-show="order.ispay == 0" class="icon ion-ios-checkmark-outline" style="height: 50%;width: 27%; "ng-click='pay_order(order)'>
+                        <i ng-show="order.ispay == 0" class="icon ion-ios-checkmark-outline" style="height: 50%;width: 27%; "ng-click='pay_order(order,$event)'>
                             <p style="font-size: 13px;">支付订单</p></i>
                         <i ng-show="order.ispay == 0" class="icon ion-ios-minus-outline" style="height: 50px;width: 27%;margin:60px 0 0 0;" ng-click='cancel_order(order)'>
                             <p style="font-size: 13px;">取消订单</p></i>
@@ -64,11 +64,52 @@
     </ion-tab>
 </ion-tabs>
 
-<ion-view id="product-list">
+<ion-view>
     <ion-header-bar class="bar-stable">
         <button class="button button-clear" ng-click="orderList_back()"><i class="icon ion-ios-arrow-left"></i> 返回</button>
         <a class="title">我的订单</a>
     </ion-header-bar>
+    <ion-content></ion-content>
 </ion-view>
 
-
+<script id="payway.html" type="text/ng-template">
+    <ion-popover-view style="height: 210px;width: 290px;">
+        <ion-content>
+            <ion-list>
+                <ion-item style="padding:3px!important;">
+                    <label class="checkbox" style="float: left;">
+                        <input type="checkbox" ng-model="ali.checked" ng-click="select_ali(ali);">
+                    </label>
+                    <label class="checkbox" style="float: left;margin-left:-5px;margin-top:2px;font-size: 16px;">支付宝支付</label>
+                </ion-item>
+                <ion-item style="padding:3px!important;">
+                    <label class="checkbox" style="float: left">
+                        <input type="checkbox" ng-model="balance.checked" ng-click="select_count(balance);">
+                    </label>
+                    <label class="checkbox" style="float: left;font-size: 16px;margin-left:-5px;margin-top:2px;">余额支付({{balance.all}}元)</label>
+                    <label style="float: right;width:80px;">
+                        <input ng-model="balance.amount" style="width:80%;border:lightgray 1px solid;" type="number" placeholder="余额">
+                    </label>
+                </ion-item>
+                <ion-item style="padding:3px!important;">
+                    <label class="checkbox" style="float: left">
+                        <input type="checkbox" ng-model="points.checked" ng-click="select_count(points);">
+                    </label>
+                    <label class="checkbox" style="float: left;font-size: 16px;margin-left:-5px;margin-top:2px;">积分支付({{points.all}}分)</label>
+                    <label style="float: right;width:80px;">
+                        <input ng-model="points.amount" style="width:80%;border:lightgray 1px solid;" type="number" placeholder="积分">
+                    </label>
+                </ion-item>
+                <ion-item style="padding:3px!important;">
+                    <label class="checkbox" style="float: left">
+                        <input type="checkbox" ng-model="card.checked" ng-click="select_count(card);">
+                    </label>
+                    <label class="checkbox" style="float: left;font-size: 16px;margin-left:-5px;margin-top:2px;">卡余额支付({{card.all}}元)</label>
+                    <label style="float: right;width:80px;">
+                        <input ng-model="card.amount" style="width:80%;border:lightgray 1px solid;" type="number" placeholder="卡余额">
+                    </label>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-popover-view>
+</script>
