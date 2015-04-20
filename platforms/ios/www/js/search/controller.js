@@ -1,10 +1,11 @@
 appControllers
 .controller('SearchCtrl',
-    [ '$templateCache','$rootScope','$scope', '$ionicLoading','$ionicModal','$stateParams','$ionicHistory','$state','Search','Cart','Ds','$ionicPopup','$ionicTabsDelegate','$timeout','Login',
-        function($templateCache,$rootScope,$scope,$ionicLoading,$ionicModal,$stateParams,$ionicHistory,$state,Search,Cart,Ds,$ionicPopup,$ionicTabsDelegate,$timeout,Login){
+    [ '$templateCache','$rootScope','$scope', '$ionicLoading','$ionicModal','$stateParams','$ionicHistory','$state','Search','Cart','Ds','$ionicPopup','$ionicTabsDelegate','$timeout','Login','$cordovaToast',
+        function($templateCache,$rootScope,$scope,$ionicLoading,$ionicModal,$stateParams,$ionicHistory,$state,Search,Cart,Ds,$ionicPopup,$ionicTabsDelegate,$timeout,Login,$cordovaToast){
 
             $scope.back = function(){
-                history.back();
+                //history.back();
+                $state.go('tab.home');
             }
             $scope.listPanel = {height:'370px'};
 
@@ -121,15 +122,27 @@ appControllers
             }
 
             //搜索功能
+            //$scope.searchKeyPress = function($event){
+            //    if($event.keyCode == 13){
+            //        $state.go('.',{keyword:$scope.search.content});
+            //        $stateParams.keyword = $scope.search.content;
+            //        init();
+            //    }
+            //}
+
+            //搜索功能
             $scope.searchKeyPress = function($event){
                 if($event.keyCode == 13){
-                    $state.go('.',{keyword:$scope.search.content});
-                    $stateParams.keyword = $scope.search.content;
-                    init();
+                    if($scope.search.content ==''){
+                        $cordovaToast.showShortTop('您尚未输入任何信息!');
+                        return false;
+                    }
 
+                    var keyword  =  encodeURIComponent(encodeURIComponent($scope.search.content));
+                    $state.go('.',{keyword:keyword},{ reload: true });
+                    $stateParams.keyword = keyword;
                 }
             }
-
 
             //加载更多
             $scope.loadMoreProduct = function(type){
@@ -151,16 +164,15 @@ appControllers
                     var user = Ds.get('user');
                     Cart.add(product.id,1,user.userid);
                 }else{
-                    $state.go('tab.person');
+                    $cordovaToast.showShortBottom('请先登录!').then(function (success) {
+                        $state.go('tab.person');
+                    })
                 }
                 $event.stopPropagation();
             }
 
             $scope.$on('cart.add.ok',function(event){
-                var alertPopup = $ionicPopup.alert({
-                    title:'添加成功!',
-                    okType:'button-balanced',okText:'确定'
-                });
+                $cordovaToast.showShortBottom('恭喜，添加购物车成功!');
             });
 
             $rootScope.$on('$stateChangeStart',

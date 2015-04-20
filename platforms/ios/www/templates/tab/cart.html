@@ -16,7 +16,8 @@
         <div class="content">
           <h2>{{good.title}}</h2>
           <div class="price">
-            <p class="uprice">￥{{good.uprice}}</p>
+            <p class="uprice" ng-show="good.limited_flag==0">￥{{good.uprice}}</p>
+            <p class="uprice" ng-show="good.limited_flag==1">￥{{good.aprice}}</p>
             <p class="mprice">￥{{good.mprice}}</p>
           </div>
           <div class="counter">

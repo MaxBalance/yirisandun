@@ -12,7 +12,8 @@
                       type="item-text-wrap" ng-click="detail(product)">
                 <img class="img" ng-src="{{product.pic}}">
                 <h2>{{product.title}}</h2>
-                <p class="price"><b>￥{{product.uprice}}</b><span>￥{{product.mprice}}</span></p>
+                <p class="price"><b ng-show="product.limited_flag==0">￥{{product.uprice}}</b>
+                    <b ng-show="product.limited_flag==1">￥{{product.aprice}}</b><span>￥{{product.mprice}}</span></p>
                 <p>产地：扬州</p>
                 <i class="icon ion-ios-cart-outline" ng-click='addToCart(product,$event)'></i>
             </ion-item>

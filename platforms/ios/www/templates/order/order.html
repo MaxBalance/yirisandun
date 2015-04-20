@@ -44,7 +44,8 @@
             <ion-item class="item item-avatar" ng-repeat="product in productList">
                 <img src="{{product.pic}}">
                 <h2>{{product.title}}</h2>
-                <p class="price"><b>￥{{product.uprice}}</b><span>￥{{product.mprice}}</span>
+                <p class="price"><b ng-show="product.limited_flag==0">￥{{product.uprice}}</b>
+                    <b ng-show="product.limited_flag==1">￥{{product.aprice}}</b><span>￥{{product.mprice}}</span>
                     <label style="float:right;">X&nbsp;{{product.pro_cnt}}</label></p>
             </ion-item>
         </ion-list>
@@ -150,8 +151,8 @@
                     </select>
                 </label>
                 <label class="item item-input" ng-click="showPlace();">
-                    <div class="input-label" ng-model="address_place" style="font-size: 15px;" >
-                        {{address_place}}
+                    <div class="input-label" ng-model="address_single.address" style="font-size: 15px;" >
+                        {{address_single.address}}
                     </div>
                 </label>
             </div>

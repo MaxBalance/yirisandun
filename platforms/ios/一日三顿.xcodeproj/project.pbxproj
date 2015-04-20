@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0C1DFBCA46D64AE8B747CB30 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F034440A96EF4D13B6A19C46 /* libz.dylib */; };
 		0CA6DEA2EF7F4356B8AB69AC /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC29F86AB1914C0493D9872F /* CoreTelephony.framework */; };
@@ -150,6 +149,8 @@
 		CA0D78BDC43A4136B395D17C /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 67C834E0EFF34114A99BE95D /* CDVDevice.m */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		F200BF426A37432CA16905FC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C1425D4931042F6BF67268A /* UIKit.framework */; };
+		8DF373A6D1764311BDBA2115 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 439EC7AB53E74928979E65F6 /* Toast+UIView.m */; };
+		F9394DF638344BA7BD7BA957 /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 946E368223FA40BBA40B3F05 /* Toast.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -425,6 +426,10 @@
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "一日三顿/config.xml"; sourceTree = "<group>"; };
 		F93C50CAD85D44BE9DEA2041 /* CDVLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVLogger.h; path = org.apache.cordova.console/CDVLogger.h; sourceTree = "<group>"; };
 		FCA8D556862A45D8B1D1227E /* UIWebViewExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIWebViewExtension.m; path = com.ionic.keyboard/UIWebViewExtension.m; sourceTree = "<group>"; };
+		439EC7AB53E74928979E65F6 /* Toast+UIView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Toast+UIView.m"; path = "nl.x-services.plugins.toast/Toast+UIView.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		946E368223FA40BBA40B3F05 /* Toast.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Toast.m"; path = "nl.x-services.plugins.toast/Toast.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		26852741FE7E4E5BA8856338 /* Toast+UIView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Toast+UIView.h"; path = "nl.x-services.plugins.toast/Toast+UIView.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		9D954458D3CF42989AFD1BE1 /* Toast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Toast.h"; path = "nl.x-services.plugins.toast/Toast.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -645,6 +650,10 @@
 				2FCA1195270B4B538812278E /* CDVInAppBrowser.h */,
 				3D0C492ED263449FBF333DBA /* AppVersion.m */,
 				0F12C92BE63047279FE2585B /* AppVersion.h */,
+				439EC7AB53E74928979E65F6 /* Toast+UIView.m */,
+				946E368223FA40BBA40B3F05 /* Toast.m */,
+				26852741FE7E4E5BA8856338 /* Toast+UIView.h */,
+				9D954458D3CF42989AFD1BE1 /* Toast.h */,
 			);
 			name = Plugins;
 			path = "一日三顿/Plugins";
@@ -1170,6 +1179,8 @@
 				A163EFE3DF2647C4A2BAF4D7 /* Order.m in Sources */,
 				7AE58976BE234553AE166742 /* CDVInAppBrowser.m in Sources */,
 				78DB2F41920C49BA9E6764EB /* AppVersion.m in Sources */,
+				8DF373A6D1764311BDBA2115 /* Toast+UIView.m in Sources */,
+				F9394DF638344BA7BD7BA957 /* Toast.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,4 +1,9 @@
-var ridunApp = angular.module('ridun', ['ionic', 'ridun.controllers','ridun.services','ngCordova']);
+var ridunApp = angular.module('ridun', ['ionic', 'ridun.controllers','ridun.services','ngCordova'])
+    .controller('allContrller', function ($scope) {
+      $scope.$on('ChangeCartcnt', function (event,cnt) {
+        $scope.$broadcast('CartcntChanged',cnt);
+      })
+    });
 
 ridunApp.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -19,7 +24,7 @@ ridunApp.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
-  //$ionicConfigProvider.views.swipeBackEnabled('true');
+  $ionicConfigProvider.views.swipeBackEnabled('false');
 
   $stateProvider
   // setup an abstract state for the tabs directive
@@ -78,7 +83,7 @@ ridunApp.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider
 
     //详情购物车
     .state('product-detail-cart', {
-      //cache: false,
+      cache: false,
       url: '/carts',
       templateUrl: 'templates/product/product-cart.html',
       controller: 'CartCtrl'

@@ -1,7 +1,7 @@
 appControllers
 .controller('OrderCtrl',
-    ['$scope', '$http','$ionicLoading','$ionicHistory','Address','Ds','Login','$ionicModal','$state','$ionicPopup','ProductDetail','$stateParams','$filter','Order','Pay','Place','$ionicPopover',
-        function($scope, $http,$ionicLoading,$ionicHistory,Address,Ds,Login,$ionicModal,$state,$ionicPopup,ProductDetail,$stateParams,$filter,Order,Pay,Place,$ionicPopover) {
+    ['$scope', '$http','$ionicLoading','$ionicHistory','Address','Ds','Login','$ionicModal','$state','$ionicPopup','ProductDetail','$stateParams','$filter','Order','Pay','Place','$ionicPopover','$cordovaToast',
+        function($scope, $http,$ionicLoading,$ionicHistory,Address,Ds,Login,$ionicModal,$state,$ionicPopup,ProductDetail,$stateParams,$filter,Order,Pay,Place,$ionicPopover,$cordovaToast) {
 
             var isLogin = Ds.has('user');
             if(!isLogin){
@@ -49,7 +49,12 @@ appControllers
                 $filter('imgFilter')(ProductDetail.content);
                 $scope.productList[0] = ProductDetail.content;
                 $scope.productList[0].pro_cnt = $stateParams.cnt;
-                $scope.product_oprice = $filter('formatNumber')(($scope.productList[0].uprice)*$scope.productList[0].pro_cnt,'#.000');
+                if($scope.productList[0].limited_flag == 0){
+                    $scope.product_oprice = $filter('formatNumber')(($scope.productList[0].uprice)*$scope.productList[0].pro_cnt,'#.000');
+                }else{
+                    $scope.product_oprice = $filter('formatNumber')(($scope.productList[0].aprice)*$scope.productList[0].pro_cnt,'#.000');
+                }
+
             });
 
             $scope.first_address = function () {
@@ -66,10 +71,9 @@ appControllers
             //添加地址
             $scope._add_address = function (address) {
                 if($scope.address_place == undefined || $scope.address_place == '选择自提点'){
-                    var alertPopup = $ionicPopup.alert({
-                        title:'请选择自提点!',
-                        okType:'button-balanced',okText:'确定'
-                    });
+                    $cordovaToast.showShortCenter('请选择自提点!');
+                }else if(!/^[1][3,4,5,7,8][0-9]{9}$/.test(address.mobile)){
+                    $cordovaToast.showShortCenter('请正确填写手机号码!');
                 }else{
                     Address.address_add(address,userid,$scope.address_place,$scope.address_place_id);
                 }
@@ -103,9 +107,13 @@ appControllers
 
             //修改地址
             $scope.modify_address = function (address) {
-                $scope.address_place1 = '邗江区';
+                var userAdd = address;
                 $scope.address_single = address;
-                $scope.address_place = address.address;
+                $scope.address_place1 = '邗江区';
+                $scope.address_single.username = decodeURI(userAdd.username);
+                $scope.address_single.mobile = userAdd.mobile;
+                $scope.address_single.address  = decodeURI(userAdd.address);
+                $scope.address_single.tcd = userAdd.tcd;
                 //跳转至新增地址页面
                 $ionicModal.fromTemplateUrl('modify_address.html', {
                     scope: $scope,
@@ -118,18 +126,19 @@ appControllers
 
             //保存修改地址
             $scope._modify_address = function (address) {
-                if($scope.address_place == undefined || $scope.address_place == '选择自提点'){
+                if(address.address == undefined || address.address == '选择自提点'){
                     var alertPopup = $ionicPopup.alert({
                         title:'请选择自提点!',
                         okType:'button-balanced',okText:'确定'
                     });
                     return false;
                 }
-                Address.address_modify(address,userid,$scope.address_place,$scope.address_place_id);
+                Address.address_modify(address,userid);
             }
 
             //修改地址监听
             $scope.$on('address.modify',function(event){
+                $cordovaToast.showShortBottom('修改成功!')
                 $scope.modal2.hide().then(function () {
                     Address.address_search(userid);
                 })

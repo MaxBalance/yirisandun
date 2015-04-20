@@ -1,7 +1,7 @@
 appControllers
 .controller('HomeCtrl',
-    [ '$rootScope','$cacheFactory','$templateCache','$scope', '$ionicLoading','$ionicModal','$state','$interval','Index','Ds','$ionicPopup','$cordovaInAppBrowser','$cordovaAppVersion','Login',
-        function($rootScope,$cacheFactory,$templateCache,$scope,$ionicLoading,$ionicModal,$state,$interval,Index,Ds,$ionicPopup,$cordovaInAppBrowser,$cordovaAppVersion,Login){
+    [ '$rootScope','$cacheFactory','$templateCache','$scope', '$ionicLoading','$ionicModal','$state','$interval','Index','Ds','$ionicPopup','$cordovaInAppBrowser','$cordovaAppVersion','Login','$cordovaToast',
+        function($rootScope,$cacheFactory,$templateCache,$scope,$ionicLoading,$ionicModal,$state,$interval,Index,Ds,$ionicPopup,$cordovaInAppBrowser,$cordovaAppVersion,Login,$cordovaToast){
 
             //TODO fix:进入首页需要将搜索栏清空
             //首页会被缓存，所以需要通过控制器之间进行通信才能实现该功能
@@ -25,8 +25,6 @@ appControllers
                 $scope.line4_2 = Index.data.line4[1];
                 $scope.line4_3 = Index.data.line4[2];
 
-
-
                 //开启倒计时
                 try{
                     countdown.start();
@@ -49,13 +47,13 @@ appControllers
 
             $scope.$on('checkins.success', function () {
                 var alertPopup = $ionicPopup.alert({
-                    title:'签到成功',
+                    title:'签到成功!',
                     okType:'button-balanced',okText:'确定'
                 })
             })
             $scope.$on('checkins.fail', function () {
                 var alertPopup = $ionicPopup.alert({
-                    title:'签到失败',
+                    title:'已签到过!',
                     okType:'button-balanced',okText:'确定'
                 })
             })
@@ -229,10 +227,7 @@ appControllers
             $scope.searchKeyPress = function($event){
                 if($event.keyCode == 13){
                     if($scope.search.content ==''){
-                        var alertPopup = $ionicPopup.alert({
-                            title:'您尚未输入任何信息!',
-                            okType:'button-balanced',okText:'确定'
-                        });
+                        $cordovaToast.showShortTop('您尚未输入任何信息!');
                         return false;
                     }
 
@@ -314,5 +309,9 @@ appControllers
                 Login.getCart(Ds.get('user').userid);
             })
 
+            $scope.$on('CartcntChanged', function (event,cnt) {
+                $scope.user = Ds.get('user');
+                $scope.user.cartcnt = Ds.get('user').cartcnt - cnt;
+            })
         }]);
 

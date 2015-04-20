@@ -35,6 +35,10 @@
                         {
                             "xml": "<feature name=\"AppVersion\"><param name=\"ios-package\" value=\"AppVersion\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Toast\"><param name=\"ios-package\" value=\"Toast\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -110,7 +114,7 @@
                     "QuartzCore.framework": [
                         {
                             "xml": false,
-                            "count": 2
+                            "count": 3
                         }
                     ],
                     "Foundation.framework": [
@@ -211,6 +215,9 @@
             "PACKAGE_NAME": "ztemap.com"
         },
         "uk.co.whiteoctober.cordova.appversion": {
+            "PACKAGE_NAME": "ztemap.com"
+        },
+        "nl.x-services.plugins.toast": {
             "PACKAGE_NAME": "ztemap.com"
         }
     },

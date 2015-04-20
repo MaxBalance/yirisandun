@@ -1,7 +1,7 @@
 appControllers
     .controller('PersonCtrl',
-    [ '$scope', '$ionicLoading','Login','Ds','$ionicModal','Register','Password','Message','$state','Order','$ionicHistory','$timeout','$ionicPopup','$interval',
-        function($scope,$ionicLoading,Login,Ds, $ionicModal,Register,Password,Message,$state,Order,$ionicHistory,$timeout,$ionicPopup,$interval) {
+    [ '$scope', '$ionicLoading','Login','Ds','$ionicModal','Register','Password','Message','$state','Order','$ionicHistory','$timeout','$ionicPopup','$interval','$cordovaToast',
+        function($scope,$ionicLoading,Login,Ds, $ionicModal,Register,Password,Message,$state,Order,$ionicHistory,$timeout,$ionicPopup,$interval,$cordovaToast) {
 
         //用户登录广播(成功)
         $scope.$on('person.login.success',function(event){
@@ -78,17 +78,21 @@ appControllers
 
         //用户注册广播(失败)
         $scope.$on('person.register.fail',function(event){
-            //alert("注册失败，请按规格填写用户名与密码!");
-            var alertPopup = $ionicPopup.alert({
-                title:'注册失败，请按规格填写用户名与密码!',
-                okType:'button-balanced',okText:'确定'
-            });
+            //var alertPopup = $ionicPopup.alert({
+            //    title:'注册失败，请按规格填写用户名与密码!',
+            //    okType:'button-balanced',okText:'确定'
+            //});
+            //$timeout(function() {
+            //    alertPopup.close(); //close the popup after 1 seconds for some reason
+            //}, 1500);
 
-            $timeout(function() {
-                alertPopup.close(); //close the popup after 1 seconds for some reason
-            }, 1500);
+            $cordovaToast.showShortCenter('注册失败,用户名已存在');
         });
 
+        //注册手机号已存在
+        $scope.$on('getCode.fail', function (event) {
+            $cordovaToast.showShortCenter('该手机号已注册过');
+        })
      
         //跳转至注册页面
         $scope.register = function () {
@@ -106,14 +110,8 @@ appControllers
         //注册用户
         $scope._register = function (person_r) {
             if(person_r.password_one != person_r.password_two){
-                var alertPopup = $ionicPopup.alert({
-                    title:'两次输入密码不一致!',
-                    okType:'button-balanced',okText:'确定'
-                });
-                $timeout(function() {
-                    alertPopup.close(); //close the popup after 1 seconds for some reason
-                }, 1500);
-                return service;
+                $cordovaToast.showShortCenter('两次输入密码不一致!');
+                return false;
             }
             var reg = /^[_0-9a-zA-Z]{0,20}$/
             if (!reg.test(person_r.username) || person_r.username.length <= 5 || person_r.username.length >=20 || person_r.username=='' )
@@ -128,19 +126,11 @@ appControllers
                 return false;
             }
             if (!/^1\d{10}$/.test(person_r.phone)) {
-                var alertPopup = $ionicPopup.alert({
-                    title:'请填写正确的手机号!',
-                    okType:'button-balanced',
-                    okText:'确定'
-                });
+                $cordovaToast.showShortCenter('请填写正确的手机号!');
                 return false;
             }
             if(Ds.has('LoginCode') && person_r.code != Ds.get('LoginCode')){
-                var alertPopup = $ionicPopup.alert({
-                    title:'验证码错误!',
-                    okType:'button-balanced',
-                    okText:'确定'
-                });
+                $cordovaToast.showShortCenter('验证码错误!');
                 return false;
             }
             Register._register(person_r);
@@ -148,14 +138,7 @@ appControllers
 
         //用户登录广播(失败)
         $scope.$on('person.login.fail',function(event){
-            var alertPopup = $ionicPopup.alert({
-                title:'登录失败,用户名或密码错误!',
-                okType:'button-balanced',okText:'确定'
-            });
-
-            $timeout(function() {
-                alertPopup.close(); //close the popup after 1 seconds for some reason
-            }, 1000);
+            $cordovaToast.showShortCenter('登录失败,用户名或密码错误!');
         });
 
         $scope.register_back = function(){
@@ -213,10 +196,7 @@ appControllers
         //todo..我的消费卷
         $scope.tickets = function(){
             //$state.go('tab.product-detail',{'productId':3});
-            var alertPopup = $ionicPopup.alert({
-                title:'暂未开放!',
-                okType:'button-balanced',okText:'确定'
-            });
+            $cordovaToast.showShortCenter('暂未开放!');
             //cordova.plugins.Web.webAlert();
         }
 
@@ -237,11 +217,7 @@ appControllers
         var num = '';
         $scope.getCount = function (person_r) {
             if (!/^1\d{10}$/.test(person_r.phone)) {
-                var alertPopup = $ionicPopup.alert({
-                    title:'请填写正确的手机号!',
-                    okType:'button-balanced',
-                    okText:'确定'
-                });
+                $cordovaToast.showShortCenter('请填写正确的手机号!');
                 return false;
             }
      

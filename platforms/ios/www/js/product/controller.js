@@ -1,8 +1,8 @@
 //新品的控制器，不需要加载更多数据的功能
 appControllers
 .controller('NewProductCtrl',
-[ '$scope', '$ionicLoading','$state','Product','Cart','Ds','$ionicPopup','$timeout','Login','$ionicHistory',
-    function($scope,$ionicLoading,$state,Product,Cart,Ds,$ionicPopup,$timeout,Login,$ionicHistory){
+[ '$scope', '$ionicLoading','$state','Product','Cart','Ds','$ionicPopup','$timeout','Login','$ionicHistory','$cordovaToast',
+    function($scope,$ionicLoading,$state,Product,Cart,Ds,$ionicPopup,$timeout,Login,$ionicHistory,$cordovaToast){
         $ionicLoading.show({template: '加载中...'});
         $scope.productList = [];
         $scope.$on('product.found',function(event){
@@ -12,14 +12,7 @@ appControllers
         Product.query('order_type=4');
 
         $scope.$on('cart.add.ok',function($event){
-            //alert('添加成功!');
-            var alertPopup = $ionicPopup.alert({
-                title:'添加成功!',
-                okType:'button-balanced',okText:'确定'
-            });
-            $timeout(function() {
-                alertPopup.close();
-            }, 2000);
+            $cordovaToast.showShortBottom('恭喜,添加购物车成功!');
 
             var userLogined = $scope.user = {};
             if(Ds.has('user')){
@@ -53,8 +46,8 @@ appControllers
 //商品详情
 appControllers
     .controller('ProductDetailCtrl',
-    [ '$scope', '$ionicLoading','ProductDetail','$stateParams','$filter','$state','$ionicHistory','Ds','Cart','$ionicPopup','$timeout','Login',
-    function($scope,$ionicLoading,ProductDetail,$stateParams,$filter,$state,$ionicHistory,Ds,Cart,$ionicPopup,$timeout,Login){
+    [ '$scope', '$ionicLoading','ProductDetail','$stateParams','$filter','$state','$ionicHistory','Ds','Cart','$ionicPopup','$timeout','Login','$cordovaToast',
+    function($scope,$ionicLoading,ProductDetail,$stateParams,$filter,$state,$ionicHistory,Ds,Cart,$ionicPopup,$timeout,Login,$cordovaToast){
         $ionicLoading.show({template: '努力加载中...'});
         ProductDetail.productDetail($stateParams.productId);
 
@@ -99,17 +92,18 @@ appControllers
                 var user = Ds.get('user');
                 Cart.add(product.id,product.cnt+1,user.userid);
             }else{
-                var alertPopup = $ionicPopup.alert({
-                    title:'请先登录!',
-                    okType:'button-balanced',okText:'确定'
-                });
-                $state.go('tab.person');
+                //var alertPopup = $ionicPopup.alert({
+                //    title:'请先登录!',
+                //    okType:'button-balanced',okText:'确定'
+                //});
+                $cordovaToast.showShortBottom('请先登录!').then(function (success) {
+                    $state.go('tab.person');
+                })
             }
             //$event.stopPropagation();
         }
 
         $scope.$on('cart.add.ok', function (event) {
-            //alert("添加购物车成功!");
             var alertPopup = $ionicPopup.alert({
                 title:'添加成功!',
                 okType:'button-balanced',okText:'确定'
@@ -267,8 +261,8 @@ appControllers
 //限时抢购
 appControllers
     .controller('LimitCtrl',
-    [ '$scope', '$ionicLoading','$stateParams','$ionicHistory','$state','Search','Cart','Ds','$ionicPopup','$timeout','Login',
-        function($scope,$ionicLoading,$stateParams,$ionicHistory,$state,Search,Cart,Ds,$ionicPopup,$timeout,Login){
+    [ '$scope', '$ionicLoading','$stateParams','$ionicHistory','$state','Search','Cart','Ds','$ionicPopup','$timeout','Login','$cordovaToast',
+        function($scope,$ionicLoading,$stateParams,$ionicHistory,$state,Search,Cart,Ds,$ionicPopup,$timeout,Login,$cordovaToast){
             $ionicLoading.show({template: '加载中...'});
             $scope.limitList = [];
             $scope.$on('limit.ready',function($event){
@@ -284,14 +278,7 @@ appControllers
             }
 
             $scope.$on('cart.add.ok',function($event){
-                //alert('添加成功!');
-                var alertPopup = $ionicPopup.alert({
-                    title:'添加成功!',
-                    okType:'button-balanced',okText:'确定'
-                });
-                $timeout(function() {
-                    alertPopup.close();
-                }, 1000);
+                $cordovaToast.showShortBottom('恭喜,添加购物车成功!')
             });
 
             $scope.addToCart = function(product,$event){
@@ -315,14 +302,14 @@ appControllers
                 $state.go('product-detail-cart');
             }
 
-            $scope.user = {};
-            Login.getCart(Ds.get('user').userid);
-
             $scope.$on('cart.add.ok',function () {
                 if(Ds.has('user')){
                     Login.getCart(Ds.get('user').userid);
                 }
             })
+
+            $scope.user = {};
+            Login.getCart(Ds.get('user').userid);
 
             $scope.$on('person.cart.success',function () {
                 $scope.user = Ds.get('user');

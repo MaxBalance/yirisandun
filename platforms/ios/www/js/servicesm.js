@@ -63,26 +63,21 @@ services.service( 'Login', [ '$rootScope', '$http','Ds','$ionicPopup','$timeout'
     return service;
 }]);
 
-services.service( 'Register', [ '$rootScope', '$http','Ds','$ionicPopup','$timeout',function( $rootScope,$http,Ds,$ionicPopup,$timeout ) {
+services.service( 'Register', [ '$rootScope', '$http','Ds','$ionicPopup',function( $rootScope,$http,Ds,$ionicPopup) {
     var service = {
         state:{},
         _register:function(person_r){
             $http.get(API2.url('register?username='+person_r.username+'&password='+person_r.password_one+'&mobile='+person_r.phone))
                 .success(function(data) {
                     if(data.code == 0){
-                    Ds.set("user",data);
-                    service.state = 1;
+                        Ds.set("user",data);
+                        service.state = 1;
+                        $rootScope.$broadcast( 'person.register.success' );
                     }else{
-                        var alertPopup = $ionicPopup.alert({
-                            title:'注册失败，用户名已存在!',
-                            okType:'button-balanced',okText:'确定'
-                        });
-                        $timeout(function() {
-                            alertPopup.close(); //close the popup after 1 seconds for some reason
-                        }, 1500);
                         service.state = -1;
+                        $rootScope.$broadcast( 'person.register.fail' );
                     }
-                    $rootScope.$broadcast( 'person.register.success' );
+
                 });
         },
         getCode: function (person_r) {
@@ -92,10 +87,7 @@ services.service( 'Register', [ '$rootScope', '$http','Ds','$ionicPopup','$timeo
                         Ds.set('LoginCode',data.random)
                         $rootScope.$broadcast('getCode.success');
                     }else{
-                        var alertPopup = $ionicPopup.alert({
-                            title:'该手机号已注册过!',
-                            okType:'button-balanced',okText:'确定'
-                        });
+                        $rootScope.$broadcast('getCode.fail');
                     }
                 })
         }
@@ -330,21 +322,13 @@ services.service( 'Address', [ '$rootScope', '$http','$ionicPopup','$timeout',fu
                 });
         },
 
-        address_modify:function(address,userId,place,id){
+        address_modify:function(address,userId){
             $http.get(API.url('address/update?' +
             'userid='+userId+'&username='+encodeURI(encodeURI(address.username))+'&mobile='
-            +address.mobile+'&zipcode=225000'+'&address='+encodeURI(encodeURI(place))+'&tcd='+id))
+            +address.mobile+'&zipcode=225000'+'&address='+encodeURI(encodeURI(address.address))+'&tcd='+address.tcd+'&id='+address.id))
                 .success(function(data) {
-                    alert(data.code)
                     if(data.code == 0){
                         service.state = 1;
-                        //var alertPopup = $ionicPopup.alert({
-                        //    title:'修改成功!',
-                        //    okType:'button-balanced',okText:'确定'
-                        //});
-                        //$timeout(function() {
-                        //    alertPopup.close(); //close the popup after 1 seconds for some reason
-                        //}, 1000);
                         $rootScope.$broadcast( 'address.modify' );
                     }else{
                         var alertPopup = $ionicPopup.alert({
@@ -413,7 +397,6 @@ services.service( 'Order', [ '$rootScope', '$http','$ionicPopup','$timeout',func
             }else{
                 payway = 'alipay';
             }
-
             $http.get(API.url('addOrder?' +
             'userid='+userId+'&pro_id='+pro_id+'&user_name='+encodeURI(addressList.username)+'&user_msisdn='+
             addressList.mobile+'&user_zipcode=225000&user_addr='+encodeURI(addressList.address)+'&pro_cnt='+pro_cnt+

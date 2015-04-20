@@ -225,3 +225,5 @@ services.service( 'Search', [ '$rootScope','$filter','proxy',function( $rootScop
   }
   return service;
 }]);
+
+
