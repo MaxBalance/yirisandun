@@ -2,7 +2,7 @@ services.service( 'Login', [ '$rootScope', '$http','Ds','$ionicPopup','$timeout'
     var service = {
         state:{},
         login:function(username,password){
-            $http.get(API2.url('login?username='+username+'&password='+password))
+            $http.get(API2.url('login?username='+encodeURI(encodeURI(username))+'&password='+encodeURI(encodeURI(password))))
                 .success(function(data) {
                     if(data.code == 0){
                         Ds.set("user",data);
@@ -294,10 +294,10 @@ services.service( 'Address', [ '$rootScope', '$http','$ionicPopup','$timeout',fu
                 });
         },
 
-        address_add:function(address,userId,place,id){
+        address_add:function(address,userId){
             $http.get(API.url('address/insert?' +
             'userid='+userId+'&username='+encodeURI(encodeURI(address.username))+'&mobile='
-            +address.mobile+'&zipcode=225000'+'&address='+encodeURI(encodeURI(place))+'&tcd='+id))
+            +address.mobile+'&zipcode=225000'+'&address='+encodeURI(encodeURI(address.address))+'&tcd='+address.tcd))
                 .success(function(data) {
                     if(data.code == 0){
                         service.state = 1;
@@ -376,9 +376,9 @@ services.service( 'Address', [ '$rootScope', '$http','$ionicPopup','$timeout',fu
     return service;
 }]);
 
-services.service( 'Order', [ '$rootScope', '$http','$ionicPopup','$timeout',function( $rootScope,$http,$ionicPopup,$timeout) {
+services.service( 'Order', [ '$rootScope', '$http','$ionicPopup','$timeout','$filter',function( $rootScope,$http,$ionicPopup,$timeout,$filter){
     var service = {
-        orderList : [],orderList1 : [],orderList2 : [],orderList3 : [],
+        orderList : [],orderList1 : [],orderList2 : [],orderList3 : [],orderDetail:[],
         orderInfo : {},
         state : {},
         submit_order:function(productList,addressList,userId,payway,order_type){
@@ -418,20 +418,6 @@ services.service( 'Order', [ '$rootScope', '$http','$ionicPopup','$timeout',func
                     $rootScope.$broadcast( 'order.submit' );
                 });
         },
-
-        //query_order:function(userId){
-        //    $http.get(API.url('myOrderGroup?userid='+userId))
-        //        .success(function(data) {
-        //            if(data.code == 0){
-        //                service.state = 1;
-        //                service.orderList = data.content;
-        //            }else{
-        //                alert("接口异常!");
-        //                service.state = -1;
-        //            }
-        //            $rootScope.$broadcast( 'order.query' );
-        //        });
-        //},
         query_order:function(userId){
             $http.get(API.url('myOrderGroup?userid='+userId+'&state=1'))
                 .success(function(data) {
@@ -495,6 +481,24 @@ services.service( 'Order', [ '$rootScope', '$http','$ionicPopup','$timeout',func
                 });
         },
 
+        query_detail:function(orderid){
+            $http.get(API.url('myOrder?orderid='+orderid))
+                .success(function(data) {
+                    if(data.code == 0){
+                        service.state = 1;
+                        service.orderDetail = data.content;
+                        $filter('imgFilter')(service.orderDetail);
+                    }else{
+                        var alertPopup = $ionicPopup.alert({
+                            title:'接口异常!',
+                            okType:'button-balanced',okText:'确定'
+                        });
+                        service.state = -1;
+                    }
+                    $rootScope.$broadcast( 'order.detail' );
+                });
+        },
+
         cancel_order:function(userId,order){
             $http.get(API.url('delOrder?userid='+userId+'&orderid='+order.orderid))
                 .success(function(data) {
@@ -530,7 +534,6 @@ services.service( 'Pay', [ '$rootScope', '$http','Ds','$ionicPopup','$timeout',f
         total : {},
         state : {},
         balance_pay:function(orderInfo,userId,pay_amount,pay_kamount,pay_point){
-            alert(orderInfo.orderid+'&fee='+orderInfo.totalmoney+'&userid='+userId+'&pay_way=-1'+'&pay_amount='+pay_amount+'&pay_kamount='+pay_kamount+'&pay_point='+pay_point*100)
             $http.get(API.url('payIOS?orderid='+orderInfo.orderid+'&fee='+orderInfo.totalmoney+'&userid='+userId+'&pay_way=-1'+'&pay_amount='+pay_amount+'&pay_kamount='+pay_kamount+'&pay_point='+pay_point*100))
                 .success(function(data) {
                     if(data.code == 0){

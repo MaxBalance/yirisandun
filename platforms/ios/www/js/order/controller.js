@@ -30,7 +30,6 @@ appControllers
                 $scope.addressLists = Address.addressList;
             });
 
-
             $scope.productList = [];
             if(Ds.has("cart.order")){
                 $scope.productList = Ds.get("cart.order").list;
@@ -70,12 +69,12 @@ appControllers
 
             //添加地址
             $scope._add_address = function (address) {
-                if($scope.address_place == undefined || $scope.address_place == '选择自提点'){
+                if(address.address == undefined || address.address == '选择自提点'){
                     $cordovaToast.showShortCenter('请选择自提点!');
                 }else if(!/^[1][3,4,5,7,8][0-9]{9}$/.test(address.mobile)){
                     $cordovaToast.showShortCenter('请正确填写手机号码!');
                 }else{
-                    Address.address_add(address,userid,$scope.address_place,$scope.address_place_id);
+                    Address.address_add(address,userid);
                 }
             }
 
@@ -105,6 +104,8 @@ appControllers
                 })
             };
 
+            $scope.address_single = {};
+            $scope.address_single.address='选择自提点';
             //修改地址
             $scope.modify_address = function (address) {
                 var userAdd = address;
@@ -127,10 +128,7 @@ appControllers
             //保存修改地址
             $scope._modify_address = function (address) {
                 if(address.address == undefined || address.address == '选择自提点'){
-                    var alertPopup = $ionicPopup.alert({
-                        title:'请选择自提点!',
-                        okType:'button-balanced',okText:'确定'
-                    });
+                    $cordovaToast.showShortCenter('请选择自提点!');
                     return false;
                 }
                 Address.address_modify(address,userid);
@@ -167,12 +165,10 @@ appControllers
                 $scope.modal3.hide();
             }
 
-
-            $scope.address_place='选择自提点';
             //选择自提点
             $scope.choose = function (place) {
-                $scope.address_place = place.title;
-                $scope.address_place_id = place.id;
+                $scope.address_single.address = place.title;
+                $scope.address_single.tcd = place.id;
                 $scope.modal3.hide();
             }
 
@@ -313,6 +309,7 @@ appControllers
             })
 
             var order_type = false;
+            var length = 0;
             //提交订单
             $scope.submit_order = function (productList,addressList) {
                 if(pay_way == ''){
@@ -335,12 +332,14 @@ appControllers
                     if(productList.words == undefined){
                         productList.words = '';
                     }
+                    length = productList.length;
                     Order.submit_order(productList,addressList,userid,pay_way,order_type);
                 }
             }
 
             //提交订单监听
             $scope.$on('order.submit',function(event){
+                $scope.$emit('ChangeCartcnt',length)
                 Ds.remove("cart.order");
                 var orderInfo = Order.orderInfo;
                 if(pay_way == "在线支付"){
@@ -514,6 +513,7 @@ appControllers
             })
 
             $scope.pay_order = function (orders,$event) {
+                $event.stopPropagation();
                 order= orders;
                 var pay_way = $scope.pay_way = '在线支付';
                 user_pay = 0;
@@ -683,7 +683,7 @@ appControllers
             });
 
             //取消订单
-            $scope.cancel_order = function (order) {
+            $scope.cancel_order = function (order,$event) {
                 var confirmPopup = $ionicPopup.confirm({
                     title: '确认取消该订单吗？',
                     okType:'button-balanced',okText:'确定',
@@ -696,12 +696,17 @@ appControllers
                         return false;
                     }
                 });
+                $event.stopPropagation();
             }
 
             $scope.$on('order.cancel', function (event) {
                 Order.query_order(userid);
                 $scope.orderList1 = Order.orderList1;
             })
+
+            $scope.detail_no = function (orderid) {
+                $state.go('orderDetail',{orderid:orderid});
+            }
         }]);
 
 //查询类别订单
@@ -793,6 +798,7 @@ appControllers
             //支付未付款订单--选择支付方式
             var order = {};
             $scope.pay_order = function (orders,$event) {
+                $event.stopPropagation();
                 order= orders;
                 var pay_way = $scope.pay_way = '在线支付';
                 user_pay = 0;
@@ -965,7 +971,8 @@ appControllers
                 }
             });
 
-            $scope.cancel_order = function (order) {
+            $scope.cancel_order = function (order,$event) {
+
                 var confirmPopup = $ionicPopup.confirm({
                     title: '确认取消该订单吗？',
                     okType:'button-balanced',okText:'确定',
@@ -978,7 +985,15 @@ appControllers
                         return false;
                     }
                 });
+
+                //$event.preventDefault();
+                $event.stopPropagation();
             }
+
+            $scope.detail_no = function (orderid) {
+                $state.go('orderDetail',{orderid:orderid});
+            }
+
         }]);
 
 //地址管理控制器
@@ -1008,4 +1023,19 @@ appControllers
             }
         }
     ])
+
+//订单详情
+appControllers
+    .controller('OrderDetailCtrl',['$scope','Order','$stateParams','$state',
+        function ($scope,Order,$stateParams,$state) {
+            Order.query_detail($stateParams.orderid);
+            
+            $scope.$on('order.detail', function () {
+                $scope.orderDetailList = Order.orderDetail;
+            })
+
+            $scope.back = function () {
+                history.back();
+            }
+    }])
 

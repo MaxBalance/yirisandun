@@ -136,7 +136,7 @@ ridunApp.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider
     })
 
     .state('tab.cart', {
-        //cache: false,
+      //cache: false,
       url: '/cart',
       views: {
         'tab-cart': {
@@ -196,14 +196,18 @@ ridunApp.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider
       controller: 'AddressCtrl'
     })
 
+    //订单详情
+      .state('orderDetail', {
+        cache: false,
+        url: '/orderDetail/:orderid',
+        templateUrl: 'templates/order/order_detail.html',
+        controller: 'OrderDetailCtrl'
+      })
   ;
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/home');
 
 });
-
-
-
 
 var appControllers = angular.module('ridun.controllers', []);
 

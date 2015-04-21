@@ -43,20 +43,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.inappbrowser/www/inappbrowser.js",
-        "id": "org.apache.cordova.inappbrowser.inappbrowser",
-        "clobbers": [
-            "window.open"
-        ]
-    },
-    {
-        "file": "plugins/uk.co.whiteoctober.cordova.appversion/www/AppVersionPlugin.js",
-        "id": "uk.co.whiteoctober.cordova.appversion.AppVersionPlugin",
-        "clobbers": [
-            "cordova.getAppVersion"
-        ]
-    },
-    {
         "file": "plugins/nl.x-services.plugins.toast/www/Toast.js",
         "id": "nl.x-services.plugins.toast.Toast",
         "clobbers": [
@@ -66,6 +52,13 @@ module.exports = [
     {
         "file": "plugins/nl.x-services.plugins.toast/test/tests.js",
         "id": "nl.x-services.plugins.toast.tests"
+    },
+    {
+        "file": "plugins/org.apache.cordova.inappbrowser/www/inappbrowser.js",
+        "id": "org.apache.cordova.inappbrowser.inappbrowser",
+        "clobbers": [
+            "window.open"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -76,9 +69,8 @@ module.exports.metadata =
     "org.apache.cordova.device": "0.3.0",
     "biz.yfsoft.share": "1.0",
     "biz.yfsoft.pay": "1.0",
-    "org.apache.cordova.inappbrowser": "0.6.0",
-    "uk.co.whiteoctober.cordova.appversion": "0.1.5",
-    "nl.x-services.plugins.toast": "2.0.4"
+    "nl.x-services.plugins.toast": "2.0.4",
+    "org.apache.cordova.inappbrowser": "0.6.0"
 }
 // BOTTOM OF METADATA
 });

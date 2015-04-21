@@ -205,11 +205,14 @@ appControllers
 //同类推荐
 appControllers
     .controller('SameClassCtrl',
-    [ '$scope', '$ionicLoading','SameClass','$stateParams','$ionicHistory','$state',
-        function($scope,$ionicLoading,SameClass,$stateParams,$ionicHistory,$state){
+    [ '$scope', '$ionicLoading','SameClass','$stateParams','$ionicHistory','$state','Ds','Login',
+        function($scope,$ionicLoading,SameClass,$stateParams,$ionicHistory,$state,Ds,Login){
             $ionicLoading.show({template: '加载中...'});
             $scope.productList = [];
             $scope.$on('sameclass.init',function(event){
+                if(Ds.has('user')){
+                    Login.getCart(Ds.get('user').userid);
+                }
                 $scope.productList = SameClass.productList;
                 $ionicLoading.hide();
             });
@@ -224,7 +227,7 @@ appControllers
         //跳转至商品详情
         $scope.detail = function(product){
             //location.href="#/product/"+product.id;
-            $state('product-detail',{productId:product.id})
+            $state.go('product-detail',{productId:product.id})
         }
 
         //返回
@@ -234,8 +237,23 @@ appControllers
 
         //跳转至购物车
         $scope.to_cart = function () {
-            $state.go('tab.cart');
+            $state.go('product-detail-cart');
         }
+
+        $scope.user = {};
+        if(!$scope.user.cartcnt){
+            $scope.user.cartcnt = 0
+        }
+
+        $scope.$on('cart.add.ok',function () {
+            if(Ds.has('user')){
+                Login.getCart(Ds.get('user').userid);
+            }
+        })
+
+        $scope.$on('person.cart.success',function () {
+            $scope.user = Ds.get('user');
+        })
     }]);
 
 //商品评论

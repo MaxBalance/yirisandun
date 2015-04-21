@@ -12,6 +12,8 @@ appControllers
 
             if(Ds.has("type")){
                 $state.go('tab.cart');
+            }else{
+                $state.go('tab.home');
             }
             Login.query(Ds.get("user").userid);
         });
@@ -38,9 +40,9 @@ appControllers
             Login.query(Ds.get("user").userid);
         }
 
-        $scope.$on('person.query.success', function () {
-            $scope.user = Ds.get("user");
-        })
+        //$scope.$on('person.query.success', function () {
+        //    $scope.user = Ds.get("user");
+        //})
 
         //登录
         $scope.login = function(person){
@@ -56,13 +58,13 @@ appControllers
 
         //登出
         $scope.logout = function () {
-         //Ds.clear();
-         //$state.go('tab.home');
-     
-            YFShare.logout(function () {
-                Ds.clear();
-                location.href="#/tab/home";
-            },['qq']);
+         Ds.clear();
+         $state.go('tab.home');
+
+        //YFShare.logout(function () {
+        //    Ds.clear();
+        //    location.href="#/tab/home";
+        //},['qq']);
         };
 
         //用户注册广播(成功)
@@ -78,14 +80,6 @@ appControllers
 
         //用户注册广播(失败)
         $scope.$on('person.register.fail',function(event){
-            //var alertPopup = $ionicPopup.alert({
-            //    title:'注册失败，请按规格填写用户名与密码!',
-            //    okType:'button-balanced',okText:'确定'
-            //});
-            //$timeout(function() {
-            //    alertPopup.close(); //close the popup after 1 seconds for some reason
-            //}, 1500);
-
             $cordovaToast.showShortCenter('注册失败,用户名已存在');
         });
 
@@ -105,7 +99,6 @@ appControllers
                 $scope.modal2.show();
             });
         };
-            
 
         //注册用户
         $scope._register = function (person_r) {
@@ -113,16 +106,15 @@ appControllers
                 $cordovaToast.showShortCenter('两次输入密码不一致!');
                 return false;
             }
-            var reg = /^[_0-9a-zA-Z]{0,20}$/
-            if (!reg.test(person_r.username) || person_r.username.length <= 5 || person_r.username.length >=20 || person_r.username=='' )
-            {
-                $rootScope.$broadcast( 'person.register.fail' );
+            var reg = /^[_0-9a-zA-Z]{0,20}$/;
+            if (!reg.test(person_r.username) || person_r.username.length < 5 || person_r.username.length >=20 || person_r.username=='' ){
+                $cordovaToast.showShortCenter('请输入(5-20位,由a-z\0-9\_)用户名');
                 return false;
             }
 
             if (!reg.test(person_r.password_one) || person_r.password_one.length < 6 || person_r.password_one =='')
             {
-                $rootScope.$broadcast( 'person.register.fail' );
+                $cordovaToast.showShortCenter('请输入(6-20位,由a-z\0-9\_)密码');
                 return false;
             }
             if (!/^1\d{10}$/.test(person_r.phone)) {

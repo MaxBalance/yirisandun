@@ -8,14 +8,14 @@
     <ion-content id="order-list">
         <ion-list>
             <ion-item class="item-icon-right " ng-repeat="order in orderList"
-                      type="item-text-wrap" ng-click="detail_no()" ng-show="orderList.length != 0">
+                      type="item-text-wrap" ng-click="detail_no(order.orderid)" ng-show="orderList.length != 0">
                 <p style="font-size: 12px;"><b>订单编号：</b>{{order.orderid}}</p>
                 <p style="font-size: 12px;"><b>订单总额：</b>{{order.totalmoney}}</p>
                 <p style="font-size: 12px;"><b>下单时间：</b>{{order.createdate}}</p>
                 <p style="font-size: 12px;"><b>订单商品：</b>{{order.info}}</p>
                 <i ng-show="order.ispay == 0" class="icon ion-ios-checkmark-outline" style="height: 50%; "ng-click='pay_order(order,$event)'>
                     <p style="font-size: 13px;">支付订单</p></i>
-                <i ng-show="order.ispay == 0" class="icon ion-ios-minus-outline" style="height: 50px;margin:60px 0 0 0;" ng-click='cancel_order(order)'>
+                <i ng-show="order.ispay == 0" class="icon ion-ios-minus-outline" style="height: 50px;margin:60px 0 0 0;" ng-click='cancel_order(order,$event)'>
                     <p style="font-size: 13px;">取消订单</p></i>
             </ion-item>
             <ion-item ng-show="orderList.length == 0" type="item-text-wrap">

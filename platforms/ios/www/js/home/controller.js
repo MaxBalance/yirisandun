@@ -25,6 +25,7 @@ appControllers
                 $scope.line4_2 = Index.data.line4[1];
                 $scope.line4_3 = Index.data.line4[2];
 
+                $scope.$emit('ChangeCartcnt',0);
                 //开启倒计时
                 try{
                     countdown.start();
@@ -299,6 +300,8 @@ appControllers
             var userLogined = $scope.user = {};
             if(Ds.has('user')){
                 Login.getCart(Ds.get('user').userid);
+            }else{
+                $scope.user.cartcnt = '';
             }
 
             $scope.$on('person.cart.success',function () {
@@ -310,8 +313,12 @@ appControllers
             })
 
             $scope.$on('CartcntChanged', function (event,cnt) {
-                $scope.user = Ds.get('user');
-                $scope.user.cartcnt = Ds.get('user').cartcnt - cnt;
+                if(Ds.has('user')){
+                    $scope.user = Ds.get('user');
+                    $scope.user.cartcnt = Ds.get('user').cartcnt - cnt;
+                }else{
+                    $scope.user.cartcnt = 0;
+                }
             })
         }]);
 

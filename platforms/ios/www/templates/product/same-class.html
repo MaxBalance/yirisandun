@@ -3,9 +3,10 @@
         <button ng-click="sameclass_back();" class="button back-button buttons  button-clear button-dark header-item">
             <i class="icon ion-ios-arrow-back"></i>
             <span class="back-text">返回</span></button>
-        <a class="title">同类推荐</a>
-        <button class="button button-clear " ng-click="to_cart();">
-        <i class="icon ion-ios-cart-outline" ></i></button>
+        <a class="title" style="margin-left: 6%; left: 22% !important; right: 22% !important;">同类推荐</a>
+        <button class="button button-clear icon ion-ios-cart-outline" ng-click="to_cart();">
+            <span class="badge badge-balanced header-badge" style="top: -7px !important;left:-11px !important;">{{user.cartcnt}}</span>
+        </button>
     </ion-header-bar>
     <ion-content id="product-list">
         <ion-list>
@@ -13,7 +14,8 @@
                       type="item-text-wrap" ng-click="detail(product)">
                 <img class="img" ng-src="{{product.pic}}">
                 <h2>{{product.title}}</h2>
-                <p class="price"><b>￥22</b><span>$22</span></p>
+                <p class="price"><b ng-show="product.limited_flag==0">￥{{product.uprice}}</b>
+                    <b ng-show="product.limited_flag==1">￥{{product.aprice}}</b><span>{{product.mprice}}</span></p>
                 <p>产地：扬州</p>
                 <i class="icon ion-ios-cart-outline" ng-click='addToCart(product,$event)'></i>
             </ion-item>
