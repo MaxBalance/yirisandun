@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>50E98991-9506-4522-A21A-72C3BDFFD31E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>一日三顿</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>834C1E7F0AF1FC4AED93823FA46622FB8D5C944B</key>
+		<string>https://github.com/MaxBalance/yirisandun.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>platforms/ios/一日三顿.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>834C1E7F0AF1FC4AED93823FA46622FB8D5C944B</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/MaxBalance/yirisandun.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>834C1E7F0AF1FC4AED93823FA46622FB8D5C944B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>834C1E7F0AF1FC4AED93823FA46622FB8D5C944B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>%E4%B8%80%E6%97%A5%E4%B8%89%E9%A1%BF-github</string>
+		</dict>
+	</array>
+</dict>
+</plist>

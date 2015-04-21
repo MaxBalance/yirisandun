@@ -1,0 +1,47 @@
+<ion-view view-title="购物车" id="cart">
+  <ion-header-bar align-title="center" class="bar-stable">
+    <button ng-click="productCart_back();" class="button back-button buttons  button-clear button-dark header-item">
+      <i class="icon ion-ios-arrow-left"></i>
+      <span class="back-text">返回</span></button>
+    <a class="title">购物车</a>
+  </ion-header-bar>
+  <ion-content style="margin-bottom: 40px;">
+    <ion-item ng-if="goods.length == 0" type="item-text-wrap">
+      <h2 class="text-center">您的购物车是空的</h2>
+    </ion-item>
+    <ion-list>
+      <ion-item class="item-remove item-avatar item-checkbox"
+                ng-repeat="good in goods" type="item-text-wrap" ng-hide="good.hide">
+        <label class="checkbox checkbox-balanced">
+          <input type="checkbox" ng-model="good.checked" ng-click="toggle(good)">
+        </label>
+        <a href="#/product/{{good.id}}"><img ng-src="{{good.pic}}"></a>
+        <div class="content">
+          <h2>{{good.title}}</h2>
+          <div class="price">
+            <p  class="uprice" ng-show="good.limited_flag==0">￥{{good.uprice}}</p>
+            <p  class="uprice" ng-show="good.limited_flag==1">￥{{good.aprice}}</p>
+            <p class="mprice">￥{{good.mprice}}</p>
+          </div>
+          <div class="counter">
+            <button class="button button-small" ng-click="sub(good)">-</button>
+            <span class="count">{{good.pro_cnt}}</span>
+            <button class="button button-small" ng-click="plus(good)">+</button>
+          </div>
+        </div>
+
+        <ion-option-button class="button-assertive" ng-click="remove($index)">
+          删除
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <div id="order" ng-hide="hideOrder" class="bar bar-positive  bar-footer bar-subfooter">
+    <label class="checkbox checkbox-balanced" style="float: left">
+      <input type="checkbox" ng-model="allChecked" ng-click="toggleAll()" style="margin-top: -4px;">
+    </label>
+
+    <span style="margin-top: 100px; ">合计金额：<b>{{amount}}</b></span>
+    <button class="button button-assertive"  ng-disabled="enableDeal" id="deal" ng-click="deal($event)">结算</button>
+  </div>
+</ion-view>
