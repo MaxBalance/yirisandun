@@ -23,10 +23,16 @@ ridunApp.filter('imgFilter',function(){
     }
 });
 
-ridunApp.filter('errorHttp',function(){
+ridunApp.filter('errorHttp',function($ionicPopup,$timeout){
     return function(data){
         console.log(data);
-        alert('数据连接异常!');
+        var alertPopup = $ionicPopup.alert({
+            title:'数据连接异常!',
+            okType:'button-balanced',okText:'确定'
+        });
+        $timeout(function() {
+            alertPopup.close(); //close the popup after 1 seconds for some reason
+        }, 1000);
         return false;
     }
 });

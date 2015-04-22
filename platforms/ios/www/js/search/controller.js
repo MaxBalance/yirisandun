@@ -1,10 +1,12 @@
 appControllers
 .controller('SearchCtrl',
-    [ '$templateCache','$rootScope','$scope', '$ionicLoading','$ionicModal','$stateParams','$ionicHistory','$state','Search','Cart','Ds','$ionicPopup','$ionicTabsDelegate','$timeout','Login','$cordovaToast',
-        function($templateCache,$rootScope,$scope,$ionicLoading,$ionicModal,$stateParams,$ionicHistory,$state,Search,Cart,Ds,$ionicPopup,$ionicTabsDelegate,$timeout,Login,$cordovaToast){
+    [ '$templateCache','$ionicNavViewDelegate','$rootScope','$scope', '$ionicLoading','$ionicModal','$stateParams','$ionicHistory','$state','Search','Cart','Ds','$ionicPopup','$ionicTabsDelegate','$timeout','Login','$cordovaToast',
+        function($templateCache,$ionicNavViewDelegate,$rootScope,$scope,$ionicLoading,$ionicModal,$stateParams,$ionicHistory,$state,Search,Cart,Ds,$ionicPopup,$ionicTabsDelegate,$timeout,Login,$cordovaToast){
 
             $scope.back = function(){
-                //history.back();
+                    ////history.back();
+                    //$ionicHistory.clearCache();
+                    //$ionicHistory.clearHistory();
                 $state.go('tab.home');
             }
             $scope.listPanel = {height:'370px'};
@@ -122,19 +124,10 @@ appControllers
             }
 
             //搜索功能
-            //$scope.searchKeyPress = function($event){
-            //    if($event.keyCode == 13){
-            //        $state.go('.',{keyword:$scope.search.content});
-            //        $stateParams.keyword = $scope.search.content;
-            //        init();
-            //    }
-            //}
-
-            //搜索功能
             $scope.searchKeyPress = function($event){
                 if($event.keyCode == 13){
                     if($scope.search.content ==''){
-                        $cordovaToast.showShortTop('您尚未输入任何信息!');
+                        $cordovaToast.showShortCenter('您尚未输入任何信息!');
                         return false;
                     }
 
@@ -175,13 +168,14 @@ appControllers
                 $cordovaToast.showShortBottom('恭喜，添加购物车成功!');
             });
 
-            $rootScope.$on('$stateChangeStart',
+            $scope.$on('$stateChangeSuccess',
                 function(event, toState, toParams, fromState, fromParams){
-                    if(toState.name=='search'&& fromState.name =='tab.home'){
+                    if(toState.name=='search' && fromState.name =='tab.home'){
                         $stateParams.keyword = toParams.keyword;
                         init();
+
                     }
-                    if(toState.name=='search'&& fromState.name =='tab.category'){
+                    if(toState.name=='search' && fromState.name =='tab.category'){
                         $stateParams.keyword = toParams.keyword;
                         init();
                     }

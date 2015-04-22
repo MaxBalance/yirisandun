@@ -339,7 +339,9 @@ appControllers
 
             //提交订单监听
             $scope.$on('order.submit',function(event){
-                $scope.$emit('ChangeCartcnt',length)
+                if(Ds.has('fWhere') && Ds.get('fWhere')=='cart'){
+                    $scope.$emit('ChangeCartcnt',length)
+                }
                 Ds.remove("cart.order");
                 var orderInfo = Order.orderInfo;
                 if(pay_way == "在线支付"){
@@ -411,6 +413,13 @@ appControllers
                 //$ionicHistory.goBack();
             }
 
+            $scope.$on('$stateChangeSuccess', function ($event,toState, toParams, fromState, fromParams) {
+                if(fromState.name == 'product-detail'){
+                    Ds.set('fWhere','detail');
+                }else if(fromState.name == 'tab.cart' || fromState.name == 'product-detail-cart'){
+                    Ds.set('fWhere','cart');
+                }
+            })
 }]);
 
 //查询所有订单
@@ -707,6 +716,10 @@ appControllers
             $scope.detail_no = function (orderid) {
                 $state.go('orderDetail',{orderid:orderid});
             }
+            
+            //$scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+            //    alert(toState.name)
+            //})
         }]);
 
 //查询类别订单

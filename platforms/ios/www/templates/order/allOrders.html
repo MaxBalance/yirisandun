@@ -1,7 +1,7 @@
 <ion-tabs class="tabs-positive tabs-top tabs-background-balanced">
 
     <ion-tab title="未付款">
-        <ion-content class="has-top-bar" ng-style="listPanel">
+        <ion-content style="top:110px;max-height:300px;" ng-style="listPanel">
                 <ion-list>
                     <ion-item class="item-icon-right " ng-repeat="order in orderList1"
                               type="item-text-wrap" ng-click="detail_no(order.orderid)" ng-show="orderList1.length != 0">
@@ -22,7 +22,7 @@
     </ion-tab>
 
     <ion-tab title="已发货">
-        <ion-content class="has-top-bar" ng-style="listPanel">
+        <ion-content style="top:110px;max-height:300px;" ng-style="listPanel">
                 <ion-list>
                     <ion-item class="item-icon-right " ng-repeat="order in orderList2"
                               type="item-text-wrap" ng-click="detail_no(order.orderid)" ng-show="orderList2.length != 0">
@@ -43,7 +43,7 @@
     </ion-tab>
 
     <ion-tab title="已完成">
-        <ion-content class="has-top-bar" ng-style="listPanel">
+        <ion-content style="top:110px;max-height:300px;" ng-style="listPanel">
                 <ion-list>
                     <ion-item class="item-icon-right " ng-repeat="order in orderList3"
                               type="item-text-wrap" ng-click="detail_no(order.orderid)" ng-show="orderList3.length != 0">
@@ -69,7 +69,6 @@
         <button class="button button-clear" ng-click="orderList_back()"><i class="icon ion-ios-arrow-left"></i> 返回</button>
         <a class="title">我的订单</a>
     </ion-header-bar>
-    <ion-content></ion-content>
 </ion-view>
 
 <script id="payway.html" type="text/ng-template">

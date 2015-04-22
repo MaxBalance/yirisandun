@@ -183,9 +183,14 @@ appControllers
 //图文详情
 appControllers
     .controller('PicDetailCtrl',
-    [ '$scope', '$ionicLoading','PicDetail','$stateParams','$ionicHistory',
-        function($scope,$ionicLoading,PicDetail,$stateParams,$ionicHistory){
+    [ '$scope', '$ionicLoading','PicDetail','$stateParams','$ionicHistory','$timeout',
+        function($scope,$ionicLoading,PicDetail,$stateParams,$ionicHistory,$timeout){
             $ionicLoading.show({template: '加载中...'});
+
+            $timeout(function () {
+                alert(1)
+                $ionicLoading.hide();
+            }, 1);
 
             PicDetail.picDetail($stateParams.picId);
 

@@ -126,6 +126,17 @@ a{text-decoration: none;color:inherit;}
 .ridun-view .has-tabs-top{top:0px;}
 #product-list-tabs.tabs-top>.tabs{top:67px;}
 #product-list .has-top-bar{top:110px;max-height:300px;}
+#product-list .tab-item{
+    font-size: 16px!important;
+    color:#33cd5f!important;
+    background-color: #ffffff;
+    border: #33cd5f 1px solid;
+    opacity: 1;
+}
+#product-list .tab-item-active{
+    color:#ffffff!important;
+    background-color: #33cd5f;
+}
 
 #category h2{height:30px;line-height: 30px; color:#28a54c;}
 #category h3{height:24px;line-height: 24px;color:#333;}

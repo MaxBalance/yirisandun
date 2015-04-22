@@ -24,7 +24,7 @@ ridunApp.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
-  $ionicConfigProvider.views.swipeBackEnabled('false');
+  $ionicConfigProvider.views.swipeBackEnabled(false);
 
   $stateProvider
   // setup an abstract state for the tabs directive
@@ -36,6 +36,7 @@ ridunApp.config(function($stateProvider, $urlRouterProvider,$ionicConfigProvider
     templateUrl: 'templates/tabs.html',
     controller: 'HomeTabsCtrl'
   })
+
   .state('tab.home', {
     cache:false,
     url: '/home',
