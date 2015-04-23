@@ -172,12 +172,10 @@ appControllers
                 function(event, toState, toParams, fromState, fromParams){
                     if(toState.name=='search' && fromState.name =='tab.home'){
                         $stateParams.keyword = toParams.keyword;
-                        init();
 
                     }
                     if(toState.name=='search' && fromState.name =='tab.category'){
                         $stateParams.keyword = toParams.keyword;
-                        init();
                     }
                 }
             );

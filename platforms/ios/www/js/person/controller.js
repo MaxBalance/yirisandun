@@ -40,9 +40,9 @@ appControllers
             Login.query(Ds.get("user").userid);
         }
 
-        //$scope.$on('person.query.success', function () {
-        //    $scope.user = Ds.get("user");
-        //})
+        $scope.$on('person.query.success', function () {
+            $scope.user = Ds.get("user");
+        })
 
         //登录
         $scope.login = function(person){
@@ -208,7 +208,12 @@ appControllers
         $scope.countNum = 60;
         var num = '';
         $scope.getCount = function (person_r) {
-            if (!/^1\d{10}$/.test(person_r.phone)) {
+            try{
+                if (person_r.phone == undefined || !/^1\d{10}$/.test(person_r.phone)) {
+                    $cordovaToast.showShortCenter('请填写正确的手机号!');
+                    return false;
+                }
+            }catch (e){
                 $cordovaToast.showShortCenter('请填写正确的手机号!');
                 return false;
             }
