@@ -188,7 +188,6 @@ appControllers
             $ionicLoading.show({template: '加载中...'});
 
             $timeout(function () {
-                alert(1)
                 $ionicLoading.hide();
             }, 1);
 
@@ -210,8 +209,8 @@ appControllers
 //同类推荐
 appControllers
     .controller('SameClassCtrl',
-    [ '$scope', '$ionicLoading','SameClass','$stateParams','$ionicHistory','$state','Ds','Login',
-        function($scope,$ionicLoading,SameClass,$stateParams,$ionicHistory,$state,Ds,Login){
+    [ '$scope', '$ionicLoading','SameClass','$stateParams','$ionicHistory','$state','Ds','Login','$cordovaToast','Cart',
+        function($scope,$ionicLoading,SameClass,$stateParams,$ionicHistory,$state,Ds,Login,$cordovaToast,Cart){
             $ionicLoading.show({template: '加载中...'});
             $scope.productList = [];
             $scope.$on('sameclass.init',function(event){
@@ -224,7 +223,14 @@ appControllers
             SameClass.sameclass($stateParams.classId);
 
             $scope.addToCart = function(product,$event){
-                alert(product.id);
+                if(Ds.has('user')){
+                    var user = Ds.get('user');
+                    Cart.add(product.id,product.cnt+1,user.userid);
+                }else{
+                    $cordovaToast.showShortBottom('请先登录!').then(function (success) {
+                        $state.go('tab.person');
+                    })
+                }
                 $event.stopPropagation();
                 return false;
             };
@@ -254,6 +260,7 @@ appControllers
             if(Ds.has('user')){
                 Login.getCart(Ds.get('user').userid);
             }
+            $cordovaToast.showShortBottom('恭喜,添加购物车成功!');
         })
 
         $scope.$on('person.cart.success',function () {
@@ -301,7 +308,7 @@ appControllers
             }
 
             $scope.$on('cart.add.ok',function($event){
-                $cordovaToast.showShortBottom('恭喜,添加购物车成功!')
+                $cordovaToast.showShortBottom('恭喜,添加购物车成功!');
             });
 
             $scope.addToCart = function(product,$event){
@@ -332,7 +339,9 @@ appControllers
             })
 
             $scope.user = {};
-            Login.getCart(Ds.get('user').userid);
+            if(Ds.has()){
+                Login.getCart(Ds.get('user').userid);
+            }
 
             $scope.$on('person.cart.success',function () {
                 $scope.user = Ds.get('user');

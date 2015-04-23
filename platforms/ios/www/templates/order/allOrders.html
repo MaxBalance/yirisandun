@@ -1,8 +1,8 @@
 <ion-tabs class="tabs-positive tabs-top tabs-background-balanced">
 
     <ion-tab title="未付款">
-        <ion-content style="top:110px;max-height:300px;" ng-style="listPanel">
-                <ion-list>
+        <ion-content class="has-top-bar height_100">
+                <ion-list >
                     <ion-item class="item-icon-right " ng-repeat="order in orderList1"
                               type="item-text-wrap" ng-click="detail_no(order.orderid)" ng-show="orderList1.length != 0">
                         <p style="font-size: 12px;"><b>订单编号：</b>{{order.orderid}}</p>
@@ -22,7 +22,7 @@
     </ion-tab>
 
     <ion-tab title="已发货">
-        <ion-content style="top:110px;max-height:300px;" ng-style="listPanel">
+        <ion-content class="has-top-bar height_100">
                 <ion-list>
                     <ion-item class="item-icon-right " ng-repeat="order in orderList2"
                               type="item-text-wrap" ng-click="detail_no(order.orderid)" ng-show="orderList2.length != 0">
@@ -43,7 +43,7 @@
     </ion-tab>
 
     <ion-tab title="已完成">
-        <ion-content style="top:110px;max-height:300px;" ng-style="listPanel">
+        <ion-content class="has-top-bar height_100">
                 <ion-list>
                     <ion-item class="item-icon-right " ng-repeat="order in orderList3"
                               type="item-text-wrap" ng-click="detail_no(order.orderid)" ng-show="orderList3.length != 0">

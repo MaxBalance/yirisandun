@@ -431,7 +431,7 @@ services.service( 'Order', [ '$rootScope', '$http','$ionicPopup','$timeout','$fi
                         });
                         service.state = -1;
                     }
-                    $rootScope.$broadcast( 'order.query' );
+                    $rootScope.$broadcast( 'order.query1' );
                 });
             $http.get(API.url('myOrderGroup?userid='+userId+'&state=2'))
                 .success(function(data) {
@@ -446,6 +446,7 @@ services.service( 'Order', [ '$rootScope', '$http','$ionicPopup','$timeout','$fi
                         });
                         service.state = -1;
                     }
+                    $rootScope.$broadcast( 'order.query2' );
                 });
             $http.get(API.url('myOrderGroup?userid='+userId+'&state=3'))
                 .success(function(data) {
@@ -460,7 +461,9 @@ services.service( 'Order', [ '$rootScope', '$http','$ionicPopup','$timeout','$fi
                         });
                         service.state = -1;
                     }
+                    $rootScope.$broadcast( 'order.query3' );
                 });
+
         },
 
         query_order_state:function(userId,state){

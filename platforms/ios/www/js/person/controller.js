@@ -40,9 +40,9 @@ appControllers
             Login.query(Ds.get("user").userid);
         }
 
-        $scope.$on('person.query.success', function () {
-            $scope.user = Ds.get("user");
-        })
+        //$scope.$on('person.query.success', function () {
+        //    $scope.user = Ds.get("user");
+        //})
 
         //登录
         $scope.login = function(person){

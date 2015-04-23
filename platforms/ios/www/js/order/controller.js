@@ -358,7 +358,7 @@ appControllers
                                     $state.go('state_order',{state:2});
                                 }, function () {
                                     $state.go('state_order',{state:1});
-                                },[orderInfo.orderid,'一日三顿','一日三顿',0.01]);
+                                },[orderInfo.orderid,'一日三顿','一日三顿',orderInfo.totalmoney]);
                             } else {
                                 $state.go('all_order');
                             }
@@ -433,10 +433,13 @@ appControllers
             Order.query_order(userid);
 
             //查询订单监听
-            $scope.$on('order.query', function (event) {
-                $ionicLoading.hide();
+            $scope.$on('order.query1', function (event) {
                 $scope.orderList1 = Order.orderList1;
+            });
+            $scope.$on('order.query2', function (event) {
                 $scope.orderList2 = Order.orderList2;
+            });
+            $scope.$on('order.query3', function (event) {
                 $scope.orderList3 = Order.orderList3;
             })
 
@@ -598,7 +601,7 @@ appControllers
                                     function(){
                                         $state.go('state_order',{state:1});
                                         //order.totalmoney
-                                    },[order.orderid,'一日三顿','一日三顿',0.01]);
+                                    },[order.orderid,'一日三顿','一日三顿',order.totalmoney]);
                             } else {
                                 $state.go('state_order',{state:1});
                             }
@@ -891,7 +894,7 @@ appControllers
                                         function(){
                                             $state.go('state_order',{state:1});
                                             //order.totalmoney
-                                        },[order.orderid,'一日三顿','一日三顿',0.01]);
+                                        },[order.orderid,'一日三顿','一日三顿',order.totalmoney]);
                                 } else {
                                     $state.go('state_order',{state:1});
                                 }

@@ -1,13 +1,11 @@
 appControllers
-.controller('CartCtrl',[ '$rootScope','$scope', '$ionicLoading','$ionicModal','$state','Cart','Ds',
-    function($rootScope,$scope,$ionicLoading,$ionicModal,$state,Cart,Ds){
-
+.controller('CartCtrl',[ '$rootScope','$scope', '$ionicLoading','$ionicModal','$state','Cart','Ds','Login','$ionicHistory',
+    function($rootScope,$scope,$ionicLoading,$ionicModal,$state,Cart,Ds,Login,$ionicHistory){
 
         var init = function(){
             var isLogin = Ds.has('user');
             if(!isLogin){
                 Ds.set("type","tab.cart");
-                //location.href="#/tab/person";
                 $state.go('tab.person');
                 return;
             }
@@ -20,6 +18,10 @@ appControllers
             Cart.query(Ds.get('user').userid);
 
             $scope.enableDeal = true;
+
+            total = 0;
+            $scope.allChecked = false;
+            $scope.$emit('ChangeCartcnt',0);
         };
 
         init();
@@ -41,7 +43,11 @@ appControllers
             if($scope.allChecked){
                 total = 0;
                 angular.forEach($scope.goods, function (data) {
-                    tempAmount = parseFloat((data.uprice*data.pro_cnt).toFixed(2));
+                    if(data.limited_flag == 1){
+                        tempAmount = parseFloat((data.aprice*data.pro_cnt).toFixed(2));
+                    }else{
+                        tempAmount = parseFloat((data.uprice*data.pro_cnt).toFixed(2));
+                    }
                     total += tempAmount;
                     data.checked = true;
                     $scope.enableDeal = false;
@@ -63,20 +69,15 @@ appControllers
             var cnt = good.pro_cnt;
             if(cnt==1){
             //    //删除
-            //
             //    var i = $scope.goods.indexOf(good);
             //    $scope.goods.splice(i,1);
-            //
-            //
                 return;
             }
             good.pro_cnt = cnt - 1;
-            //asynCart();
         };
 
         function asynCart(){
-
-            console.log($scope.goods.length);
+            //console.log($scope.goods.length);
             var len = $scope.goods.length;
             var shopid = '';
             var shopnum = '';
@@ -102,23 +103,15 @@ appControllers
             if(good.checked || $scope.allChecked) return;
             var cnt = good.pro_cnt;
             good.pro_cnt = cnt + 1;
-            //asynCart();
         };
-
-        $scope.remove = function(index){
-            var good = $scope.goods[index];
-            if(good.checked) return;
-            try{
-                $scope.goods.splice(index,1);
-            }catch(e){
-                console.log(e);
-            }
-        };
-
 
         var flag = false;
         $scope.toggle = function(good){
-            var tempAmount = parseFloat(good.uprice*good.pro_cnt);
+            if(good.limited_flag == 1){
+                tempAmount = parseFloat((good.aprice*good.pro_cnt).toFixed(2));
+            }else{
+                tempAmount = parseFloat((good.uprice*good.pro_cnt).toFixed(2));
+            }
             tempAmount = parseFloat(parseFloat(tempAmount.toFixed(2)));
 
             if(good.checked){
@@ -162,7 +155,6 @@ appControllers
 
         $scope.deal = function($event){
 
-            //alert();
             //1.将需要生成订单的物品列表存放到DS中
             //将需要提交的生成单独的列表
             var orderList = [];
@@ -178,16 +170,27 @@ appControllers
             $state.go('cart_order');
         };
 
-        //$scope.pay = function(){
-        //    YFPay.alipay(['2014123023432060909','testsubject1','testbody','0.01']);
-        //};
+        //删除购物车
+        $scope.remove = function(index){
+            var good = $scope.goods[index];
+            if(good.checked) return;
+            try{
+                $scope.goods.splice(index,1);
+                $scope.$emit('ChangeCartcnt',cnt);
+                cnt += 1;
+            }catch(e){
+                console.log(e);
+            }
+        };
 
-        $rootScope.$on('$stateChangeSuccess',
+        var cnt = 1;
+        $scope.$on('$stateChangeSuccess',
             function($event, toState, toParams, fromState, fromParams){
 
                 //console.log(toState);
                 var isLogin = Ds.has('user');
-                if(toState.name=='tab.cart'){
+                if(toState.name=='tab.cart' || toState.name=='product-detail-cart'){
+                    cnt = 1;
                     if(!isLogin){
                         Ds.set("type","tab.cart");
                         //location.href="#/tab/person";
@@ -200,17 +203,19 @@ appControllers
                     }
 
                 }
-                if(fromState.name=='tab.cart'){
+                if(fromState.name=='tab.cart' || fromState.name=='product-detail-cart'){
                     //需要在此处进行购物车的数据同步
-                    //console.log('购物车的数据同步');
                     if(isLogin)
                         asynCart();
                 }
             }
         );
 
+
+
         $scope.productCart_back = function () {
             history.back();
+            //$ionicHistory.goBack();
         }
     }]);
 
